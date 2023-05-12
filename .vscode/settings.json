@@ -1,0 +1,12 @@
+{
+  "prettier.enable": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "editor.formatOnSave": false,
+  "files.associations": {
+    "*.css": "postcss"
+  },
+  "css.validate": false,
+  "scss.validate": false,
+}
