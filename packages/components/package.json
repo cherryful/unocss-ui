@@ -1,25 +1,32 @@
 {
   "name": "unocss-ui",
+  "type": "module",
   "private": false,
   "version": "0.0.1",
   "description": "A simple unocss vue3 ui lib.",
-  "keywords": ["ui", "vue3", "unocss", "component", "simple"],
+  "keywords": [
+    "ui",
+    "vue3",
+    "unocss",
+    "component",
+    "simple"
+  ],
   "author": "LU",
   "license": "MIT",
-  "homepage": "TODO",
+  "homepage": "https://github.com/cherryful/unocss-ui",
   "repository": {
     "type": "git",
-    "url": "TODO",
-    "directory": "packages/unocss-ui"
+    "url": "https://github.com/cherryful/unocss-ui",
+    "directory": "packages/components"
   },
   "bugs": {
     "url": "https://github.com/cherryful/unocss-ui/issues"
   },
-  "type": "module",
-
   "main": "./dist/unocss-ui.umd.js",
   "module": "./dist/unocss-ui.esm.js",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
@@ -27,10 +34,13 @@
       "import": "./dist/unocss-ui.es.js",
       "require": "./dist/unocss-ui.umd.js"
     },
-    "./dist/style.css": "./dist/style.css"
+    "./style.css": {
+      "import": "./dist/style.css"
+    }
   },
   "scripts": {
-    "build": "vite build && vue-tsc --declaration --emitDeclarationOnly"
+    "build": "vite build && vue-tsc --declaration --emitDeclarationOnly",
+    "lint": "eslint . --fix"
   },
   "dependencies": {
     "vue": "3.2.47"
@@ -45,6 +55,7 @@
     "sass": "^1.62.1",
     "unocss": "^0.51.12",
     "vite": "^4.3.5",
+    "vite-plugin-dts": "^2.3.0",
     "vue-tsc": "^1.6.4"
   }
 }

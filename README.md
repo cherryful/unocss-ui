@@ -1,4 +1,4 @@
-# cherry-component
+# unocss-ui
 
 Perhaps you don't need a component library, the implementation of most components is very simple. This project strives to ensure that each component only requires one. vue file and does not introduce too many dependencies.
 

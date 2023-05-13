@@ -56,7 +56,7 @@ const menus: Array<menuType> = routes.map(e => ({
     :class="isOpen ? 'block' : 'hidden'"
     @click="isOpen = false"
   />
-  <div class="flex">
+  <div class="flex w-64">
     <div
       class="fixed inset-y-0 left-0 z-30 w-64 transform overflow-y-auto bg-gray-50 transition duration-300 lg:static lg:inset-0 lg:translate-x-0"
       :class="isOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'"

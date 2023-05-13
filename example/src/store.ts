@@ -1,4 +1,4 @@
-import { createPinia, defineStore } from 'pinia'
+import { createPinia } from 'pinia'
 
 const pinia = createPinia()
 export default pinia
@@ -16,21 +16,3 @@ export default pinia
 //     },
 //   },
 // })
-
-export const useUserStore = defineStore('user', {
-  state: () => ({
-    isAuthenticated: false,
-    user: {},
-  }),
-  actions: {
-    signin(user: any) {
-      this.isAuthenticated = true
-      this.user = user
-    },
-    signout() {
-      this.isAuthenticated = false
-      this.user = {}
-      localStorage.clear()
-    },
-  },
-})

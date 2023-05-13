@@ -3,7 +3,12 @@ import 'uno.css'
 
 import { createApp } from 'vue'
 
-import unocssui from '../../packages/components/src/index'
+// use package
+import 'unocss-ui/style.css'
+import unocssui from 'unocss-ui'
+
+// use code
+// import unocssui from '../../packages/components/src/index'
 
 import App from './App.vue'
 import router from './router'

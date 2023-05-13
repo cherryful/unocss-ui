@@ -7,25 +7,10 @@ import {
   transformerVariantGroup,
 } from 'unocss'
 
+import { presetForms } from '@julr/unocss-preset-forms'
 import { colors } from 'unocss/preset-mini'
 
-const types = [
-  'primary',
-  'secondary',
-  'accent',
-  'success',
-  'info',
-  'warning',
-  'error',
-]
-
-const safeList = [
-  ...types.map(v => `bg-${v}-100`),
-  ...types.map(v => `hover:bg:${v}-100`),
-]
-
 export default defineConfig({
-  safelist: safeList,
   theme: {
     colors: {
       primary: colors.indigo,
@@ -40,6 +25,7 @@ export default defineConfig({
   // shortcuts: [],
   presets: [
     presetUno(),
+    presetForms(),
     presetIcons(),
     presetWebFonts({
       provider: 'bunny',

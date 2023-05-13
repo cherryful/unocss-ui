@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { Modal } from 'unocss-ui'
 
 const props = withDefaults(defineProps<{
   title: string
@@ -35,7 +34,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <Modal v-model="show" @close="close(false)">
+  <UModal v-model="show" @close="close(false)">
     <div class="sm:flex sm:items-start">
       <div class="mx-auto h-12 w-12 flex flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
         <svg class="h-6 w-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
@@ -69,5 +68,5 @@ onMounted(() => {
         {{ cancelText }}
       </button>
     </div>
-  </Modal>
+  </UModal>
 </template>

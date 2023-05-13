@@ -1,20 +1,20 @@
-import path from 'node:path'
+import { resolve } from 'node:path'
 import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import unocss from 'unocss/vite'
+import Vue from '@vitejs/plugin-vue'
+import Unocss from 'unocss/vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    vue(),
-    unocss({ mode: 'vue-scoped' }),
+    Vue(),
+    // Unocss({ mode: 'vue-scoped' }),
+    Unocss(),
   ],
   build: {
     target: 'modules',
-    minify: true,
-    cssCodeSplit: true, //
+    // cssCodeSplit: true,
     lib: {
-      entry: path.resolve(__dirname, 'src/index.ts'),
+      entry: resolve(__dirname, 'src/index.ts'),
       name: 'unocss-ui',
       fileName: format => `unocss-ui.${format}.js`,
     },

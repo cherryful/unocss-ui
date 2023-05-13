@@ -1,3 +1,5 @@
+import 'uno.css'
+
 import type { App } from 'vue'
 import Alert from './components/Alert.vue'
 import Badge from './components/Badge.vue'
@@ -63,32 +65,32 @@ for (const c of components) {
 }
 
 export {
-  Alert,
-  Badge,
-  Button,
-  Checkbox,
-  Collapse,
-  Divider,
-  Drawer,
-  Dropdown,
-  DynamicTags,
-  FileInput,
-  Input,
-  Loading,
-  Modal,
-  Popover,
-  Progress,
-  Radio,
-  Select,
-  Skeleton,
-  Spin,
-  Switch,
-  Table,
-  Tag,
-  Toast,
-  Tree,
-  Tabs,
-  TabPane,
+  Alert as UAlert,
+  Badge as UBadge,
+  Button as UButton,
+  Checkbox as UCheckbox,
+  Collapse as UCollapse,
+  Divider as UDivider,
+  Drawer as UDrawer,
+  Dropdown as UDropdown,
+  DynamicTags as UDynamicTags,
+  FileInput as UFileInput,
+  Input as UInput,
+  Loading as ULoading,
+  Modal as UModal,
+  Popover as UPopover,
+  Progress as UProgress,
+  Radio as URadio,
+  Select as USelect,
+  Skeleton as USkeleton,
+  Spin as USpin,
+  Switch as USwitch,
+  Table as UTable,
+  Tag as UTag,
+  Toast as UToast,
+  Tree as UTree,
+  Tabs as UTabs,
+  TabPane as UTabPane,
 }
 
 export default function install(app: App) {

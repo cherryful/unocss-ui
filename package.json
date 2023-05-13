@@ -12,13 +12,8 @@
     "@unocss/eslint-config": "^0.51.12",
     "eslint": "8.38.0",
     "pnpm": "^8.5.0",
+    "rollup-plugin-visualizer": "^5.9.0",
     "taze": "^0.10.1",
     "typescript": "^5.0.4"
-  },
-  "eslintConfig": {
-    "extends": [
-      "@antfu",
-      "@unocss"
-    ]
   }
 }
