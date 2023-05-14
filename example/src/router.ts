@@ -1,5 +1,5 @@
 import type { RouteRecordRaw } from 'vue-router'
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 
 const Layout = () => import('@/layout/Layout.vue')
 
@@ -48,7 +48,7 @@ export const routes: Array<RouteRecordRaw> = [
 ]
 
 const router = createRouter({
-  history: createWebHistory('/unocss-ui/'),
+  history: createWebHashHistory('/unocss-ui/'),
   routes,
 })
 
