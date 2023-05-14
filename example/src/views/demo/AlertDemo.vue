@@ -1,9 +1,9 @@
 <script setup lang="ts">
+import PageWrap from '@/components/PageWrap.vue'
 </script>
 
 <template>
-  <div class="space-y-4">
-    Alert Demo:
+  <PageWrap title="Alert Demo">
     <div class="space-x-3">
       <span class="inline-block w-20">
         type:
@@ -51,5 +51,5 @@
         </UAlert>
       </div>
     </div>
-  </div>
+  </PageWrap>
 </template>

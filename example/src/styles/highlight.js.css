@@ -1,0 +1,68 @@
+.hljs {
+  @apply block text-gray-50 text-sm whitespace-pre-wrap font-mono leading-snug;
+}
+
+.hljs-comment,
+.hljs-quote {
+  @apply text-gray-300;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-addition {
+  @apply text-teal-400;
+}
+
+.hljs-number,
+.hljs-string,
+.hljs-meta .hljs-meta-string,
+.hljs-literal,
+.hljs-doctag,
+.hljs-regexp {
+  @apply text-green-400;
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class {
+  @apply text-primary-400;
+}
+
+.hljs-attribute,
+.hljs-attr,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-class .hljs-title,
+.hljs-type {
+  @apply text-yellow-400;
+}
+
+.hljs-symbol,
+.hljs-bullet,
+.hljs-subst,
+.hljs-meta,
+.hljs-meta .hljs-keyword,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-link {
+  @apply text-orange-400;
+}
+
+.hljs-built_in,
+.hljs-deletion {
+  @apply text-red-400;
+}
+
+.hljs-formula {
+  @apply text-blue-400;
+}
+
+.hljs-emphasis {
+  @apply italic;
+}
+
+.hljs-strong {
+  @apply font-bold;
+}

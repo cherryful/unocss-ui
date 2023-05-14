@@ -1,21 +1,26 @@
 <script setup>
-import { ref } from 'vue';
+import { ref } from 'vue'
 
-const toast = ref(null)
+import { UAlert, UButton, UDrawer, ULoading, UModal, UTag, UToast } from 'unocss-ui'
+
 const drawer = ref(false)
 const modal = ref(false)
+
+const welcome = ref('hi! gratulation to you! you can use this ui lib!')
 </script>
 
 <template>
   <div class="m-5 space-y-5">
-    <div class="bg-red">
-      Test import unocss-ui
+    <div class="text-2xl p-3 border">
+      unocss-ui
     </div>
     <div class="space-x-4">
-      <UAlert type="success">hi! gratulation to you! you can use this ui lib!</UAlert>
+      <UAlert type="success">
+        {{ welcome }}
+      </UAlert>
     </div>
-    <div class="space-x-4">
-      <UButton type="primary" @click="toast?.success('hi! gratulation to you! you can use this ui lib!')">
+    <div class="space-y-3 sm:space-x-4">
+      <UButton type="primary" @click="$refs.toast?.success(welcome)">
         Show Toast
       </UButton>
       <UButton type="secondary" @click="modal = true">
@@ -31,22 +36,29 @@ const modal = ref(false)
       <ULoading type="accent" />
     </div>
     <div class="flex gap-4">
-      <UTag type="primary">Good</UTag>
-      <UTag type="secondary">Nice</UTag>
-      <UTag type="accent">Well</UTag>
-    </div>
-    <div class="flex gap-4">
-      <UTag type="primary">Good</UTag>
-      <UTag type="secondary">Nice</UTag>
-      <UTag type="accent">Well</UTag>
+      <UTag type="primary">
+        Good
+      </UTag>
+      <UTag type="secondary">
+        Nice
+      </UTag>
+      <UTag type="accent">
+        Well
+      </UTag>
     </div>
   </div>
 
-  <UDrawer v-model="drawer"></UDrawer>
   <UModal v-model="modal">
-    <div class="font-lg">
-      HELLO WORLD
+    <div class="text-xl">
+      {{ welcome }}
     </div>
   </UModal>
-  <UToast ref="toast"></UToast>
+
+  <UDrawer v-model="drawer" placement="bottom">
+    <div class="p-3 text-xl flex items-center justify-center w-full h-full">
+      {{ welcome }}
+    </div>
+  </UDrawer>
+
+  <UToast ref="toast" />
 </template>

@@ -2,12 +2,11 @@ import {
   defineConfig,
   presetIcons,
   presetUno,
-  // presetWebFonts,
   transformerDirectives,
   transformerVariantGroup,
 } from 'unocss'
 
-// import { presetForms } from '@julr/unocss-preset-forms'
+import { presetForms } from '@julr/unocss-preset-forms'
 import { colors } from 'unocss/preset-mini'
 
 export default defineConfig({
@@ -25,13 +24,7 @@ export default defineConfig({
   presets: [
     presetUno(),
     presetIcons(),
-    // presetForms(),
-    // presetWebFonts({
-    //   provider: 'bunny',
-    //   fonts: {
-    //     sans: 'Inter',
-    //   },
-    // }),
+    presetForms(),
   ],
   transformers: [
     transformerDirectives(),

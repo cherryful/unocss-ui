@@ -10,7 +10,7 @@ import Footer from './Footer.vue'
     <div class="flex flex-1 flex-col overflow-hidden">
       <Header />
       <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100">
-        <div class="mx-auto px-4 py-6 container sm:mt-10 space-y-5">
+        <div class="mx-auto px-4 py-6 container sm:mt-3">
           <RouterView v-slot="{ Component }">
             <component :is="Component" />
           </RouterView>

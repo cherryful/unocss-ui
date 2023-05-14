@@ -29,11 +29,11 @@ jobs:
 
       - name: Build
         env:
-          VITE_BASE_PUBLIC_PATH: ${{ vars.VITE_BASE_PUBLIC_PATH }}
-        run: pnpm run build
+          VITE_BASE_PUBLIC_PATH: /unocss-ui/
+        run: pnpm build:example
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          publish_dir: ./example/dist

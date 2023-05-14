@@ -1,14 +1,17 @@
 <script setup lang="ts">
-// type UToastCtx = InstanceType<typeof UToast>
+import { ref } from 'vue'
+import UToast from '../../../../components/src/components/Toast.vue'
 
-// const toast1 = ref<UToastCtx | null>(null)
+type UToastCtx = InstanceType<typeof UToast>
 
-// const position = ref<'top' | 'bottom' >('top')
-// const align = ref<'left' | 'center' | 'right'>('center')
+const toast1 = ref<UToastCtx | null>(null)
+
+const position = ref<'top' | 'bottom' >('top')
+const align = ref<'left' | 'center' | 'right'>('center')
 </script>
 
 <template>
-  <!-- <UToast ref="toast1" :queue="false" :timeout="1000" />
+  <UToast ref="toast1" :queue="false" :timeout="1000" />
   <UToast ref="toast2" v-slot="{ type }">
     <div class="pointer-events-auto max-w-sm w-full overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
       <div class="p-4">
@@ -159,8 +162,5 @@
         UToast4: bottom right
       </UButton>
     </div>
-  </div> -->
-  <div>
-    Toast
   </div>
 </template>

@@ -22,10 +22,3 @@ export function uniqueId(prefix = '$lodash$'): string {
 
   return `${prefix}${id}`
 }
-
-// export function withInstall(c: any) {
-//   c.install = (app: App) => {
-//     app.component(c.name, c)
-//   }
-//   return c
-// }

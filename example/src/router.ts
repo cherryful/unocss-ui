@@ -29,6 +29,7 @@ export const routes: Array<RouteRecordRaw> = [
       { name: 'DynamicTags', path: '/dynamictags', component: () => import('@/views/demo/DynamicTagsDemo.vue') },
       // { name: 'FileInput', path: '/fileinput', component: () => import('@/views/demo/FileInputDemo.vue') },
       { name: 'Input', path: '/input', component: () => import('@/views/demo/InputDemo.vue') },
+      { name: 'Loading', path: '/loading', component: () => import('@/views/demo/LoadingDemo.vue') },
       { name: 'Modal', path: '/modal', component: () => import('@/views/demo/ModalDemo.vue') },
       { name: 'Popover', path: '/popover', component: () => import('@/views/demo/PopoverDemo.vue') },
       { name: 'Progress', path: '/progress', component: () => import('@/views/demo/ProgressDemo.vue') },

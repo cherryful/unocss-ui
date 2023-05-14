@@ -1,15 +1,17 @@
 {
   "name": "demo",
-  "private": true,
-  "version": "0.0.0",
   "type": "module",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
-    "unocss-ui": "link:../packages/components",
+    "unocss-ui": "workspace:0.0.1-alpha.1",
     "vue": "^3.2.47"
   },
   "devDependencies": {

@@ -3,19 +3,28 @@ import 'uno.css'
 
 import { createApp } from 'vue'
 
-// use package
-import 'unocss-ui/style.css'
-import unocssui from 'unocss-ui'
+// highlight.js
+import './styles/highlight.js.css'
+import hljsVuePlugin from '@highlightjs/vue-plugin'
+import xml from 'highlight.js/lib/languages/xml'
+import hljs from 'highlight.js/lib/core'
 
-// use code
-// import unocssui from '../../packages/components/src/index'
+// 1. use package, for prod
+// import 'unocss-ui/style.css'
+// import unocssui from 'unocss-ui'
+
+// 2. use code, for dev
+import unocssui from '../../components/src/index'
 
 import App from './App.vue'
 import router from './router'
 import store from './store'
 
+hljs.registerLanguage('xml', xml)
+
 const app = createApp(App)
 app.use(unocssui)
+app.use(hljsVuePlugin)
 app.use(router)
 app.use(store)
 app.mount('#app')

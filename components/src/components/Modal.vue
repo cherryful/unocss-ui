@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { Ref } from 'vue'
-import { computed, toRef } from 'vue'
-import { useDOMScrollLock } from '../composables/useDOMScrollLock'
+import { computed } from 'vue'
+
+// import { useDOMScrollLock } from '../composables/useDOMScrollLock'
 
 const props = withDefaults(defineProps<{
   modelValue: boolean
@@ -32,7 +32,7 @@ function close() {
 
 // Lock DOM scroll when modelValue is `true`
 // !️ We need to use type assertion here because of this issue: https://github.com/johnsoncodehk/volar/issues/2219
-useDOMScrollLock(toRef(props, 'modelValue') as Ref<boolean>)
+// useDOMScrollLock(toRef(props, 'modelValue') as Ref<boolean>)
 </script>
 
 <script lang="ts">
@@ -97,10 +97,10 @@ export default {
 </template>
 
 <style lang="scss">
-html.scroll-lock {
-  position: fixed;
-  overflow-y: scroll;
-  top: var(--window-scroll-top);
-  width: 100%;
-}
+// html.scroll-lock {
+  // position: fixed;
+  // overflow-y: scroll;
+  // top: var(--window-scroll-top);
+  // width: 100%;
+// }
 </style>

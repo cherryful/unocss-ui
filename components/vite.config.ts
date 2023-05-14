@@ -7,8 +7,7 @@ import Unocss from 'unocss/vite'
 export default defineConfig({
   plugins: [
     Vue(),
-    // Unocss({ mode: 'vue-scoped' }),
-    Unocss(),
+    Unocss(), // { mode: 'vue-scoped' })
   ],
   build: {
     target: 'modules',
@@ -23,9 +22,7 @@ export default defineConfig({
     rollupOptions: {
       external: ['vue'],
       output: {
-        globals: {
-          vue: 'Vue',
-        },
+        globals: { vue: 'Vue' },
       },
     },
   },

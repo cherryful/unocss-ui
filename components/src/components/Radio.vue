@@ -3,9 +3,9 @@ import { computed } from 'vue'
 import { uniqueId } from '../helper'
 
 const props = withDefaults(defineProps<{
-  modelValue?: string | number | boolean | unknown
+  modelValue?: string | number | boolean | any
   type?: 'success' | 'info' | 'warning' | 'error' | 'primary' | 'secondary' | 'accent'
-  value?: string | number | boolean | unknown
+  value?: string | number | boolean | any
   disabled?: boolean
   options?: Array<{
     title: string
@@ -72,6 +72,7 @@ const themes = {
 <script lang="ts">
 export default {
   name: 'URadio',
+  inheritAttrs: false,
 }
 </script>
 

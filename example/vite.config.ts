@@ -1,16 +1,14 @@
 import { resolve } from 'node:path'
-import { defineConfig, loadEnv } from 'vite'
+import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import Unocss from 'unocss/vite'
 
-// import { visualizer } from 'rollup-plugin-visualizer'
+import { visualizer } from 'rollup-plugin-visualizer'
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => {
-  process.env = { ...process.env, ...loadEnv(mode, process.cwd()) }
-
-  return {
-    base: process.env.VITE_BASE_PUBLIC_PATH,
+export default defineConfig(
+  {
+    base: '/unocss-ui/',
     resolve: {
       alias: {
         '@': resolve(__dirname, 'src'),
@@ -20,11 +18,7 @@ export default defineConfig(({ mode }) => {
       Vue(),
       // https://github.com/unocss/unocss
       Unocss(), // uno.config.ts
-      // visualizer({
-      //   open: true,
-      //   gzipSize: true,
-      //   brotliSize: true,
-      // }),
+      visualizer({ open: true, gzipSize: true, brotliSize: true }),
     ],
     server: {
       proxy: {
@@ -32,11 +26,7 @@ export default defineConfig(({ mode }) => {
           target: 'http://localhost:8765',
           changeOrigin: true,
         },
-        '/auth': {
-          target: 'http://localhost:8765',
-          changeOrigin: true,
-        },
       },
     },
-  }
-})
+  },
+)
