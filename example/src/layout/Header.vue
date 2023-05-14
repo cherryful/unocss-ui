@@ -9,10 +9,7 @@ const notificationOpen = ref(false)
 
 <template>
   <header
-    class="flex items-center justify-between
-      px-6 py-2
-      bg-white
-      border-b-4 border-primary-600"
+    class="flex items-center justify-between px-6 py-2 bg-white border-b-4 border-primary-600"
   >
     <div class="flex items-center">
       <button
@@ -32,10 +29,7 @@ const notificationOpen = ref(false)
         </span>
 
         <input
-          class="w-32 pl-10 pr-4 py-2
-            text-primary-600 border-gray-200
-            rounded-md sm:w-64
-            focus:border-primary-600 focus:ring-2 focus:ring-primary-500"
+          class="pl-10 pr-4 py-2 rounded-md focus:ring-2 focus:ring-primary-500 w-32 text-primary-600 border-gray-200 sm:w-64 focus:border-primary-600"
           type="text"
           placeholder="Search"
         >
@@ -62,21 +56,15 @@ const notificationOpen = ref(false)
 
           <div
             v-show="notificationOpen"
-            class="absolute right-0 z-10
-              mt-2 w-80
-              bg-white
-              rounded-lg shadow-xl overflow-hidden"
+            class="absolute right-0 z-10 mt-2 bg-white rounded-lg shadow-xl overflow-hidden w-80"
             style="width: 20rem"
           >
             <a
               href="#"
-              class="flex items-center
-                px-4 py-3 -mx-2
-                text-gray-600
-                hover:text-white hover:bg-primary-600"
+              class="flex items-center px-4 py-3 text-gray-600 -mx-2 hover:text-white hover:bg-primary-600"
             >
               <img
-                class="h-8 w-8 rounded-full object-cover mx-1"
+                class="rounded-full h-8 w-8 object-cover mx-1"
                 src="https://images.unsplash.com/photo-1552774021-9ebbb764f03e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80"
                 alt="avatar"
               >
@@ -91,11 +79,7 @@ const notificationOpen = ref(false)
       </div>
       <div class="relative">
         <button
-          class="relative z-10
-            block w-8 h-8
-            overflow-hidden
-            rounded-full shadow
-            focus:outline-none"
+          class="relative z-10 block w-8 h-8 overflow-hidden rounded-full shadow focus:outline-none"
           @click="dropdownOpen = !dropdownOpen"
         >
           <img
@@ -121,7 +105,7 @@ const notificationOpen = ref(false)
         >
           <div
             v-show="dropdownOpen"
-            class="absolute right-0 z-20 w-48 py-1 mt-2 bg-white rounded-lg shadow-xl"
+            class="absolute right-0 py-1 mt-2 bg-white rounded-lg shadow-xl z-20 w-48"
           >
             <a
               href="#"
@@ -142,7 +126,7 @@ const notificationOpen = ref(false)
               Settings</a>
             <router-link
               to="/logout"
-              class=" flex px-4 py-2 rounded-md text-sm text-gray-700 hover:bg-primary-600 hover:text-white"
+              class="flex px-4 py-2 rounded-md text-sm text-gray-700 hover:bg-primary-600 hover:text-white"
             >
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />

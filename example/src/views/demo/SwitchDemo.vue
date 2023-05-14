@@ -54,7 +54,7 @@ function onChange(val) {
       <USwitch v-model="value" icon>
         Enabled
       </USwitch>
-      <USwitch icon readonly checked>
+      <USwitch icon checked readonly>
         readonly
       </USwitch>
       <USwitch v-model="value" @update:model-value="onChange">

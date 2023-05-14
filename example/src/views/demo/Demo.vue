@@ -1,6 +1,7 @@
 <script setup>
 // import ModalDemo from './ModalDemo.vue'
 import ButtonDemo from './ButtonDemo.vue'
+
 // import TagDemo from './TagDemo.vue'
 // import CheckboxDemo from './CheckboxDemo.vue'
 // import RadioDemo from './RadioDemo.vue'
@@ -27,7 +28,7 @@ import ButtonDemo from './ButtonDemo.vue'
 
 <template>
   <div class="mx-5">
-    <div class="my-5 space-y-5">
+    <div class="space-y-5 my-5">
       <!-- <ModalDemo /> -->
       <ButtonDemo />
       <!-- <TagDemo />

@@ -26,7 +26,7 @@ import ULoading from '../../../../components/src/components/Loading.vue'
       <ULoading type="error" class="h-15 w-15" />
       <ULoading>
         <template #icon>
-          <div class="i-mdi:ULoading h-8 w-8 text-blue-500 animate-spin" />
+          <div class="h-8 w-8 text-blue-500 animate-spin i-mdi:ULoading" />
         </template>
       </ULoading>
       <ULoading class="h-10 w-10">
@@ -36,7 +36,7 @@ import ULoading from '../../../../components/src/components/Loading.vue'
       </ULoading>
       <ULoading>
         <template #icon>
-          <div class="animate-pulse cursor-default">
+          <div class="cursor-default animate-pulse">
             ULoading...
           </div>
         </template>
@@ -47,8 +47,8 @@ import ULoading from '../../../../components/src/components/Loading.vue'
       Wrap Content:
       <div class="flex items-center space-x-5">
         <ULoading>
-          <div class="block max-w-sm items-center border border-gray-100 rounded-lg bg-white p-6 shadow-md dark:border-gray-800 dark:bg-gray-800 dark:hover:bg-gray-700">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          <div class="block items-center border border-gray-100 rounded-lg bg-white dark:bg-gray-800 dark:hover:bg-gray-700 max-w-sm p-6 shadow-md dark:border-gray-800">
+            <h5 class="mb-2 text-2xl font-bold text-gray-900 tracking-tight dark:text-white">
               Noteworthy technology acquisitions 2021
             </h5>
             <p class="font-normal text-gray-700 dark:text-gray-400">

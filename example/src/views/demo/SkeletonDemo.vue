@@ -12,7 +12,7 @@ function onClick() {
     <USkeleton class="w-full bg-accent-300" />
   </div>
   <div class="flex gap-5">
-    <USkeleton as="button" class="h-16 w-16 rounded-full" @click="onClick" />
+    <USkeleton as="button" class="rounded-full w-16 h-16" @click="onClick" />
     <USkeleton class="h-16 w-16 rounded-full bg-success-300" />
     <USkeleton class="h-16 w-16 rounded-full bg-info-300" />
     <USkeleton class="h-16 w-16 rounded-full bg-warning-300" />

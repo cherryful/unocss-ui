@@ -9,10 +9,10 @@ defineProps<{
     <p class="text-2xl font-bold">
       {{ title }}
     </p>
-    <p class="mb-5 mt-3">
+    <p class="mt-3 mb-5">
       <slot name="description" />
     </p>
-    <div class="max-w-7xl w-full space-y-3 sm:space-y-6">
+    <div class="w-full space-y-3 max-w-7xl sm:space-y-6">
       <slot />
     </div>
   </div>

@@ -32,7 +32,7 @@ function select(val: DropdownOption) {
 </script>
 
 <template>
-  <div class="mb-4 h-32 flex flex-col border p-4">
+  <div class="mb-4 flex flex-col border p-4 h-32">
     <div class="mb-2">
       Basic
     </div>

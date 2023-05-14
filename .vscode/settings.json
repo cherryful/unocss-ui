@@ -8,5 +8,5 @@
   },
   "css.validate": false,
   "scss.validate": false,
-  "unocss.root": ["./demo", "./example", "./components"]
+  "unocss.root": ["./", "./demo", "./example", "./components"]
 }

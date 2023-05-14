@@ -11,7 +11,7 @@ const welcome = ref('hi! gratulation to you! you can use this ui lib!')
 
 <template>
   <div class="m-5 space-y-5">
-    <div class="text-2xl p-3 border">
+    <div class="p-3 border text-2xl">
       unocss-ui
     </div>
     <div class="space-x-4">

@@ -31,22 +31,22 @@ export default {
 <template>
   <div class="w-full flex flex-col">
     <div class="overflow-x-auto -mx-4 -my-2 lg:-mx-8 sm:-mx-6">
-      <div class="inline-block min-w-full py-2 align-middle lg:px-8 md:px-6">
-        <div class="relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+      <div class="inline-block py-2 min-w-full align-middle lg:px-8 md:px-6">
+        <div class="relative overflow-hidden ring-1 ring-black ring-opacity-5 shadow md:rounded-lg">
           <!-- Head Bulk Actions  -->
           <div
             v-if="selectIds.length > 0"
-            class="absolute left-12 top-0 z-10 h-12 flex items-center bg-gray-50 sm:left-16 space-x-3"
+            class="absolute top-0 z-10 flex items-center left-12 h-12 bg-gray-50 sm:left-16 space-x-3"
           >
             <button
               v-for="action in actions" :key="action.name" :disabled="!selectIds.length"
-              class="inline-flex items-center border border-gray-300 rounded bg-white px-2.5 py-1.5 text-xs font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+              class="inline-flex items-center border border-gray-300 rounded bg-white py-1.5 text-xs font-medium text-gray-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 px-2.5 hover:bg-gray-50 focus:ring-primary-500"
               @click="action.clicked(selectIds)"
             >
               {{ action.name }}
             </button>
           </div>
-          <table class="min-w-full table-fixed overflow-x-auto divide-y divide-gray-300">
+          <table class="min-w-full overflow-x-auto table-fixed divide-y divide-gray-300">
             <thead class="bg-gray-50">
               <tr>
                 <!-- Selection box for the header -->
@@ -76,7 +76,7 @@ export default {
               </tr>
               <tr v-if="data.length === 0">
                 <td :colspan="99">
-                  <div class="min-h-32 flex items-center justify-center">
+                  <div class="flex items-center justify-center min-h-32">
                     <template v-if="$slots.empty">
                       <slot name="empty" />
                     </template>

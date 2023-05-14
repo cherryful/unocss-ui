@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <div class="h-full min-h-2xl bg-white p-5">
+  <div class="h-full bg-white p-5 min-h-2xl">
     <div> UCollapseDemo: </div>
     <div class="space-y-8">
       <UCollapse class="w-lg">
@@ -15,7 +15,7 @@
           consequat.
         </template>
       </UCollapse>
-      <UCollapse class="w-lg" expanded disabled>
+      <UCollapse class="w-lg" disabled expanded>
         <p class="my-2">
           default expanded && disabled
         </p>

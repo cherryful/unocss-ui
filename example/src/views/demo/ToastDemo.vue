@@ -13,7 +13,7 @@ const align = ref<'left' | 'center' | 'right'>('center')
 <template>
   <UToast ref="toast1" :queue="false" :timeout="1000" />
   <UToast ref="toast2" v-slot="{ type }">
-    <div class="pointer-events-auto max-w-sm w-full overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
+    <div class="max-w-sm w-full overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5 pointer-events-auto">
       <div class="p-4">
         <div class="flex items-start">
           <div class="flex-shrink-0">
@@ -27,7 +27,7 @@ const align = ref<'left' | 'center' | 'right'>('center')
               }"
             />
           </div>
-          <div class="ml-3 w-0 flex-1 pt-0.5">
+          <div class="ml-3 flex-1 w-0 pt-0.5">
             <p class="text-sm font-medium text-gray-900">
               This is the custom {{ type }}  toast!
             </p>
@@ -43,7 +43,7 @@ const align = ref<'left' | 'center' | 'right'>('center')
   <UToast ref="toast4" :position="position" :align="align" />
 
   <div class="space-y-4">
-    <div class="space-y-2 sm:space-x-4">
+    <div class="sm:space-x-4 space-y-2">
       <UButton @click="toast1?.info('This is a no queue toast.')">
         UToast1: no-queue, timeout-1000
       </UButton>

@@ -7,6 +7,6 @@
     "antfu.iconify",
     "antfu.vite",
     "antfu.goto-alias",
-    "dbaeumer.vscode-eslint",
+    "dbaeumer.vscode-eslint"
   ]
 }

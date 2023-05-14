@@ -38,7 +38,7 @@ export default {
       type="checkbox"
       :disabled="disabled"
       aria-describedby="comments-description"
-      class="mr-2 h-4 w-4 border-gray-300 rounded"
+      class="h-4 w-4 mr-2 border-gray-300 rounded"
       :class="[[type], {
         'opacity-30 cursor-not-allowed': disabled,
       }]"

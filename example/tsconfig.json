@@ -17,9 +17,9 @@
     "skipLibCheck": true,
     "noEmit": true,
     "allowJs": true,
-    "baseUrl": "./", 
+    "baseUrl": "./",
     "paths": {
-      "@":["src"],
+      "@": ["src"],
       "@/*": ["src/*"]
     }
   },

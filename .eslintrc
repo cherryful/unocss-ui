@@ -1,7 +1,8 @@
 {
   // @unocss BUG: https://github.com/unocss/unocss/issues/2603
   "extends": [
-    "@antfu"
+    "@antfu",
+    "@unocss"
   ],
   "rules": {
     "no-console": "warn"

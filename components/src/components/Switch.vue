@@ -101,7 +101,7 @@ export default {
       class="flex items-center"
       :class="[disabled ? 'cursor-not-allowed opacity-60' : readonly ? '' : 'cursor-pointer']"
     >
-      <div class="mr-2 text-sm font-medium leading-6 text-gray-900 empty:hidden">
+      <div class="text-sm font-medium leading-6 text-gray-900 empty:hidden mr-2">
         <slot />
       </div>
       <!-- focus:rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 -->
@@ -116,7 +116,7 @@ export default {
           class="sr-only"
         >
         <div
-          class="block rounded-full"
+          class="rounded-full block"
           :class="[
             (switchValue || checked) ? themes[type].color : 'bg-gray-200',
             {
@@ -127,7 +127,7 @@ export default {
           ]"
         />
         <div
-          class="absolute left-0 top-0.5 rounded-full bg-white transition"
+          class="absolute left-0 rounded-full bg-white transition top-0.5"
           :class="[
             (switchValue || checked) ? 'translate-x-5' : 'translate-x-0',
             {

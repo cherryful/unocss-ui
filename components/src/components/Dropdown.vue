@@ -83,7 +83,7 @@ export default {
       <div
         v-if="flux.status"
         ref="dropdown"
-        class="absolute z-10 min-w-max rounded-lg bg-white shadow-lg dark:bg-slate-800"
+        class="absolute rounded-lg bg-white z-10 min-w-max shadow-lg dark:bg-slate-800"
         tabindex="-1"
         @mouseenter="flux.onMouseenter"
       >
@@ -93,7 +93,7 @@ export default {
               <template v-for="option in options" :key="option.key">
                 <div
                   v-if="option"
-                  class="flex cursor-pointer items-center rounded-md px-3 py-1 hover:bg-primary-200 hover:text-primary-600"
+                  class="flex cursor-pointer items-center rounded-md py-1 px-3 hover:bg-primary-200 hover:text-primary-600"
                   @click.stop="flux.select(option)"
                 >
                   <template v-if="typeof option.icon === 'string'">
@@ -104,7 +104,7 @@ export default {
                   </template>
                   <span class="ml-2">{{ option.label }}</span>
                 </div>
-                <div v-else class="my-2 border dark:border-slate-600" />
+                <div v-else class="border my-2 dark:border-slate-600" />
               </template>
             </div>
           </slot>

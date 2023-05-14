@@ -56,7 +56,7 @@ function onChange(val) {
   <div class="flex gap-4">
     <URadio v-slot="{ checked }" v-model="checkValue" hidden type="success" value="apple" @change="onChange">
       <div
-        class="h-8 w-8 border-2 border-white rounded-full bg-success-500"
+        class="h-8 w-8 border-2 rounded-full border-white bg-success-500"
         :class=" {
           'ring-2 ring-success-500': checked,
         }

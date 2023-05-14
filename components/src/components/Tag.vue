@@ -28,7 +28,7 @@ export default {
 
 <template>
   <div
-    class="inline-block cursor-default whitespace-nowrap text-xs font-medium shadow-sm"
+    class="inline-block text-xs font-medium shadow-sm cursor-default whitespace-nowrap"
     :class="custom || [[type], {
       'border border-gray-300': border,
 
@@ -47,7 +47,7 @@ export default {
       <div v-if="closeable" class="flex">
         <slot />
         <svg
-          class="ml-1 h-4 w-4 cursor-pointer stroke-2 transition-colors duration-150 ease-in-out hover:text-gray-700"
+          class="h-4 w-4 cursor-pointer ease-in-out ml-1 stroke-2 transition-colors duration-150 hover:text-gray-700"
           width="24" height="24" viewBox="0 0 24 24" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round" fill="none" role="presentation"
           @click="$emit('close')"
         >

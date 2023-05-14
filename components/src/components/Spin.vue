@@ -41,7 +41,7 @@ export default {
     <slot name="icon">
       <div
         ref="spinner"
-        class="inline-block h-full w-full animate-spin border-gray-300 rounded-full bg-transparent"
+        class="inline-block h-full w-full border-gray-300 rounded-full bg-transparent animate-spin"
         :class="[[type]]"
       >
         <span class="sr-only">Loading...</span>

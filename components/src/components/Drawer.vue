@@ -36,7 +36,7 @@ export default {
   <Teleport to="body">
     <div
       v-bind="$attrs"
-      class="fixed z-50 overflow-y-auto bg-white transition-all"
+      class="transition-all bg-white fixed z-50 overflow-y-auto"
       :class="{
         'w-80 h-screen': placement === 'right' || placement === 'left',
         'top-0 -left-80': placement === 'left' && !modelValue,

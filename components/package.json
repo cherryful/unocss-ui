@@ -1,16 +1,9 @@
 {
   "name": "unocss-ui",
   "type": "module",
-  "private": false,
   "version": "0.0.1-alpha.1",
+  "private": false,
   "description": "A simple vue3 ui lib built with unocss.",
-  "keywords": [
-    "ui",
-    "vue3",
-    "unocss",
-    "component",
-    "component library"
-  ],
   "author": "cherryful <https://github.com/cherryful>",
   "license": "MIT",
   "homepage": "https://github.com/cherryful/unocss-ui",
@@ -22,22 +15,29 @@
   "bugs": {
     "url": "https://github.com/cherryful/unocss-ui/issues"
   },
-  "main": "./dist/unocss-ui.umd.js",
-  "module": "./dist/unocss-ui.es.js",
-  "files": [
-    "dist"
+  "keywords": [
+    "ui",
+    "vue3",
+    "unocss",
+    "component",
+    "component library"
   ],
-  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/unocss-ui.es.js",
-      "require": "./dist/unocss-ui.umd.js"
+      "require": "./dist/unocss-ui.umd.js",
+      "import": "./dist/unocss-ui.es.js"
     },
     "./style.css": {
       "import": "./dist/style.css"
     }
   },
+  "main": "./dist/unocss-ui.umd.js",
+  "module": "./dist/unocss-ui.es.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "vite build && vue-tsc --declaration --emitDeclarationOnly",
     "lint": "eslint . --fix"

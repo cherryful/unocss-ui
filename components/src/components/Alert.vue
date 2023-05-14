@@ -56,7 +56,7 @@ export default {
       </div>
       <slot />
     </div>
-    <div v-if="closeable" class="ml-3 h-6 w-6 flex items-center justify-center">
+    <div v-if="closeable" class="h-6 w-6 flex ml-3 items-center justify-center">
       <div class="i-mdi:close-thick h-4 w-4 cursor-pointer transition hover:scale-125" />
     </div>
   </div>

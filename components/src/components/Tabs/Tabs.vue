@@ -76,7 +76,7 @@ export default {
         @click="flux.selectTab(tab, idx)"
       >
         <span> {{ tab?.title }} </span>
-        <span class="ml-1 inline-block h-5 w-5" :class="tab?.icon" />
+        <span class="inline-block h-5 w-5 ml-1" :class="tab?.icon" />
       </div>
     </div>
     <div class="p-3">

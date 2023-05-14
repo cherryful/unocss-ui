@@ -1,4 +1,4 @@
 packages:
-  - "components"
-  - "example"
-  - "demo"
+  - components
+  - example
+  - demo

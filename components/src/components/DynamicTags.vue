@@ -63,7 +63,7 @@ export default {
 </script>
 
 <template>
-  <div class="flex flex-wrap items-center">
+  <div class="flex items-center flex-wrap">
     <template v-if="renderTag !== undefined">
       <template v-for="(tag, index) in tagNames" :key="index">
         <Component :is="renderTag(tag, index)" class="mr-2" />
@@ -87,7 +87,7 @@ export default {
               :id="uid"
               ref="newTagInputRef"
               v-model="flux.newTag"
-              class="absolute inline h-full w-full border-none bg-transparent text-gray-500 outline-transparent focus:outline-none"
+              class="absolute w-full text-gray-500 focus:outline-none inline h-full border-none bg-transparent outline-transparent"
               @blur="flux.addTag"
               @keyup.enter="($refs.newTagInputRef as HTMLElement).blur()"
             >

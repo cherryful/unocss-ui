@@ -69,26 +69,26 @@ onMounted(() => {
 <template>
   <section>
     <div
-      class="p-3 sm:p-4 shadow border-t border-r border-l bg-white border-gray-100"
+      class="p-3 sm:p-4 shadow border-t bg-white border-gray-100 border-r border-l"
       :class="snippets?.length ? 'rounded-t-lg' : 'rounded-lg border-b'"
     >
       <div class="text-lg mb-2 text-info">
         {{ title }}
       </div>
-      <div class="p-3 border-2 border-dashed flex justify-center">
+      <div class="p-3 flex justify-center border-2 border-dashed">
         <slot />
       </div>
     </div>
 
     <div
       v-if="snippets?.length"
-      class="bg-gray-800 rounded-b-lg overflow-y-hidden relative"
+      class="relative bg-gray-800 rounded-b-lg overflow-y-hidden"
       :class="{ 'transition-all duration-500 ease-out': flux.mounted }"
       :style="[flux.isSnippetCodeOverflow ? { maxHeight: `${flux.codeSnippetMaxHeight}px` } : {}]"
     >
       <div ref="sampleRef" class="p-4">
-        <div ref="dummyCodeRef" class="invisible absolute p-4">
-          <code class="whitespace-pre-wrap text-sm">
+        <div ref="dummyCodeRef" class="p-4 invisible absolute">
+          <code class="text-sm whitespace-pre-wrap">
             &#8203; &#8203; &#8203; &#8203;
           </code>
         </div>
@@ -105,7 +105,7 @@ onMounted(() => {
           >
             <hljsVuePlugin.component language="xml" :code="code" />
             <button
-              class="text-white absolute top-0 right-0 opacity-50 group-hover:opacity-100 transition-opacity duration-100 ease-in-out inline-flex items-center"
+              class="absolute items-center text-white top-0 right-0 transition-opacity ease-in-out inline-flex opacity-50 group-hover:opacity-100 duration-100"
               @click="flux.onCopy(code)"
             >
               <div class="i-mdi:content-copy" />
@@ -117,10 +117,10 @@ onMounted(() => {
       <div
         v-if="flux.isSnippetCodeOverflow"
         ref="expandButtonRef"
-        class="absolute bottom-0 p-2 text-center w-full bg-gradient-to-t from-gray-800"
+        class="absolute w-full p-2 text-center bottom-0 bg-gradient-to-t from-gray-800"
       >
         <button
-          class="bg-gray-700 text-gray-100 rounded-full px-2 py-1 text-sm leading-tight focus:outline-none"
+          class="text-sm rounded-full px-2 py-1 focus:outline-none bg-gray-700 text-gray-100 leading-tight"
           @click="flux.toggleCollapse()"
         >
           <template v-if="flux.collapsed">

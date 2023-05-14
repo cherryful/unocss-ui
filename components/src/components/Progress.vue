@@ -30,9 +30,9 @@ export default {
 <template>
   <component :is="tag">
     <template v-if="variant === 'bar'">
-      <div class="overflow-hidden rounded-lg bg-gray-200 dark:bg-gray-700">
+      <div class="rounded-lg overflow-hidden bg-gray-200 dark:bg-gray-700">
         <div
-          class="h-2 rounded-lg"
+          class="rounded-lg h-2"
           :class="[[color]]"
           :style="{ width: `${percentage}%` }"
         />

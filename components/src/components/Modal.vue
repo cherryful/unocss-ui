@@ -44,7 +44,7 @@ export default {
 <template>
   <Teleport to="body">
     <div
-      class="fixed inset-0 z-30 overflow-y-auto transition-all ease-in"
+      class="fixed inset-0 overflow-y-auto transition-all z-30 ease-in"
       :class="[
         isOpen ? 'visible' : 'invisible ease-in duration-100',
       ]"
@@ -58,9 +58,9 @@ export default {
         @click.self="close"
       />
       <!-- dialog -->
-      <div class="min-h-full flex items-center justify-center p-2 sm:p-6">
+      <div class="flex items-center justify-center min-h-full p-2 sm:p-6">
         <div
-          class="relative inline-block transform rounded-lg bg-white shadow-xl transition-all dark:bg-gray-900"
+          class="relative inline-block transform rounded-lg bg-white transition-all shadow-xl dark:bg-gray-900"
           :class="[
             {
               'w-full sm:max-w-sm': size === 'sm',
@@ -81,7 +81,7 @@ export default {
         >
           <button
             v-if="dismissButton"
-            class="absolute right-4 top-4 h-6 w-6 rounded-full bg-gray-100 p-1 text-gray-700 dark:bg-gray-800 hover:bg-gray-200 dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:hover:bg-gray-700"
+            class="absolute h-6 w-6 focus:outline-none focus:ring-2 rounded-full right-4 top-4 bg-gray-100 p-1 text-gray-700 dark:bg-gray-800 hover:bg-gray-200 dark:text-gray-300 focus:ring-gray-500 dark:hover:bg-gray-700"
             aria-label="close"
             @click="close"
           >
