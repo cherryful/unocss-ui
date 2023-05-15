@@ -36,7 +36,7 @@ const menus: Array<menuType> = routes.map(e => ({
   />
   <div class="flex lg:w-64">
     <div
-      class="fixed left-0 z-30 z-30 transform overflow-y-auto transition inset-y-0 w-64 bg-gray-50 duration-300 lg:static lg:inset-0 lg:translate-x-0"
+      class="fixed left-0 z-30 z-30 transform overflow-y-auto transition inset-y-0 w-64 duration-300 lg:static lg:inset-0 lg:translate-x-0 bg-primary-50"
       :class="isOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'"
     >
       <div class="flex items-center justify-center mt-8">
@@ -49,7 +49,7 @@ const menus: Array<menuType> = routes.map(e => ({
       </div>
       <nav class="mt-10">
         <template v-for="menu of menus" :key="menu.name">
-          <p class="text-xs font-semibold text-gray-400 letter- my-2 mb-4 pl-4">
+          <p class="text-xs font-semibold text-gray-400 my-2 mb-2 pl-4">
             {{ menu.name }}
           </p>
           <router-link
@@ -58,7 +58,7 @@ const menus: Array<menuType> = routes.map(e => ({
             :class="[route.path === child.href ? 'active' : 'inactive']"
             :to="child.href"
           >
-            <span v-if="child.icon" class="h-5 w-5" :class="child.icon" />
+            <span v-if="child.icon" class="h-5 w-5 text-yellow-500" :class="child.icon" />
             <span class="mx-4"> {{ child.name }} </span>
           </router-link>
         </template>

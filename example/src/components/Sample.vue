@@ -69,13 +69,13 @@ onMounted(() => {
 <template>
   <section>
     <div
-      class="p-3 sm:p-4 shadow border-t bg-white border-gray-100 border-r border-l"
+      class="p-3 sm:p-4 shadow border-t bg-white border-gray-100 border-r border-l mt-4"
       :class="snippets?.length ? 'rounded-t-lg' : 'rounded-lg border-b'"
     >
-      <div class="text-lg mb-2 text-info">
-        {{ title }}
+      <div class="text-lg mb-2 text-success-500">
+        <span class="px-2 py-1 rounded-xl bg-success-100 text-sm">  {{ title }}</span>
       </div>
-      <div class="p-3 flex justify-center border-2 border-dashed">
+      <div class="p-3 flex justify-center p-4 shadow-sm rounded-md">
         <slot />
       </div>
     </div>

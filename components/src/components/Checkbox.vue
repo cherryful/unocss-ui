@@ -55,22 +55,13 @@ export default {
 <template>
   <div class="flex items-center h-6">
     <template v-if="$slots.default && labelLeft">
-      <label
-        :for="uid"
-        class="select-none mr-2"
-        :class="disabled ? 'cursor-not-allowed' : 'cursor-pointer'"
-      >
+      <label :for="uid" class="select-none mr-2" :class="disabled ? 'cursor-not-allowed' : 'cursor-pointer'">
         <slot />
       </label>
     </template>
     <input
-      :id="uid"
-      v-model="checkValue"
-      v-bind="$attrs"
-      type="checkbox"
-      :disabled="disabled"
-      class="border-gray-300 rounded"
-      :class="[
+      :id="uid" v-model="checkValue" v-bind="$attrs" type="checkbox" :disabled="disabled"
+      class="border-gray-300 rounded" :class="[
         `text-${type}-400 focus:ring-${type}-500`,
         disabled ? 'opacity-30 cursor-not-allowed' : 'cursor-pointer',
         {
@@ -81,16 +72,11 @@ export default {
       ]"
     >
     <template v-if="$slots.default && !labelLeft">
-      <label
-        :for="uid"
-        class="select-none ml-2"
-        :class="disabled ? 'cursor-not-allowed' : 'cursor-pointer'"
-      >
+      <label :for="uid" class="select-none ml-2" :class="disabled ? 'cursor-not-allowed' : 'cursor-pointer'">
         <slot />
       </label>
     </template>
   </div>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>

@@ -20,7 +20,7 @@ export default {
   <span class="relative cursor-default">
     <slot />
     <span
-      class="absolute translate-x-1/2 rounded-full text-white -right-4 -top-3"
+      class="absolute translate-x-1/2 rounded-full text-white -right-1 -top-1/2"
       :class="[
         content ? 'min-w-5' : 'w-3 h-3',
         [type],
@@ -41,7 +41,7 @@ export default {
   @apply text-black bg-gray-100
 }
 .primary {
-  @apply text-white bg-primary-500
+  @apply text-white bg-primary-500 bg-opacity-80
 }
 .secondary {
   @apply text-white bg-secondary-500
