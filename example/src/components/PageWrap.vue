@@ -12,7 +12,7 @@ defineProps<{
     <p class="mb-5 mt-3">
       <slot name="description" />
     </p>
-    <div class="w-full max-w-7xl space-y-3 sm:space-y-6">
+    <div class="w-full space-y-3 max-w-7xl sm:space-y-6">
       <slot />
     </div>
   </div>

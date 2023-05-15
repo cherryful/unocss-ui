@@ -1,7 +1,12 @@
 <script setup>
 import { h, ref } from 'vue'
-import UBadge from '../../../../components/src/components/Badge.vue'
+
+import UBadge from '../../../../packages/components/src/components/Badge.vue'
+import PageWrap from '@/components/PageWrap.vue'
 import Sample from '@/components/Sample.vue'
+import Playground from '@/components/Playground.vue'
+
+import { renderRadio } from '@/helper'
 
 const snippets = {
   size: [
@@ -18,41 +23,71 @@ const snippets = {
     '<UBadge type="warning">warning</UBadge>',
     '<UBadge type="error">error</UBadge>',
   ],
-  disabled: [
-    '<UBadge disabled>disabled</UBadge>',
-  ],
 }
+
 const state = ref({
-  content: 'button',
+  content: 'badge',
   type: 'default',
   size: 'base',
-  disabled: false,
-  custom: '',
 })
 
 const types = ['default', 'primary', 'secondary', 'accent', 'success', 'info', 'warning', 'error']
-const sizes = ['sm', 'base', 'lg']
+const sizes = ['sm', 'md', 'lg']
 </script>
 
 <template>
-  <div> UBadgeDemo: </div>
-
-  <Sample title="size" :snippets="snippets.size">
-    <div class="space-y-3 sm:space-x-4">
-      <component :is="h(UBadge, { size: item }, { default: () => item })" v-for="(item, idx) in sizes" :key="idx" />
-    </div>
-  </Sample>
-  <Sample title="type" :snippets="snippets.type">
-    <div class="space-y-3 sm:space-x-4">
-      <component :is="h(UBadge, { type: item }, { default: () => item })" v-for="(item, idx) in types" :key="idx" />
-    </div>
-  </Sample>
-
-  <Sample title="custom" :snippets="snippets.type">
-    <div class="space-y-3 sm:space-x-4">
-      <UBadge content="content" type="primary">
-        icon
-      </UBadge>
-    </div>
-  </Sample>
+  <PageWrap title="Badge Demo">
+    <Playground>
+      <template #preview>
+        <UBadge
+          :type="state.type"
+          :size="state.size"
+        >
+          {{ state.content }}
+        </UBadge>
+      </template>
+      <template #props>
+        <div class="flex items-center gap-2 flex-wrap">
+          <div class="w-16">
+            type
+          </div>
+          <component
+            :is="renderRadio(state, 'type', item)"
+            v-for="(item, idx) in types" :key="idx"
+          />
+        </div>
+        <div class="flex items-center gap-2 flex-wrap">
+          <div class="w-16">
+            size
+          </div>
+          <component
+            :is="renderRadio(state, 'size', item)"
+            v-for="(item, idx) in sizes" :key="idx"
+          />
+        </div>
+        <div class="flex items-center gap-2">
+          <div class="w-16">
+            content
+          </div>
+          <UInput v-model="state.content" placeholder="content" />
+        </div>
+      </template>
+    </Playground>
+    <Sample title="size" :snippets="snippets.size">
+      <div class="space-x-4">
+        <component
+          :is="h(UBadge, { size: item }, { default: () => item })"
+          v-for="(item, idx) in sizes" :key="idx"
+        />
+      </div>
+    </Sample>
+    <Sample title="type" :snippets="snippets.type">
+      <div class="space-x-4">
+        <component
+          :is="h(UBadge, { type: item }, { default: () => item })"
+          v-for="(item, idx) in types" :key="idx"
+        />
+      </div>
+    </Sample>
+  </PageWrap>
 </template>

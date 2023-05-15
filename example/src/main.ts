@@ -15,7 +15,7 @@ import hljs from 'highlight.js/lib/core'
 // import unocssui from 'unocss-ui'
 
 // 2. use code, for dev
-import unocssui from '../../components/src/index'
+import unocssui from '../../packages/components/src/index'
 
 import App from './App.vue'
 import router from './router'

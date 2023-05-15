@@ -10,7 +10,8 @@
     "dev:demo": "pnpm --filter demo dev",
     "build:demo": "pnpm --filter demo build",
     "lint": "eslint .",
-    "lint:fix": "eslint --fix ."
+    "lint:fix": "eslint --fix .",
+    "build:preset": "pnpm --filter @unocss-ui/preset build"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.38.6",
@@ -22,6 +23,7 @@
     "rollup-plugin-visualizer": "^5.9.0",
     "simple-git-hooks": "^2.8.1",
     "taze": "^0.10.1",
+    "tsup": "^6.7.0",
     "typescript": "^5.0.4",
     "unocss": "^0.51.12"
   },

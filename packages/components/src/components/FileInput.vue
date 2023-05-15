@@ -63,7 +63,7 @@ export default {
       <div v-if="flux.fileNames.length > 1" class="flex flex-wrap gap-1">
         <div
           v-for="item in flux.fileNames" :key="item"
-          class="whitespace-nowrap rounded text-xs inline-block px-1 text-whit bg-primary-300 text-center"
+          class="whitespace-nowrap rounded text-xs inline-block px-1 text-center text-whit bg-primary-300"
         >
           {{ item }}
         </div>

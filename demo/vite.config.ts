@@ -13,7 +13,4 @@ export default defineConfig({
       brotliSize: true,
     }),
   ],
-  server: {
-    port: 1235,
-  },
 })

@@ -62,7 +62,7 @@ export default {
         <slot />
       </div>
       <div
-        class="transition transform transition-transform duration-200 ease-in-out"
+        class="transition transform duration-200 ease-in-out transition-transform"
         :class="[
           iconLeft ? 'mr-2' : 'ml-2',
           {
@@ -76,7 +76,7 @@ export default {
       </div>
     </div>
     <div
-      class="ease-in-out transition-all duration-300"
+      class="ease-in-out duration-300 transition-all"
       :class=" {
         'overflow-y-hidden': !flux.expandedCompleted,
       }"

@@ -30,13 +30,13 @@ const menus: Array<menuType> = routes.map(e => ({
 <template>
   <!-- cover -->
   <div
-    class="fixed inset-0 transition-opacity z-20 bg-black opacity-50 lg:hidden"
+    class="transition-opacity opacity-50 fixed inset-0 z-20 bg-black lg:hidden"
     :class="isOpen ? 'block' : 'hidden'"
     @click="isOpen = false"
   />
   <div class="flex lg:w-64">
     <div
-      class="fixed left-0 z-30 z-30 transform overflow-y-auto transition inset-y-0 w-64 duration-300 lg:static lg:inset-0 lg:translate-x-0 bg-primary-50"
+      class="fixed overflow-y-auto left-0 transition z-30 z-30 transform inset-y-0 w-64 duration-300 lg:static lg:inset-0 lg:translate-x-0 bg-gray-50"
       :class="isOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'"
     >
       <div class="flex items-center justify-center mt-8">
@@ -49,16 +49,16 @@ const menus: Array<menuType> = routes.map(e => ({
       </div>
       <nav class="mt-10">
         <template v-for="menu of menus" :key="menu.name">
-          <p class="text-xs font-semibold text-gray-400 my-2 mb-2 pl-4">
+          <p class="font-semibold text-xs mb-4 text-gray-400 my-2 pl-4">
             {{ menu.name }}
           </p>
           <router-link
             v-for="child of menu.children" :key="child.name"
-            class="flex items-center mt-4 border-l-4 px-6 py-2 duration-200"
+            class="flex items-center py-2 mt-4 border-l-4 px-6 duration-200"
             :class="[route.path === child.href ? 'active' : 'inactive']"
             :to="child.href"
           >
-            <span v-if="child.icon" class="h-5 w-5 text-yellow-500" :class="child.icon" />
+            <span v-if="child.icon" class="h-5 w-5" :class="child.icon" />
             <span class="mx-4"> {{ child.name }} </span>
           </router-link>
         </template>

@@ -21,7 +21,6 @@ export default defineConfig(
       visualizer({ open: true, gzipSize: true, brotliSize: true }),
     ],
     server: {
-      port: 1234,
       proxy: {
         '/api': {
           target: 'http://localhost:8765',

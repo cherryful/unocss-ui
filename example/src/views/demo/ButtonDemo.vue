@@ -1,7 +1,7 @@
 <script setup>
 import { h, ref } from 'vue'
 
-import UButton from '../../../../components/src/components/Button/Button.vue'
+import UButton from '../../../../packages/components/src/components/Button/Button.vue'
 
 import PageWrap from '@/components/PageWrap.vue'
 import Sample from '@/components/Sample.vue'
@@ -103,7 +103,7 @@ const sizes = ['sm', 'base', 'lg']
       </template>
     </Playground>
     <Sample title="size" :snippets="snippets.size">
-      <div class="space-y-3 sm:space-x-4">
+      <div class="space-y-3 space-x-4">
         <component
           :is="h(UButton, { size: item }, { default: () => item })"
           v-for="(item, idx) in sizes" :key="idx"
@@ -111,7 +111,7 @@ const sizes = ['sm', 'base', 'lg']
       </div>
     </Sample>
     <Sample title="type" :snippets="snippets.type">
-      <div class="space-y-3 sm:space-x-4">
+      <div class="space-y-3 space-x-4">
         <component
           :is="h(UButton, { type: item }, { default: () => item })"
           v-for="(item, idx) in types" :key="idx"
@@ -119,7 +119,7 @@ const sizes = ['sm', 'base', 'lg']
       </div>
     </Sample>
     <Sample title="rounded" :snippets="snippets.type">
-      <div class="space-y-3 sm:space-x-4">
+      <div class="space-y-3 space-x-4">
         <component
           :is="h(UButton, { type: item }, { default: () => item })"
           v-for="(item, idx) in types" :key="idx"
@@ -127,14 +127,14 @@ const sizes = ['sm', 'base', 'lg']
       </div>
     </Sample>
     <Sample title="disabled" :snippets="snippets.disabled">
-      <div class="sm:space-x-4">
+      <div class="space-y-3 space-x-4">
         <UButton disabled>
           disabled
         </UButton>
       </div>
     </Sample>
     <Sample title="icon" :snippets="snippets.icon">
-      <div class="space-y-3 sm:space-x-4">
+      <div class="space-y-3 space-x-4">
         <UButton>
           <div class="flex items-center justify-center">
             <span class="i-mdi:lightning-bolt text-4" />
@@ -144,7 +144,7 @@ const sizes = ['sm', 'base', 'lg']
       </div>
     </Sample>
     <!-- <Sample title="custom" :snippets="snippets.custom">
-      <div class="space-y-3 sm:space-x-4">
+      <div class="space-y-3 space-x-4">
         <UButton custom="bg-pink-500 text-white hover:bg-pink-700 focus:ring-pink-500 p-2">
           Pink Button
         </UButton>

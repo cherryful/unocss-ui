@@ -1,11 +1,11 @@
 <script setup lang="ts">
 withDefaults(defineProps<{
   type?: 'default' | 'success' | 'info' | 'warning' | 'error' | 'primary' | 'secondary' | 'accent'
-  size?: 'sm' | 'base' | 'lg'
+  size?: 'sm' | 'md' | 'lg'
   content?: string
 }>(), {
   type: 'default',
-  size: 'base',
+  size: 'md',
   content: '',
 })
 </script>
@@ -20,13 +20,13 @@ export default {
   <span class="relative cursor-default">
     <slot />
     <span
-      class="absolute translate-x-1/2 rounded-full text-white -right-1 -top-1/2"
+      class="absolute rounded-full text-white translate-x-1/2 -right-1 -top-1/2"
       :class="[
         content ? 'min-w-5' : 'w-3 h-3',
         [type],
         {
           'text-xs': size === 'sm',
-          'px-1 py-0.5 text-xs': size === 'base',
+          'px-1 py-0.5 text-xs': size === 'md',
           'px-2.5 py-1 text-sm ': size === 'lg',
         },
       ]"

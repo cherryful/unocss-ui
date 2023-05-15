@@ -47,7 +47,7 @@ export default {
 <template>
   <label
     :for="uid"
-    class="inline-flex items-center select-none font-medium leading-6 text-gray-900"
+    class="inline-flex items-center select-none font-medium text-gray-900 leading-6"
     :class="[
       disabled ? 'opacity-60 cursor-not-allowed' : 'cursor-pointer',
       {

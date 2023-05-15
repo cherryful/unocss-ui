@@ -83,13 +83,13 @@ export default {
       <div
         v-if="flux.status"
         ref="dropdown"
-        class="absolute rounded-lg bg-white z-10 min-w-max shadow-lg dark:bg-slate-800"
+        class="absolute rounded-lg bg-white shadow-lg z-10 min-w-max dark:bg-slate-800"
         tabindex="-1"
         @mouseenter="flux.onMouseenter"
       >
         <div class="py-1">
           <slot name="options">
-            <div class="px-1 py-2 text-sm">
+            <div class="py-2 text-sm px-1">
               <template v-for="option in options" :key="option.key">
                 <div
                   v-if="option"

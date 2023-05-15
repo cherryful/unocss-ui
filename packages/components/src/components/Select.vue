@@ -119,14 +119,14 @@ export default {
       >
         <ul
           v-if="flux.show"
-          class="absolute z-10 w-full rounded-md bg-white py-1 shadow-lg ring-1 sm:text-sm focus:outline-none text-base ring-black ring-opacity-5 mt-1 max-h-60 overflow-auto" tabindex="-1" role="listbox" aria-labelledby="listbox-label" aria-activedescendant="listbox-option-3"
+          class="absolute z-10 w-full rounded-md bg-white py-1 shadow-lg ring-1 sm:text-sm focus:outline-none ring-black ring-opacity-5 mt-1 text-base max-h-60 overflow-auto" tabindex="-1" role="listbox" aria-labelledby="listbox-label" aria-activedescendant="listbox-option-3"
         >
           <li
             v-for="option of options"
             id="listbox-option-0"
             :key="option.value"
             role="option"
-            class="relative py-2 pl-3 cursor-default text select-none pr-9"
+            class="relative py-2 pl-3 cursor-default select-none text pr-9"
             :class="{
               'bg-primary-500 text-white ': modelValue === option.value,
               'text-gray-900 hover:bg-primary-500 hover:text-white': modelValue !== option.value,

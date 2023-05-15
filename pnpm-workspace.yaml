@@ -1,4 +1,4 @@
 packages:
-  - components
+  - 'packages/*'
   - example
   - demo

@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 
-import USwitch from '../../../../components/src/components/Switch.vue'
+import USwitch from '../../../../packages/components/src/components/Switch.vue'
 
 import PageWrap from '@/components/PageWrap.vue'
 import Sample from '@/components/Sample.vue'

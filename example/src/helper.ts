@@ -1,5 +1,5 @@
 import { h } from 'vue'
-import URadio from '../../components/src/components/Radio.vue'
+import URadio from '../../packages/components/src/components/Radio.vue'
 
 // render URadio
 export function renderRadio(state: any, prop: string, value: any) {

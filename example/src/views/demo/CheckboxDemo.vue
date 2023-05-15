@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 
-import UCheckbox from '../../../../components/src/components/Checkbox.vue'
+import UCheckbox from '../../../../packages/components/src/components/Checkbox.vue'
 
 import PageWrap from '@/components/PageWrap.vue'
 import Sample from '@/components/Sample.vue'

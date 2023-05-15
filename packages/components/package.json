@@ -19,6 +19,7 @@
     "ui",
     "vue3",
     "unocss",
+    "unocss ui",
     "component",
     "component library"
   ],
@@ -50,6 +51,7 @@
     "@iconify-json/mdi": "^1.1.51",
     "@iconify-json/mi": "^1.1.4",
     "@julr/unocss-preset-forms": "^0.0.5",
+    "@unocss-ui/preset": "workspace:*",
     "@vitejs/plugin-vue": "^4.2.2",
     "@vueuse/components": "^10.1.2",
     "@vueuse/core": "^10.1.2",

@@ -47,7 +47,7 @@ export default {
 <template>
   <div
     v-bind="$attrs"
-    class="flex border rounded-lg max-w-lg justify-between border-current px-4 py-3"
+    class="flex border rounded-lg px-4 max-w-lg justify-between border-current py-3"
     :class="[[type]]"
   >
     <div class="flex">
@@ -57,7 +57,7 @@ export default {
       <slot />
     </div>
     <div v-if="closeable" class="h-6 w-6 flex items-center justify-center ml-3">
-      <div class="cursor-pointer transition i-mdi:close-thick h-4 w-4 hover:scale-125" />
+      <div class="transition cursor-pointer i-mdi:close-thick h-4 w-4 hover:scale-125" />
     </div>
   </div>
 </template>

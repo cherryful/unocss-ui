@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// import ULoading from '../../../../components/src/components/Loading.vue'
+// import ULoading from '../../../../packages/components/src/components/Loading.vue'
 </script>
 
 <template>
@@ -26,7 +26,7 @@
       <ULoading type="error" class="h-15 w-15" />
       <ULoading>
         <template #icon>
-          <div class="animate-spin text-blue-500 h-8 w-8 i-mdi:ULoading" />
+          <div class="text-blue-500 animate-spin h-8 w-8 i-mdi:ULoading" />
         </template>
       </ULoading>
       <ULoading class="h-10 w-10">
@@ -47,7 +47,7 @@
       Wrap Content:
       <div class="flex items-center space-x-5">
         <ULoading>
-          <div class="block items-center border rounded-lg bg-white dark:bg-gray-800 dark:hover:bg-gray-700 border-gray-100 max-w-sm p-6 shadow-md dark:border-gray-800">
+          <div class="items-center border bg-white border-gray-100 rounded-lg max-w-sm block dark:bg-gray-800 dark:hover:bg-gray-700 p-6 shadow-md dark:border-gray-800">
             <h5 class="mb-2 text-2xl font-bold text-gray-900 tracking-tight dark:text-white">
               Noteworthy technology acquisitions 2021
             </h5>

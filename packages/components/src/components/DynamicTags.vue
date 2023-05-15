@@ -87,7 +87,7 @@ export default {
               :id="uid"
               ref="newTagInputRef"
               v-model="flux.newTag"
-              class="absolute w-full text-gray-500 focus:outline-none inline h-full border-none bg-transparent outline-transparent"
+              class="absolute w-full text-gray-500 focus:outline-none h-full inline border-none bg-transparent outline-transparent"
               @blur="flux.addTag"
               @keyup.enter="($refs.newTagInputRef as HTMLElement).blur()"
             >

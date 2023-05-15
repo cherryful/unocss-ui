@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import UToast from '../../../../components/src/components/Toast.vue'
+import UToast from '../../../../packages/components/src/components/Toast.vue'
 
 type UToastCtx = InstanceType<typeof UToast>
 
@@ -13,7 +13,7 @@ const align = ref<'left' | 'center' | 'right'>('center')
 <template>
   <UToast ref="toast1" :queue="false" :timeout="1000" />
   <UToast ref="toast2" v-slot="{ type }">
-    <div class="max-w-sm w-full overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5 pointer-events-auto">
+    <div class="w-full overflow-hidden bg-white max-w-sm rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 pointer-events-auto">
       <div class="p-4">
         <div class="flex items-start">
           <div class="flex-shrink-0">
@@ -27,11 +27,11 @@ const align = ref<'left' | 'center' | 'right'>('center')
               }"
             />
           </div>
-          <div class="ml-3 flex-1 w-0 pt-0.5">
-            <p class="text-sm font-medium text-gray-900">
+          <div class="flex-1 ml-3 w-0 pt-0.5">
+            <p class="text-sm text-gray-900 font-medium">
               This is the custom {{ type }}  toast!
             </p>
-            <p class="mt-1 text-sm text-gray-500">
+            <p class="text-sm mt-1 text-gray-500">
               Anyone with a link can now view this file.
             </p>
           </div>

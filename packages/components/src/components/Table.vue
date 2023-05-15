@@ -36,7 +36,7 @@ export default {
           <!-- Head Bulk Actions  -->
           <div
             v-if="selectIds.length > 0"
-            class="absolute top-0 z-10 flex items-center left-12 h-12 bg-gray-50 sm:left-16 space-x-3"
+            class="absolute top-0 z-10 flex items-center bg-gray-50 left-12 h-12 sm:left-16 space-x-3"
           >
             <button
               v-for="action in actions" :key="action.name" :disabled="!selectIds.length"
@@ -50,7 +50,7 @@ export default {
             <thead class="bg-gray-50">
               <tr>
                 <!-- Selection box for the header -->
-                <th v-if="actions?.length" scope="col" class="relative w-12 px-6 sm:w-16 sm:px-8">
+                <th v-if="actions?.length" scope="col" class="relative px-6 w-12 sm:w-16 sm:px-8">
                   <input
                     type="checkbox" class="checkbox"
                     :checked="data.length > 0 && selectIds.length === data.length"

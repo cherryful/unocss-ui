@@ -35,7 +35,7 @@ export default {
     type="button"
     :disabled="disabled"
     :aria-disabled="disabled"
-    class="items-center justify-center cursor-pointer inline-flex text-xs whitespace-nowrap rounded-md font-semibold shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 font-sans leading-4 disabled:cursor-not-allowed disabled:opacity-30"
+    class="items-center justify-center cursor-pointer inline-flex text-xs rounded-md font-semibold shadow-sm focus:outline-none whitespace-nowrap focus:ring-2 focus:ring-offset-2 font-sans leading-4 disabled:cursor-not-allowed disabled:opacity-30"
     :class="[typeClass, {
       'px-2 py-1': size === 'sm',
       'px-3 py-2': size === 'base',
