@@ -60,7 +60,7 @@ export default {
       <!-- dialog -->
       <div class="flex items-center justify-center min-h-full p-2 sm:p-6">
         <div
-          class="relative inline-block transform rounded-lg bg-white transition-all shadow-xl dark:bg-gray-900"
+          class="relative bg-white transition-all inline-block rounded-lg transform shadow-xl dark:bg-gray-900"
           :class="[
             {
               'w-full sm:max-w-sm': size === 'sm',
@@ -81,7 +81,7 @@ export default {
         >
           <button
             v-if="dismissButton"
-            class="absolute h-6 w-6 focus:outline-none focus:ring-2 rounded-full right-4 top-4 bg-gray-100 p-1 text-gray-700 dark:bg-gray-800 hover:bg-gray-200 dark:text-gray-300 focus:ring-gray-500 dark:hover:bg-gray-700"
+            class="absolute w-6 focus:outline-none focus:ring-2 h-6 rounded-full right-4 top-4 bg-gray-100 p-1 text-gray-700 dark:bg-gray-800 hover:bg-gray-200 dark:text-gray-300 focus:ring-gray-500 dark:hover:bg-gray-700"
             aria-label="close"
             @click="close"
           >

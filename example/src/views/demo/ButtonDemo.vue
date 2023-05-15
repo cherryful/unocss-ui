@@ -1,12 +1,12 @@
 <script setup>
 import { h, ref } from 'vue'
 
-import URadio from '../../../../components/src/components/Radio.vue'
 import UButton from '../../../../components/src/components/Button/Button.vue'
 
 import PageWrap from '@/components/PageWrap.vue'
 import Sample from '@/components/Sample.vue'
 import Playground from '@/components/Playground.vue'
+import { renderRadio } from '@/helper'
 
 const snippets = {
   size: [
@@ -35,14 +35,14 @@ const snippets = {
   </div>
 </UButton>`,
   ],
-  custom: [
-    `<UButton custom="bg-pink-500 text-white hover:bg-pink-700 focus:ring-pink-500 p-2">
-  Pink Button
-</UButton>`,
-`<UButton custom="bg-orange-500 text-white hover:bg-orange-700 focus:ring-orange-500 border-rounded p-3">
-  Orange Huge Button
-</UButton>`,
-  ],
+//   custom: [
+//     `<UButton custom="bg-pink-500 text-white hover:bg-pink-700 focus:ring-pink-500 p-2">
+//   Pink Button
+// </UButton>`,
+// `<UButton custom="bg-orange-500 text-white hover:bg-orange-700 focus:ring-orange-500 border-rounded p-3">
+//   Orange Huge Button
+// </UButton>`,
+//   ],
 }
 
 const state = ref({
@@ -72,23 +72,16 @@ const sizes = ['sm', 'base', 'lg']
       </template>
       <template #props>
         <div class="flex gap-2">
-          <div class="w-16">
+          <UCheckbox v-model="state.disabled">
             disabled
-          </div>
-          <UCheckbox v-model="state.disabled" />
+          </UCheckbox>
         </div>
         <div class="flex items-center gap-2 flex-wrap">
           <div class="w-16">
             type
           </div>
           <component
-            :is="h(URadio, {
-              'modelValue': state.type,
-              'value': item,
-              'onUpdate:modelValue': v => state.type = v,
-            }, {
-              default: () => item,
-            })"
+            :is="renderRadio(state, 'type', item)"
             v-for="(item, idx) in types" :key="idx"
           />
         </div>
@@ -97,13 +90,7 @@ const sizes = ['sm', 'base', 'lg']
             size
           </div>
           <component
-            :is="h(URadio, {
-              'modelValue': state.size,
-              'value': item,
-              'onUpdate:modelValue': v => state.size = v,
-            }, {
-              default: () => item,
-            })"
+            :is="renderRadio(state, 'size', item)"
             v-for="(item, idx) in sizes" :key="idx"
           />
         </div>
@@ -156,7 +143,7 @@ const sizes = ['sm', 'base', 'lg']
         </UButton>
       </div>
     </Sample>
-    <Sample title="custom" :snippets="snippets.custom">
+    <!-- <Sample title="custom" :snippets="snippets.custom">
       <div class="space-y-3 sm:space-x-4">
         <UButton custom="bg-pink-500 text-white hover:bg-pink-700 focus:ring-pink-500 p-2">
           Pink Button
@@ -165,6 +152,6 @@ const sizes = ['sm', 'base', 'lg']
           Orange Huge Button
         </UButton>
       </div>
-    </Sample>
+    </Sample> -->
   </PageWrap>
 </template>

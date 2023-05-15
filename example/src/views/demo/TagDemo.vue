@@ -1,12 +1,13 @@
 <script setup>
 import { h, ref } from 'vue'
 
-import URadio from '../../../../components/src/components/Radio.vue'
 import UTag from '../../../../components/src/components/Tag.vue'
 
 import PageWrap from '@/components/PageWrap.vue'
 import Sample from '@/components/Sample.vue'
 import Playground from '@/components/Playground.vue'
+
+import { renderRadio } from '@/helper'
 
 function onClose() {
   alert('close')
@@ -58,15 +59,15 @@ const snippets = {
 const state = ref({
   content: 'tag',
   type: 'default',
-  size: 'base',
+  size: 'md',
   closeable: false,
   border: false,
-  rounded: 'base',
+  rounded: 'md',
 })
 
 const types = ['default', 'primary', 'secondary', 'accent', 'success', 'info', 'warning', 'error']
-const sizes = ['sm', 'base', 'lg']
-const rounds = ['sm', 'base', 'lg', 'full']
+const sizes = ['sm', 'md', 'lg']
+const rounds = ['sm', 'md', 'lg', 'full']
 </script>
 
 <template>
@@ -97,13 +98,7 @@ const rounds = ['sm', 'base', 'lg', 'full']
             type
           </div>
           <component
-            :is="h(URadio, {
-              'modelValue': state.type,
-              'value': item,
-              'onUpdate:modelValue': v => state.type = v,
-            }, {
-              default: () => item,
-            })"
+            :is="renderRadio(state, 'type', item)"
             v-for="(item, idx) in types" :key="idx"
           />
         </div>
@@ -112,13 +107,7 @@ const rounds = ['sm', 'base', 'lg', 'full']
             size
           </div>
           <component
-            :is="h(URadio, {
-              'modelValue': state.size,
-              'value': item,
-              'onUpdate:modelValue': v => state.size = v,
-            }, {
-              default: () => item,
-            })"
+            :is="renderRadio(state, 'size', item)"
             v-for="(item, idx) in sizes" :key="idx"
           />
         </div>
@@ -127,14 +116,8 @@ const rounds = ['sm', 'base', 'lg', 'full']
             rounded
           </div>
           <component
-            :is="h(URadio, {
-              'modelValue': state.rounded,
-              'value': item,
-              'onUpdate:modelValue': v => state.rounded = v,
-            }, {
-              default: () => item,
-            })"
-            v-for="(item,) in rounds" :key="item"
+            :is="renderRadio(state, 'rounded', item)"
+            v-for="(item, idx) in rounds" :key="idx"
           />
         </div>
         <div class="flex items-center gap-2">

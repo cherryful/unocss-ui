@@ -16,7 +16,7 @@
     "@vueuse/core": "^10.1.2",
     "highlight.js": "^11.8.0",
     "pinia": "^2.0.36",
-    "unocss-ui": "workspace:0.0.1-alpha.1",
+    "unocss-ui": "workspace:*",
     "vue": "3.2.47",
     "vue-router": "^4.2.0"
   },

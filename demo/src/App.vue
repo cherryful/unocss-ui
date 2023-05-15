@@ -1,17 +1,21 @@
 <script setup>
 import { ref } from 'vue'
 
-import { UAlert, UButton, UDrawer, ULoading, UModal, UTag, UToast } from 'unocss-ui'
+import { UAlert, UButton, UCheckbox, UDrawer, ULoading, UModal, URadio, USwitch, UTag, UToast } from 'unocss-ui'
 
 const drawer = ref(false)
 const modal = ref(false)
+
+const checkboxValue = ref(true)
+const switchValue = ref(true)
+const radioValue = ref('primary')
 
 const welcome = ref('hi! gratulation to you! you can use this ui lib!')
 </script>
 
 <template>
   <div class="m-5 space-y-5">
-    <div class="p-3 border text-2xl">
+    <div class="border p-3 text-2xl">
       unocss-ui
     </div>
     <div class="space-x-4">
@@ -19,7 +23,7 @@ const welcome = ref('hi! gratulation to you! you can use this ui lib!')
         {{ welcome }}
       </UAlert>
     </div>
-    <div class="space-y-3 sm:space-x-4">
+    <div class="space-x-4">
       <UButton type="primary" @click="$refs.toast?.success(welcome)">
         Show Toast
       </UButton>
@@ -34,6 +38,10 @@ const welcome = ref('hi! gratulation to you! you can use this ui lib!')
       <ULoading type="primary" />
       <ULoading type="secondary" />
       <ULoading type="accent" />
+      <ULoading type="success" />
+      <ULoading type="info" />
+      <ULoading type="warning" />
+      <ULoading type="error" />
     </div>
     <div class="flex gap-4">
       <UTag type="primary">
@@ -45,6 +53,33 @@ const welcome = ref('hi! gratulation to you! you can use this ui lib!')
       <UTag type="accent">
         Well
       </UTag>
+    </div>
+    <div class="flex gap-4">
+      <UCheckbox v-model="checkboxValue" type="primary">
+        primary
+      </UCheckbox>
+      <UCheckbox v-model="checkboxValue" type="secondary">
+        secondary
+      </UCheckbox>
+      <UCheckbox v-model="checkboxValue" type="success" label-left>
+        secondary
+      </UCheckbox>
+    </div>
+    <div class="flex gap-4">
+      <USwitch v-model="switchValue" type="primary">
+        primary
+      </USwitch>
+      <USwitch v-model="switchValue" type="secondary">
+        success
+      </USwitch>
+    </div>
+    <div class="flex gap-4">
+      <URadio v-model="radioValue" value="primary" type="primary">
+        primary
+      </URadio>
+      <URadio v-model="radioValue" value="secondary" type="secondary">
+        secondary
+      </URadio>
     </div>
   </div>
 

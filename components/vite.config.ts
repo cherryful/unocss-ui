@@ -8,6 +8,7 @@ export default defineConfig({
   plugins: [
     Vue(),
     Unocss(), // { mode: 'vue-scoped' })
+    // Unocss({ mode: 'vue-scoped' }),
   ],
   build: {
     target: 'modules',

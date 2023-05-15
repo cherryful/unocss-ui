@@ -11,7 +11,7 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
-    "unocss-ui": "workspace:0.0.1-alpha.1",
+    "unocss-ui": "workspace:*",
     "vue": "^3.2.47"
   },
   "devDependencies": {

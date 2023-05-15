@@ -36,7 +36,7 @@ export default {
   <Teleport to="body">
     <div
       v-bind="$attrs"
-      class="transition-all bg-white fixed z-50 overflow-y-auto"
+      class="transition-all bg-white fixed overflow-y-auto z-50"
       :class="{
         'w-80 h-screen': placement === 'right' || placement === 'left',
         'top-0 -left-80': placement === 'left' && !modelValue,
@@ -58,7 +58,7 @@ export default {
       aria-hidden="true"
       @click="close"
     >
-      <div class="absolute inset-0 bg-gray-500 opacity-75" />
+      <div class="inset-0 absolute bg-gray-500 opacity-75" />
     </div>
   </Teleport>
 </template>

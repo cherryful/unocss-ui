@@ -50,8 +50,8 @@ export default {
 </script>
 
 <template>
-  <div class="relative w-full flex flex-col" :class="[disabled && 'opacity-60']">
-    <label class="text-sm mb-2 font-bold empty:hidden">
+  <div class="flex relative w-full flex-col" :class="[disabled && 'opacity-60']">
+    <label class="text-sm empty:hidden mb-2 font-bold">
       <template v-if="label">{{ label }}</template>
       <slot v-else />
       <span v-if="required" class="text-error-500">*</span>
@@ -60,7 +60,7 @@ export default {
     <div class="w-full flex items-center">
       <div
         v-if="preIcon"
-        class="border rounded bg-white dark:bg-slate-800 z-1 h-9 border-r-0 border-slate-400 rounded-r-none px-2 py-1.5"
+        class="border bg-white rounded dark:bg-slate-800 z-1 h-9 border-r-0 border-slate-400 rounded-r-none px-2 py-1.5"
         :class="{
           'important:border-red-500 important:ring-red-500 mb-1': errorMessage,
         }"
@@ -70,7 +70,7 @@ export default {
       </div>
       <span
         v-if="$slots.prepend && !preIcon"
-        class="h-9 inline-flex items-center border border-r-0 border-gray-300 px-3 py-1.5 text-gray-500 rounded-l-md sm:text-sm"
+        class="h-9 items-center border border-r-0 py-1.5 inline-flex border-gray-300 px-3 text-gray-500 rounded-l-md sm:text-sm"
       >
         <slot name="prepend" />
       </span>
@@ -107,7 +107,7 @@ export default {
       </span>
     </div>
 
-    <div v-if="errorMessage" class="text-xs text-error-500">
+    <div v-if="errorMessage" class="text-error-500 text-xs">
       {{ errorMessage }}
     </div>
   </div>

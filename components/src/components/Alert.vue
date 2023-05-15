@@ -47,17 +47,17 @@ export default {
 <template>
   <div
     v-bind="$attrs"
-    class="max-w-lg flex justify-between border border-current rounded-lg px-4 py-3"
+    class="flex border rounded-lg max-w-lg justify-between border-current px-4 py-3"
     :class="[[type]]"
   >
     <div class="flex">
       <div v-if="!noIcon">
-        <div class="mr-3 h-6 w-6" :class="computedIcon" />
+        <div class="h-6 w-6 mr-3" :class="computedIcon" />
       </div>
       <slot />
     </div>
-    <div v-if="closeable" class="h-6 w-6 flex ml-3 items-center justify-center">
-      <div class="i-mdi:close-thick h-4 w-4 cursor-pointer transition hover:scale-125" />
+    <div v-if="closeable" class="h-6 w-6 flex items-center justify-center ml-3">
+      <div class="cursor-pointer transition i-mdi:close-thick h-4 w-4 hover:scale-125" />
     </div>
   </div>
 </template>

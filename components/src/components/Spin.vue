@@ -41,41 +41,11 @@ export default {
     <slot name="icon">
       <div
         ref="spinner"
-        class="inline-block h-full w-full border-gray-300 rounded-full bg-transparent animate-spin"
-        :class="[[type]]"
+        class="w-full inline-block border-gray-300 rounded-full h-full animate-spin bg-transparent"
+        :class="`border-r-${type}-500`"
       >
         <span class="sr-only">Loading...</span>
       </div>
     </slot>
   </div>
 </template>
-
-<style scoped>
-.primary {
-  @apply border-r-primary-500
-}
-
-.secondary {
-  @apply border-r-secondary-500
-}
-
-.accent {
-  @apply border-r-accent-500
-}
-
-.success {
-  @apply border-r-success-500
-}
-
-.info {
-  @apply border-r-info-500
-}
-
-.warning {
-  @apply border-r-warning-500
-}
-
-.error {
-  @apply border-r-error-500
-}
-</style>

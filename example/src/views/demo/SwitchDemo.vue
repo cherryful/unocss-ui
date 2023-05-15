@@ -1,74 +1,164 @@
 <script setup>
 import { ref } from 'vue'
 
-const value = ref(true)
-const checkedValue = ref('checked')
+import USwitch from '../../../../components/src/components/Switch.vue'
 
-function onChange(val) {
-  alert(val)
+import PageWrap from '@/components/PageWrap.vue'
+import Sample from '@/components/Sample.vue'
+import Playground from '@/components/Playground.vue'
+import { renderRadio } from '@/helper'
+
+const checkValue = ref(true)
+const customValue = ref('checked')
+
+const state = ref({
+  checkValue: true,
+  checkedValue: '',
+  uncheckedValue: '',
+  type: 'primary',
+  size: 'base',
+  disabled: false,
+  icon: false,
+})
+
+const snippets = {
+  size: [
+    '<USwitch v-model="checksValue" size="sm" />',
+    '<USwitch v-model="checksValue" size="base" />',
+    '<USwitch v-model="checksValue" size="lg" />',
+  ],
+  type: [
+    '<USwitch v-model="checkValue" type="primary" />',
+    '<USwitch v-model="checkValue" type="secondary" />',
+    '<USwitch v-model="checkValue" type="accent" />',
+    '<USwitch v-model="checkValue" type="success" />',
+    '<USwitch v-model="checkValue" type="info" />',
+    '<USwitch v-model="checkValue" type="warning" />',
+    '<USwitch v-model="checkValue" type="error" />',
+  ],
+  icon: [
+    '<USwitch v-model="checkValue" icon />',
+  ],
+  disabled: [
+    '<USwitch disabled />',
+    '<USwitch readonly />',
+    '<USwitch checked readonly />',
+  ],
+  customValue: [
+    `<USwitch v-model="customValue" checked-value="checked" unchecked-value="unchecked">
+  {{ customValue }}
+</USwitch>`,
+  ],
+  loading: [
+    '<USwitch loading />',
+  ],
+  other: [
+    `<USwitch :model-value="checkValue" @update:model-value="v => checkValue = v">
+  manual
+</USwitch>`,
+  ],
 }
+
+const types = ['primary', 'secondary', 'accent', 'success', 'info', 'warning', 'error']
+const sizes = ['sm', 'base', 'lg']
 </script>
 
 <template>
-  <div class="space-y-4">
-    USwitch Demo:
-
-    <div class="flex space-x-3">
-      <span class="inline-block w-20">
-        size:
-      </span>
-      <USwitch v-model="value" size="sm" />
-      <USwitch v-model="value" size="base" />
-      <USwitch v-model="value" size="lg" />
-    </div>
-
-    <div class="flex space-x-3">
-      <span class="inline-block w-20">
-        type:
-      </span>
-      <USwitch v-model="value" />
-      <USwitch v-model="value" type="secondary" />
-      <USwitch v-model="value" type="accent" />
-      <USwitch v-model="value" type="success" />
-      <USwitch v-model="value" type="info" />
-      <USwitch v-model="value" type="warning" />
-      <USwitch v-model="value" type="error" />
-      <USwitch v-model="value" disabled />
-    </div>
-    <div class="flex space-x-3">
-      <span class="inline-block w-20">
-        icon:
-      </span>
-      <USwitch v-model="value" icon type="primary" />
-      <USwitch v-model="value" icon type="secondary" />
-      <USwitch v-model="value" icon type="accent" />
-      <USwitch v-model="value" icon type="success" />
-      <USwitch v-model="value" icon type="info" />
-      <USwitch v-model="value" icon type="warning" />
-      <USwitch v-model="value" icon type="error" />
-    </div>
-    <div class="flex space-x-3">
-      <span class="inline-block w-20">
-        other:
-      </span>
-      <USwitch v-model="value" icon>
-        Enabled
+  <PageWrap title="Switch Demo">
+    <Playground>
+      <template #preview>
+        <USwitch
+          v-model="state.checkValue"
+          :type="state.type"
+          :size="state.size"
+          :disabled="state.disabled"
+          :icon="state.icon"
+          :loading="state.loading"
+          :checked-value="state.checkedValue"
+          :unchecked-value="state.uncheckedValue"
+        >
+          {{ state.checkValue }}
+        </USwitch>
+      </template>
+      <template #props>
+        <div class="flex gap-2">
+          <UCheckbox v-model="state.disabled">
+            disabled
+          </UCheckbox>
+          <UCheckbox v-model="state.icon">
+            icon
+          </UCheckbox>
+          <UCheckbox v-model="state.loading">
+            loading
+          </UCheckbox>
+        </div>
+        <div class="flex items-center gap-2 flex-wrap">
+          <div class="w-16">
+            type
+          </div>
+          <component
+            :is="renderRadio(state, 'type', item)"
+            v-for="(item, idx) in types" :key="idx"
+          />
+        </div>
+        <div class="flex items-center gap-2 flex-wrap">
+          <div class="w-16">
+            size
+          </div>
+          <component
+            :is="renderRadio(state, 'size', item)"
+            v-for="(item, idx) in sizes" :key="idx"
+          />
+        </div>
+        <div class="flex items-center gap-2">
+          <div class="w-16">
+            custom
+          </div>
+          <UInput v-model="state.checkedValue" clearable placeholder="checkedVal" />
+          <UInput v-model="state.uncheckedValue" clearable placeholder="uncheckedVal" />
+        </div>
+      </template>
+    </Playground>
+    <Sample title="size" :snippets="snippets.size">
+      <div class="flex gap-4">
+        <USwitch v-model="checkValue" size="sm" />
+        <USwitch v-model="checkValue" size="base" />
+        <USwitch v-model="checkValue" size="lg" />
+      </div>
+    </Sample>
+    <Sample title="type" :snippets="snippets.type">
+      <div class="flex gap-4">
+        <USwitch v-model="checkValue" type="primary" />
+        <USwitch v-model="checkValue" type="secondary" />
+        <USwitch v-model="checkValue" type="accent" />
+        <USwitch v-model="checkValue" type="success" />
+        <USwitch v-model="checkValue" type="info" />
+        <USwitch v-model="checkValue" type="warning" />
+        <USwitch v-model="checkValue" type="error" />
+      </div>
+    </Sample>
+    <Sample title="icon" :snippets="snippets.icon">
+      <USwitch v-model="checkValue" icon />
+    </Sample>
+    <Sample title="disabled & readonly" :snippets="snippets.disabled">
+      <div class="flex gap-4">
+        <USwitch disabled />
+        <USwitch readonly />
+        <USwitch checked readonly />
+      </div>
+    </Sample>
+    <Sample title="custom value" :snippets="snippets.customValue">
+      <USwitch v-model="customValue" checked-value="checked" unchecked-value="unchecked">
+        {{ customValue }}
       </USwitch>
-      <USwitch icon checked readonly>
-        readonly
+    </Sample>
+    <Sample title="loading" :snippets="snippets.loading">
+      <USwitch loading />
+    </Sample>
+    <Sample title="other" :snippets="snippets.other">
+      <USwitch :model-value="checkValue" @update:model-value="v => checkValue = v">
+        manual
       </USwitch>
-      <USwitch v-model="value" @update:model-value="onChange">
-        @update:model-value
-      </USwitch>
-      <USwitch v-model="checkedValue" checked-value="checked" unchecked-value="unchecked" @update:model-value="onChange">
-        custom-value
-      </USwitch>
-      <USwitch :model-value="value" @update:model-value="$e => value = $e">
-        manual control
-      </USwitch>
-      <USwitch loading>
-        loading
-      </USwitch>
-    </div>
-  </div>
+    </Sample>
+  </PageWrap>
 </template>
