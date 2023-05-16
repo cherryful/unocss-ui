@@ -140,9 +140,10 @@ export default {
         <slot name="append" />
       </span>
     </div>
-    <div v-if="errorMessage" class="text-error-500 text-xs">
+
+    <span v-if="errorMessage" class="text-error-500 mt-1 text-xs">
       {{ errorMessage }}
-    </div>
+    </span>
   </div>
 </template>
 
@@ -153,8 +154,7 @@ export default {
   @apply focus:outline-none focus:ring-1 focus:ring-primary-400 focus:border-primary-400;
   @apply placeholder-gray-400 placeholder:text-sm;
   &.danger {
-    @apply border-error-500 mb-1;
-    @apply focus:ring-error-500 focus:border-error-500;
+    @apply border-error-500 focus:ring-error-500 focus:border-error-500;
   }
   &.prepend {
     @apply rounded-l-none;
