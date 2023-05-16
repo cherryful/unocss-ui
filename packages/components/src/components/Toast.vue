@@ -2,7 +2,7 @@
 import { reactive } from 'vue'
 import Alert from './Alert.vue'
 
-interface Event {
+export interface ToastEvent {
   show?: boolean
   id: number
   content: string
@@ -23,14 +23,14 @@ const props = withDefaults(defineProps<{
 })
 
 const flux = reactive({
-  events: [] as Event[],
+  events: [] as ToastEvent[],
+
   success: (content: string) => flux.add(content, 'success'),
   info: (content: string) => flux.add(content, 'info'),
   warning: (content: string) => flux.add(content, 'warning'),
   error: (content: string) => flux.add(content, 'error'),
-  show: (content: string, type: 'success' | 'info' | 'warning' | 'error') => {
-    flux.add(content, type)
-  },
+  show: (type: 'success' | 'info' | 'warning' | 'error', content: string) => flux.add(content, type),
+
   add: (content: string, type: 'success' | 'info' | 'warning' | 'error') => {
     if (!props.queue)
       flux.events = []
@@ -41,7 +41,7 @@ const flux = reactive({
       setTimeout(() => flux.remove(event), props.timeout)
     }, 100)
   },
-  remove: (event: Event) => {
+  remove: (event: ToastEvent) => {
     flux.events = flux.events.filter(e => e.id !== event.id)
   },
 })
@@ -62,9 +62,8 @@ export default {
 </script>
 
 <template>
-  <TransitionGroup
-    tag="div"
-    class="fixed z-200 grid gap-2 sm:min-w-96"
+  <div
+    class="fixed z-200 w-4/5 sm:w-96"
     :class="{
       'left-1/2 -translate-x-1/2': align === 'center',
       'left-6': align === 'left',
@@ -73,12 +72,34 @@ export default {
       'bottom-6 ': position === 'bottom',
     }"
   >
-    <div v-for="event in flux.events" :key="event.id">
-      <slot :type="event.type">
-        <Alert :type="event.type">
-          {{ event.content }}
-        </Alert>
-      </slot>
-    </div>
-  </TransitionGroup>
+    <TransitionGroup
+      tag="ul"
+      enter-active-class="transition ease-out duration-200"
+      leave-active-class="transition ease-in duration-200 absolute w-full"
+      :enter-class="position === 'bottom'
+        ? 'transform translate-y-3 opacity-0'
+        : 'transform -translate-y-3 opacity-0'"
+      enter-to-class="transform translate-y-0 opacity-100"
+      leave-class="transform translate-y-0 opacity-100"
+      :leave-to-class="position === 'bottom'
+        ? 'transform translate-y-1/4 opacity-0'
+        : 'transform -translate-y-1/4 opacity-0'"
+      move-class="ease-in-out duration-200"
+      class="inline-block w-full"
+    >
+      <li
+        v-for="event in flux.events" :key="event.id"
+        :class="{
+          'pb-2': position === 'bottom',
+          'pt-2': position === 'top',
+        }"
+      >
+        <slot :type="event.type">
+          <Alert :type="event.type">
+            {{ event.content }}
+          </Alert>
+        </slot>
+      </li>
+    </TransitionGroup>
+  </div>
 </template>

@@ -13,6 +13,7 @@ export function presetUnocssUI(): Preset {
       ...types.map(t => nums.map(n => `border-${t}-${n}`)).flat(),
       ...types.map(t => nums.map(n => `text-${t}-${n}`)).flat(),
       ...types.map(t => nums.map(n => `focus:ring-${t}-${n}`)).flat(),
+      ...types.map(t => nums.map(n => `focus:border-${t}-${n}`)).flat(),
       ...types.map(t => `border-r-${t}-500`),
       ...sizes.map(s => `rounded-${s}`),
     ],

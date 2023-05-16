@@ -4,15 +4,18 @@
   "private": true,
   "description": "",
   "scripts": {
-    "build:npm": "pnpm --filter unocss-ui build",
+    "build:components": "pnpm --filter @unocss-ui/components build",
+    "build:preset": "pnpm --filter @unocss-ui/preset build",
+
     "dev:example": "pnpm --filter example dev",
     "build:example": "pnpm --filter example build",
     "preview:example": "pnpm --filter example preview",
     "dev:demo": "pnpm --filter demo dev",
     "build:demo": "pnpm --filter demo build",
+    "preview:demo": "pnpm --filter demo preview",
+
     "lint": "eslint .",
-    "lint:fix": "eslint --fix .",
-    "build:preset": "pnpm --filter @unocss-ui/preset build"
+    "lint:fix": "eslint --fix ."
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.38.6",

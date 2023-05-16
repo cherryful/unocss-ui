@@ -5,7 +5,7 @@
     "@unocss"
   ],
   "rules": {
-    "no-console": "off",
-    "no-alert": "off"
+    "no-console": "warn",
+    "no-alert": "warn"
   }
 }

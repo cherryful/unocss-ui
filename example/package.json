@@ -21,7 +21,6 @@
   },
   "devDependencies": {
     "@iconify-json/mdi": "^1.1.51",
-    "@unocss-ui/preset": "workspace:*",
     "@unocss/reset": "^0.51.12",
     "@vitejs/plugin-vue": "^4.2.2",
     "sass": "^1.62.1",
