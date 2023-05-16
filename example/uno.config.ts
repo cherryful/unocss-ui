@@ -9,7 +9,7 @@ import {
 
 import { presetForms } from '@julr/unocss-preset-forms'
 import { colors } from 'unocss/preset-mini'
-import { presetUnocssUI } from '@unocss-ui/preset'
+import { presetUnocssUI } from '../packages/preset/src/index'
 
 export default defineConfig({
   theme: {
