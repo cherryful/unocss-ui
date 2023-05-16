@@ -116,7 +116,7 @@ export default {
       <div
         v-if="(hoverAlive && flux.inPanel) || flux.status"
         ref="dropdown"
-        class="fixed z-10 min-w-max rounded-lg bg-white shadow-lg dark:bg-slate-800 left-0 top-0"
+        class="fixed left-0 top-0 z-10 min-w-max rounded-lg bg-white shadow-lg dark:bg-slate-800"
         tabindex="-1"
       >
         <div

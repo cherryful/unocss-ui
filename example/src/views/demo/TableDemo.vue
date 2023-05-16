@@ -38,10 +38,10 @@ const bulkActions = [
 <template>
   <div>
     Simple Table Demo:
-    <div class="mt-4 w-2xl">
+    <div class="mt-4 w-64">
       <UTable :data="list">
         <template #headers>
-          <th scope="col" class="px-3 text-sm font-semibold text-gray-900 col-span-3 py-3.5 sm:pl-6">
+          <th scope="col" class="col-span-3 px-3 py-3.5 text-sm font-semibold text-gray-900 sm:pl-6">
             Name
           </th>
           <th scope="col" class="col-span-3 px-3 py-3.5 text-sm font-semibold text-gray-900 sm:pl-6">
@@ -55,7 +55,7 @@ const bulkActions = [
           </th>
         </template>
         <template #rows="{ row }">
-          <td class="w-16 whitespace-nowrap py-2 pl-4 text-center text-sm text-gray-500 sm:pl-6 px-3.5">
+          <td class="w-16 whitespace-nowrap px-3.5 py-2 pl-4 text-center text-sm text-gray-500 sm:pl-6">
             {{ row.name }}
           </td>
           <td class="w-16 whitespace-nowrap px-3.5 py-2 pl-4 text-center text-sm text-gray-500 sm:pl-6">
@@ -73,7 +73,7 @@ const bulkActions = [
   </div>
   <div>
     Loading Table Demo:
-    <div class="mt-4 w-2xl">
+    <div class="mt-4 w-full">
       <UTable :data="list" loading>
         <template #headers>
           <th scope="col" class="col-span-3 px-3 py-3.5 text-sm font-semibold text-gray-900 sm:pl-6">
@@ -108,7 +108,7 @@ const bulkActions = [
   </div>
   <div>
     Empty Table Demo:
-    <div class="mt-4 w-2xl">
+    <div class="mt-4 w-full">
       <UTable :data="[]">
         <template #headers>
           <th scope="col" class="col-span-3 px-3 py-3.5 text-sm font-semibold text-gray-900 sm:pl-6">
@@ -143,7 +143,7 @@ const bulkActions = [
   </div>
   <div>
     Bulk Actions Table Demo:
-    <div class="mt-4 w-2xl">
+    <div class="mt-4 w-full">
       <UTable :data="list" :actions="bulkActions">
         <template #headers>
           <th scope="col" class="col-span-3 px-3 py-3.5 text-sm font-semibold text-gray-900 sm:pl-6">
@@ -173,11 +173,11 @@ const bulkActions = [
           <td class="w-16 whitespace-nowrap px-3.5 py-2 pl-4 text-sm text-gray-500 sm:pl-6">
             {{ row.status }}
           </td>
-          <td class="w-16 whitespace-nowrap px-3.5 py-2 text-gray-500 text-md">
+          <td class="w-16 whitespace-nowrap px-3.5 py-2 text-base text-gray-500">
             <div class="flex items-center gap-2 lg:px-4">
-              <span class="inline-block cursor-pointer i-mdi:apple" />
+              <span class="i-mdi:apple inline-block cursor-pointer" />
               <span class="i-mdi:lightning-bolt cursor-pointer" />
-              <span class="cursor-pointer i-mdi:mail" />
+              <span class="i-mdi:mail cursor-pointer" />
             </div>
           </td>
         </template>

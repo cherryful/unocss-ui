@@ -44,23 +44,23 @@ export default {
 <template>
   <Teleport to="body">
     <div
-      class="fixed inset-0 overflow-y-auto transition-all z-30 ease-in"
+      class="fixed inset-0 z-30 overflow-y-auto transition-all ease-in"
       :class="[
-        isOpen ? 'visible' : 'invisible ease-in duration-100',
+        isOpen ? 'visible' : 'invisible duration-100 ease-in',
       ]"
     >
       <!-- overlay -->
       <div
         class="fixed inset-0 bg-gray-500 transition-opacity dark:bg-gray-600"
         :class="[
-          isOpen ? 'ease-out duration-75 opacity-75' : 'ease-in duration-75 opacity-0',
+          isOpen ? 'opacity-75 duration-75 ease-out' : 'opacity-0 duration-75 ease-in',
         ]"
         @click.self="close"
       />
       <!-- dialog -->
-      <div class="flex items-center justify-center p-2 min-h-full sm:p-6">
+      <div class="min-h-full flex items-center justify-center p-2 sm:p-6">
         <div
-          class="relative bg-white transition-all inline-block rounded-lg transform shadow-xl dark:bg-gray-900"
+          class="relative inline-block rounded-lg bg-white shadow-xl transition-all dark:bg-gray-900"
           :class="[
             {
               'w-full sm:max-w-sm': size === 'sm',
@@ -72,8 +72,8 @@ export default {
               'p-4 sm:p-6': padded,
             },
             isOpen
-              ? 'duration-300 opacity-100 translate-y-0 sm:scale-100'
-              : 'duration-300 opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95',
+              ? 'translate-y-0 opacity-100 duration-300 sm:scale-100'
+              : 'translate-y-4 opacity-0 duration-300 sm:translate-y-0 sm:scale-95',
           ]"
           role="dialog"
           aria-modal="true"
@@ -81,7 +81,7 @@ export default {
         >
           <button
             v-if="dismissButton"
-            class="absolute w-6 focus:outline-none focus:ring-2 h-6 rounded-full bg-gray-100 text-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 right-4 top-4 p-1 hover:bg-gray-200 dark:text-gray-300 focus:ring-gray-500"
+            class="absolute right-4 top-4 h-6 w-6 rounded-full bg-gray-100 p-1 text-gray-700 dark:bg-gray-800 hover:bg-gray-200 dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:hover:bg-gray-700"
             aria-label="close"
             @click="close"
           >

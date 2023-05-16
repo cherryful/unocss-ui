@@ -6,12 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
-    "preview": "vite preview",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "preview": "vite preview"
   },
   "dependencies": {
-    "unocss-ui": "workspace:*",
+    "@unocss-ui/components": "workspace:*",
     "vue": "^3.2.47"
   },
   "devDependencies": {

@@ -20,9 +20,9 @@ export default {
   <span class="relative cursor-default">
     <slot />
     <span
-      class="absolute rounded-full text-white translate-x-1/2 -right-1 -top-1/2"
+      class="absolute translate-x-1/2 rounded-full text-white -right-1 -top-1/2"
       :class="[
-        content ? 'min-w-5' : 'w-3 h-3',
+        content ? 'min-w-5' : 'h-3 w-3',
         [type],
         {
           'text-xs': size === 'sm',

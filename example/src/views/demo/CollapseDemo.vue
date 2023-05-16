@@ -1,29 +1,29 @@
 <script setup>
 import Sample from '@/components/Sample.vue'
 
-const snippets = {
-  size: [
-    '<UBadge size="sm">sm</UBadge>',
-    '<UBadge size="base">base</UBadge>',
-    '<UBadge size="lg">lg</UBadge>',
-  ],
-  type: [
-    '<UBadge type="primary">primary</UBadge>',
-    '<UBadge type="secondary">secondary</UBadge>',
-    '<UBadge type="accent">accent</UBadge>',
-    '<UBadge type="success">success</UBadge>',
-    '<UBadge type="info">info</UBadge>',
-    '<UBadge type="warning">warning</UBadge>',
-    '<UBadge type="error">error</UBadge>',
-  ],
-  disabled: [
-    '<UBadge disabled>disabled</UBadge>',
-  ],
-}
+// const snippets = {
+//   size: [
+//     '<UBadge size="sm">sm</UBadge>',
+//     '<UBadge size="base">base</UBadge>',
+//     '<UBadge size="lg">lg</UBadge>',
+//   ],
+//   type: [
+//     '<UBadge type="primary">primary</UBadge>',
+//     '<UBadge type="secondary">secondary</UBadge>',
+//     '<UBadge type="accent">accent</UBadge>',
+//     '<UBadge type="success">success</UBadge>',
+//     '<UBadge type="info">info</UBadge>',
+//     '<UBadge type="warning">warning</UBadge>',
+//     '<UBadge type="error">error</UBadge>',
+//   ],
+//   disabled: [
+//     '<UBadge disabled>disabled</UBadge>',
+//   ],
+// }
 </script>
 
 <template>
-  <div class="h-full bg-white p-5 min-h-2xl rounded-md">
+  <div class="h-full min-h-2xl rounded-md bg-white p-5">
     <div> UCollapseDemo: </div>
     <Sample title="basic">
       <UCollapse class="w-lg">

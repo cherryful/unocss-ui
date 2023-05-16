@@ -1,0 +1,14 @@
+{
+  "name": "unocss-ui",
+  "type": "module",
+  "version": "0.0.1.alpha.1",
+  "description": "UnocssUI css rules for unocss preset.",
+  "author": "cherryful <https://github.com/cherryful>",
+  "license": "MIT",
+  "homepage": "https://github.com/cherryful/unocss-ui",
+  "keywords": ["unocss"],
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

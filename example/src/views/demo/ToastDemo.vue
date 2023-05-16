@@ -13,10 +13,10 @@ const align = ref<'left' | 'center' | 'right'>('center')
 <template>
   <UToast ref="toast1" :queue="false" :timeout="1000" />
   <UToast ref="toast2" v-slot="{ type }">
-    <div class="w-full overflow-hidden bg-white max-w-sm rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 pointer-events-auto">
+    <div class="pointer-events-auto max-w-sm w-full overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
       <div class="p-4">
         <div class="flex items-start">
-          <div class="flex-shrink-0">
+          <div class="shrink-0">
             <div
               class="h-6 w-6"
               :class="{
@@ -27,11 +27,11 @@ const align = ref<'left' | 'center' | 'right'>('center')
               }"
             />
           </div>
-          <div class="flex-1 ml-3 w-0 pt-0.5">
-            <p class="text-sm text-gray-900 font-medium">
+          <div class="ml-3 w-0 flex-1 pt-0.5">
+            <p class="text-sm font-medium text-gray-900">
               This is the custom {{ type }}  toast!
             </p>
-            <p class="text-sm mt-1 text-gray-500">
+            <p class="mt-1 text-sm text-gray-500">
               Anyone with a link can now view this file.
             </p>
           </div>
@@ -43,7 +43,7 @@ const align = ref<'left' | 'center' | 'right'>('center')
   <UToast ref="toast4" :position="position" :align="align" />
 
   <div class="space-y-4">
-    <div class="sm:space-x-4 space-y-2">
+    <div class="space-y-2 sm:space-x-4">
       <UButton @click="toast1?.info('This is a no queue toast.')">
         UToast1: no-queue, timeout-1000
       </UButton>

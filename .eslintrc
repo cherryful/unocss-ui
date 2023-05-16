@@ -1,10 +1,11 @@
 {
-  // @unocss BUG: https://github.com/unocss/unocss/issues/2603
+  // @unocss: https://github.com/unocss/unocss/issues/2603
   "extends": [
     "@antfu",
     "@unocss"
   ],
   "rules": {
-    "no-console": "warn"
+    "no-console": "off",
+    "no-alert": "off"
   }
 }

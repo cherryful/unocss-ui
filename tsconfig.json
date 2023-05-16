@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "allowJs": true,
     "target": "esnext",
     "module": "esnext",
     "lib": ["esnext", "dom"],
@@ -14,7 +15,8 @@
     "jsx": "preserve",
     "types": ["node", "vite/client"],
     "paths": {
-      "@onu-ui/preset": ["./packages/preset/src/index.ts"]
+      "@unocss-ui/preset": ["./packages/preset/src/index.ts"],
+      "@unocss-ui/components": ["./packages/components/src/index.ts"]
     }
   },
   "exclude": [

@@ -35,13 +35,13 @@ export default {
     ref="wrapper"
     v-bind="$attrs"
     :class="{
-      'w-8 h-8': !$attrs.hasOwnProperty('class'),
+      'h-8 w-8': !$attrs.hasOwnProperty('class'),
     }"
   >
     <slot name="icon">
       <div
         ref="spinner"
-        class="w-full inline-block border-gray-300 rounded-full h-full animate-spin bg-transparent"
+        class="inline-block h-full w-full animate-spin border-gray-300 rounded-full bg-transparent"
         :class="`border-r-${type}-500`"
       >
         <span class="sr-only">Loading...</span>

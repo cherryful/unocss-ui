@@ -53,11 +53,11 @@ export default {
 </script>
 
 <template>
-  <div class="flex items-center h-6">
+  <div class="h-6 flex items-center">
     <template v-if="$slots.default && labelLeft">
       <label
         :for="uid"
-        class="select-none mr-2"
+        class="mr-2 select-none"
         :class="disabled ? 'cursor-not-allowed' : 'cursor-pointer'"
       >
         <slot />
@@ -71,7 +71,7 @@ export default {
       :disabled="disabled"
       class="border-gray-300 rounded" :class="[
         `text-${type}-400 focus:ring-${type}-500`,
-        disabled ? 'opacity-30 cursor-not-allowed' : 'cursor-pointer',
+        disabled ? 'cursor-not-allowed opacity-30' : 'cursor-pointer',
         {
           'h-3 w-3': size === 'sm',
           'h-4 w-4': size === 'base',
@@ -82,7 +82,7 @@ export default {
     <template v-if="$slots.default && !labelLeft">
       <label
         :for="uid"
-        class="select-none ml-2"
+        class="ml-2 select-none"
         :class="disabled ? 'cursor-not-allowed' : 'cursor-pointer'"
       >
         <slot />

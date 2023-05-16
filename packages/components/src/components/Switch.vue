@@ -98,10 +98,10 @@ export default {
   <div class="flex items-center">
     <label
       :for="uid"
-      class="flex items-center select-none"
+      class="flex select-none items-center"
       :class="[disabled ? 'cursor-not-allowed opacity-60' : readonly ? '' : 'cursor-pointer']"
     >
-      <div class="font-medium leading-6 text-gray-900 empty:hidden mr-2">
+      <div class="mr-2 font-medium leading-6 text-gray-900 empty:hidden">
         <slot />
       </div>
       <!-- focus:rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 -->
@@ -116,24 +116,24 @@ export default {
           class="sr-only"
         >
         <div
-          class="rounded-full block"
+          class="block rounded-full"
           :class="[
             (switchValue || checked) ? themes[type].color : 'bg-gray-200',
             {
-              'w-9 h-4': size === 'sm',
-              'w-11 h-6': size === 'base',
-              'w-14 h-9': size === 'lg',
+              'h-4 w-9': size === 'sm',
+              'h-6 w-11': size === 'base',
+              'h-9 w-14': size === 'lg',
             },
           ]"
         />
         <div
-          class="absolute rounded-full bg-white transition left-0 top-0.5"
+          class="absolute left-0 top-0.5 rounded-full bg-white transition"
           :class="[
             (switchValue || checked) ? 'translate-x-5' : 'translate-x-0',
             {
-              'w-3 h-3': size === 'sm',
+              'h-3 w-3': size === 'sm',
               'h-5 w-5': size === 'base',
-              'w-8 h-8': size === 'lg',
+              'h-8 w-8': size === 'lg',
             },
           ]"
         >
@@ -142,9 +142,9 @@ export default {
             class="animate-spin"
             :class="[
               {
-                'w-3 h-3': size === 'sm',
+                'h-3 w-3': size === 'sm',
                 'h-5 w-5': size === 'base',
-                'w-8 h-8': size === 'lg',
+                'h-8 w-8': size === 'lg',
               },
             ]"
             xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
@@ -155,9 +155,9 @@ export default {
             :class="[
               (checked || switchValue) ? themes[type].text : 'text-gray-200',
               {
-                'w-3 h-3': size === 'sm',
+                'h-3 w-3': size === 'sm',
                 'h-5 w-5': size === 'base',
-                'w-8 h-8': size === 'lg',
+                'h-8 w-8': size === 'lg',
               },
             ]"
           >

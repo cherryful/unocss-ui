@@ -1,6 +1,13 @@
 // for eslint
-import { defineConfig } from 'unocss'
+import {
+  defineConfig,
+  presetIcons,
+  presetUno,
+} from 'unocss'
 
 export default defineConfig({
-  configFile: './components/uno.config.ts',
+  presets: [
+    presetUno(),
+    presetIcons(),
+  ],
 })

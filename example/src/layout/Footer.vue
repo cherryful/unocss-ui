@@ -5,7 +5,7 @@ const currentYear = ref<number>(new Date().getFullYear())
 </script>
 
 <template>
-  <div class="w-full py-3 justify-between items-center border-t-2 px-8 lg:flex">
+  <div class="w-full items-center justify-between border-t-2 px-8 py-3 lg:flex">
     <p class="mb-2 lg:mb-0">
       © Copyright {{ currentYear }}
     </p>

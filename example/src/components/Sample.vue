@@ -69,43 +69,43 @@ onMounted(() => {
 <template>
   <section>
     <div
-      class="p-3 bg-white sm:p-4 shadow border-t border-gray-100 border-r border-l"
+      class="border-x border-t border-gray-100 bg-white p-3 shadow sm:p-4"
       :class="snippets?.length ? 'rounded-t-lg' : 'rounded-lg border-b'"
     >
-      <div class="text-lg mb-2 text-info-500">
+      <div class="text-info-500 mb-2 text-lg">
         {{ title }}
       </div>
-      <div class="flex justify-center p-4 shadow-sm rounded-md border-2 border-dashed">
+      <div class="flex justify-center border-2 rounded-md border-dashed p-4 shadow-sm">
         <slot />
       </div>
     </div>
 
     <div
       v-if="snippets?.length"
-      class="relative bg-gray-800 rounded-b-lg overflow-y-hidden"
+      class="relative overflow-y-hidden rounded-b-lg bg-gray-800"
       :class="{ 'transition-all duration-500 ease-out': flux.mounted }"
       :style="[flux.isSnippetCodeOverflow ? { maxHeight: `${flux.codeSnippetMaxHeight}px` } : {}]"
     >
       <div ref="sampleRef" class="p-4">
-        <div ref="dummyCodeRef" class="p-4 invisible absolute">
-          <code class="text-sm whitespace-pre-wrap">
+        <div ref="dummyCodeRef" class="invisible absolute p-4">
+          <code class="whitespace-pre-wrap text-sm">
             &#8203; &#8203; &#8203; &#8203;
           </code>
         </div>
 
         <div
           ref="snippetRef"
-          class="space-y-5 py-2 overflow-x-auto"
+          class="overflow-x-auto py-2 space-y-5"
           :class="{ 'pb-4': flux.isSnippetCodeOverflow }"
         >
           <div
             v-for="(code, index) in snippets"
             :key="index"
-            class="relative group"
+            class="group relative"
           >
             <hljsVuePlugin.component language="xml" :code="code" />
             <button
-              class="absolute items-center transition-opacity inline-flex opacity-50 text-white top-0 right-0 ease-in-out group-hover:opacity-100 duration-100"
+              class="absolute right-0 top-0 inline-flex items-center text-white opacity-50 transition-opacity duration-100 ease-in-out group-hover:opacity-100"
               @click="flux.onCopy(code)"
             >
               <div class="i-mdi:content-copy" />
@@ -117,10 +117,10 @@ onMounted(() => {
       <div
         v-if="flux.isSnippetCodeOverflow"
         ref="expandButtonRef"
-        class="absolute w-full p-2 text-center bottom-0 bg-gradient-to-t from-gray-800"
+        class="absolute bottom-0 w-full from-gray-800 bg-gradient-to-t p-2 text-center"
       >
         <button
-          class="text-sm px-2 py-1 rounded-full focus:outline-none bg-gray-700 text-gray-100 leading-tight"
+          class="rounded-full bg-gray-700 px-2 py-1 text-sm leading-tight text-gray-100 focus:outline-none"
           @click="flux.toggleCollapse()"
         >
           <template v-if="flux.collapsed">

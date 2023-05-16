@@ -56,26 +56,26 @@ function onChange(val) {
   <div class="flex gap-4">
     <URadio v-slot="{ checked }" v-model="checkValue" hidden type="success" value="apple" @change="onChange">
       <div
-        class="h-8 w-8 border-2 rounded-full border-white bg-success-500"
+        class="bg-success-500 h-8 w-8 border-2 border-white rounded-full"
         :class=" {
-          'ring-2 ring-success-500': checked,
+          'ring-success-500 ring-2': checked,
         }
         "
       />
     </URadio>
     <URadio v-slot="{ checked }" v-model="checkValue" hidden type="info" value="banana" @change="onChange">
       <div
-        class="h-8 w-8 border-2 border-white rounded-full bg-info-500"
+        class="bg-info-500 h-8 w-8 border-2 border-white rounded-full"
         :class="{
-          'ring-2 ring-info-500': checked,
+          'ring-info-500 ring-2': checked,
         }"
       />
     </URadio>
     <URadio v-slot="{ checked }" v-model="checkValue" hidden type="warning" value="orange" @change="onChange">
       <div
-        class="h-8 w-8 border-2 border-white rounded-full bg-warning-500"
+        class="bg-warning-500 h-8 w-8 border-2 border-white rounded-full"
         :class="{
-          'ring-2 ring-warning-500': checked,
+          'ring-warning-500 ring-2': checked,
         }"
       />
     </URadio>

@@ -1,7 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-
-import { UAlert, UButton, UCheckbox, UDrawer, ULoading, UModal, URadio, USwitch, UTag, UToast } from 'unocss-ui'
+import { UAlert, UButton, UCheckbox, UDrawer, ULoading, UModal, URadio, USwitch, UTag, UToast } from '@unocss-ui/components'
 
 const drawer = ref(false)
 const modal = ref(false)
@@ -15,6 +14,7 @@ const welcome = ref('hi! gratulation to you! you can use this ui lib!')
 
 <template>
   <div class="m-5 space-y-5">
+    <div class="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse sm:gap-3" />
     <div class="border p-3 text-2xl">
       unocss-ui
     </div>
@@ -90,7 +90,7 @@ const welcome = ref('hi! gratulation to you! you can use this ui lib!')
   </UModal>
 
   <UDrawer v-model="drawer" placement="bottom">
-    <div class="p-3 text-xl flex items-center justify-center w-full h-full">
+    <div class="h-full w-full flex items-center justify-center p-3 text-xl">
       {{ welcome }}
     </div>
   </UDrawer>

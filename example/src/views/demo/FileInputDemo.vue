@@ -9,7 +9,7 @@ function afterUpload(event: Event) {
 </script>
 
 <template>
-  <div class="flex items-center my-4 space-x-5">
+  <div class="my-4 flex items-center space-x-5">
     <div class="w-72">
       <UFileInput
         v-model:file-list="fileList"

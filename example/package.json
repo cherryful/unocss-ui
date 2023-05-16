@@ -12,16 +12,15 @@
   },
   "dependencies": {
     "@highlightjs/vue-plugin": "^2.1.0",
-    "@vueuse/components": "^10.1.2",
+    "@unocss-ui/components": "workspace:*",
     "@vueuse/core": "^10.1.2",
     "highlight.js": "^11.8.0",
     "pinia": "^2.0.36",
-    "unocss-ui": "workspace:*",
     "vue": "3.2.47",
     "vue-router": "^4.2.0"
   },
   "devDependencies": {
-    "@iconify/json": "^2.2.64",
+    "@iconify-json/mdi": "^1.1.51",
     "@unocss-ui/preset": "workspace:*",
     "@unocss/reset": "^0.51.12",
     "@vitejs/plugin-vue": "^4.2.2",

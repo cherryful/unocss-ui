@@ -30,16 +30,16 @@ export default {
 <template>
   <component :is="tag">
     <template v-if="variant === 'bar'">
-      <div class="rounded-lg overflow-hidden bg-gray-200 dark:bg-gray-700">
+      <div class="overflow-hidden rounded-lg bg-gray-200 dark:bg-gray-700">
         <div
-          class="rounded-lg h-2"
+          class="h-2 rounded-lg"
           :class="[[color]]"
           :style="{ width: `${percentage}%` }"
         />
       </div>
     </template>
     <template v-else-if="variant === 'circle'">
-      <svg class="transform -rotate-90" viewBox="0 0 100 100">
+      <svg class="-rotate-90" viewBox="0 0 100 100">
         <circle
           class="text-gray-200 dark:text-gray-700"
           stroke="currentColor" stroke-linejoin="round" stroke-linecap="round" stroke-width="8" fill="none" cx="50" cy="50" r="40"

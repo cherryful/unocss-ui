@@ -76,7 +76,7 @@ const sizes = ['sm', 'base', 'lg']
             disabled
           </UCheckbox>
         </div>
-        <div class="flex items-center gap-2 flex-wrap">
+        <div class="flex flex-wrap items-center gap-2">
           <div class="w-16">
             type
           </div>
@@ -85,7 +85,7 @@ const sizes = ['sm', 'base', 'lg']
             v-for="(item, idx) in types" :key="idx"
           />
         </div>
-        <div class="flex items-center gap-2 flex-wrap">
+        <div class="flex flex-wrap items-center gap-2">
           <div class="w-16">
             size
           </div>
@@ -103,7 +103,7 @@ const sizes = ['sm', 'base', 'lg']
       </template>
     </Playground>
     <Sample title="size" :snippets="snippets.size">
-      <div class="space-y-3 space-x-4">
+      <div class="space-x-4 space-y-3">
         <component
           :is="h(UButton, { size: item }, { default: () => item })"
           v-for="(item, idx) in sizes" :key="idx"
@@ -111,7 +111,7 @@ const sizes = ['sm', 'base', 'lg']
       </div>
     </Sample>
     <Sample title="type" :snippets="snippets.type">
-      <div class="space-y-3 space-x-4">
+      <div class="space-x-4 space-y-3">
         <component
           :is="h(UButton, { type: item }, { default: () => item })"
           v-for="(item, idx) in types" :key="idx"
@@ -119,7 +119,7 @@ const sizes = ['sm', 'base', 'lg']
       </div>
     </Sample>
     <Sample title="rounded" :snippets="snippets.type">
-      <div class="space-y-3 space-x-4">
+      <div class="space-x-4 space-y-3">
         <component
           :is="h(UButton, { type: item }, { default: () => item })"
           v-for="(item, idx) in types" :key="idx"
@@ -127,14 +127,14 @@ const sizes = ['sm', 'base', 'lg']
       </div>
     </Sample>
     <Sample title="disabled" :snippets="snippets.disabled">
-      <div class="space-y-3 space-x-4">
+      <div class="space-x-4 space-y-3">
         <UButton disabled>
           disabled
         </UButton>
       </div>
     </Sample>
     <Sample title="icon" :snippets="snippets.icon">
-      <div class="space-y-3 space-x-4">
+      <div class="space-x-4 space-y-3">
         <UButton>
           <div class="flex items-center justify-center">
             <span class="i-mdi:lightning-bolt text-4" />

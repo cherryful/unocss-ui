@@ -93,7 +93,7 @@ const rounds = ['sm', 'md', 'lg', 'full']
             border
           </UCheckbox>
         </div>
-        <div class="flex items-center gap-2 flex-wrap">
+        <div class="flex flex-wrap items-center gap-2">
           <div class="w-16">
             type
           </div>
@@ -102,7 +102,7 @@ const rounds = ['sm', 'md', 'lg', 'full']
             v-for="(item, idx) in types" :key="idx"
           />
         </div>
-        <div class="flex items-center gap-2 flex-wrap">
+        <div class="flex flex-wrap items-center gap-2">
           <div class="w-16">
             size
           </div>
@@ -111,7 +111,7 @@ const rounds = ['sm', 'md', 'lg', 'full']
             v-for="(item, idx) in sizes" :key="idx"
           />
         </div>
-        <div class="flex items-center gap-2 flex-wrap">
+        <div class="flex flex-wrap items-center gap-2">
           <div class="w-16">
             rounded
           </div>
@@ -129,7 +129,7 @@ const rounds = ['sm', 'md', 'lg', 'full']
       </template>
     </Playground>
     <Sample title="type" :snippets="snippets.type">
-      <div class="space-y-3 space-x-4">
+      <div class="space-x-4 space-y-3">
         <component
           :is="h(UTag, { type: item }, { default: () => item })"
           v-for="(item, idx) in types" :key="idx"
@@ -137,7 +137,7 @@ const rounds = ['sm', 'md', 'lg', 'full']
       </div>
     </Sample>
     <Sample title="size" :snippets="snippets.size">
-      <div class="space-y-3 space-x-4">
+      <div class="space-x-4 space-y-3">
         <component
           :is="h(UTag, { size: item }, { default: () => item })"
           v-for="(item, idx) in sizes" :key="idx"
@@ -145,7 +145,7 @@ const rounds = ['sm', 'md', 'lg', 'full']
       </div>
     </Sample>
     <Sample title="rounded" :snippets="snippets.rounded">
-      <div class="space-y-3 space-x-4">
+      <div class="space-x-4 space-y-3">
         <component
           :is="h(UTag, { rounded: item }, { default: () => item })"
           v-for="(item, idx) in rounds" :key="idx"
@@ -153,21 +153,21 @@ const rounds = ['sm', 'md', 'lg', 'full']
       </div>
     </Sample>
     <Sample title="closeable" :snippets="snippets.closeable">
-      <div class="space-y-3 space-x-4">
+      <div class="space-x-4 space-y-3">
         <UTag closeable @close="onClose">
           closeable
         </UTag>
       </div>
     </Sample>
     <Sample title="border" :snippets="snippets.border">
-      <div class="space-y-3 space-x-4">
+      <div class="space-x-4 space-y-3">
         <UTag border>
           border
         </UTag>
       </div>
     </Sample>
     <Sample title="icon" :snippets="snippets.icon">
-      <div class="space-y-3 space-x-4">
+      <div class="space-x-4 space-y-3">
         <UTag>
           <div class="flex items-center justify-center">
             <span class="i-mdi:lightning-bolt text-4" />
@@ -177,7 +177,7 @@ const rounds = ['sm', 'md', 'lg', 'full']
       </div>
     </Sample>
     <Sample title="custom" :snippets="snippets.custom">
-      <div class="space-y-3 space-x-4">
+      <div class="space-x-4 space-y-3">
         <UTag custom="bg-pink-200 text-pink-600 px-4 py-2 border-2 border-pink-600 rounded-xl">
           custom
         </UTag>

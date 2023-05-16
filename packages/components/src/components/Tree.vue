@@ -107,7 +107,7 @@ export default {
       </span>
     </div>
     <!-- secondary level -->
-    <div v-for="sub of item.children" :key="sub.value" class="hover:rounded hover:bg-gray-100 pl-10">
+    <div v-for="sub of item.children" :key="sub.value" class="pl-10 hover:rounded hover:bg-gray-100">
       <!-- TODO: optimize -->
       <Transition>
         <template v-if="!item.hidden">

@@ -16,7 +16,7 @@ const drawer = reactive({
       <span class="inline-block w-20">
         placement:
       </span>
-      <button class="rounded-md px-2 py-1 text-white bg-indigo-500" @click="drawer.left = true">
+      <button class="rounded-md bg-indigo-500 px-2 py-1 text-white" @click="drawer.left = true">
         left
       </button>
       <button class="rounded-md bg-indigo-500 px-2 py-1 text-white" @click="drawer.right = true">

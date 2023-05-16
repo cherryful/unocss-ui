@@ -92,7 +92,7 @@ const sizes = ['sm', 'base', 'lg']
             loading
           </UCheckbox>
         </div>
-        <div class="flex items-center gap-2 flex-wrap">
+        <div class="flex flex-wrap items-center gap-2">
           <div class="w-16">
             type
           </div>
@@ -101,7 +101,7 @@ const sizes = ['sm', 'base', 'lg']
             v-for="(item, idx) in types" :key="idx"
           />
         </div>
-        <div class="flex items-center gap-2 flex-wrap">
+        <div class="flex flex-wrap items-center gap-2">
           <div class="w-16">
             size
           </div>

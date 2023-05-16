@@ -63,7 +63,7 @@ export default {
       <div v-if="flux.fileNames.length > 1" class="flex flex-wrap gap-1">
         <div
           v-for="item in flux.fileNames" :key="item"
-          class="whitespace-nowrap rounded text-xs inline-block px-1 text-center text-whit bg-primary-300"
+          class="bg-primary-300 text-whit inline-block whitespace-nowrap rounded px-1 text-center text-xs"
         >
           {{ item }}
         </div>
@@ -74,7 +74,7 @@ export default {
       <div v-else class="text-gray-400">
         {{ placeholder }}
       </div>
-      <div class="text-gray-400 w-5 h-5 i-mdi:upload" />
+      <div class="i-mdi:upload h-5 w-5 text-gray-400" />
     </template>
   </label>
   <input

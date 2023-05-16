@@ -47,7 +47,7 @@ export default {
 </script>
 
 <template>
-  <div class="border rounded-md border-gray-100 p-4">
+  <div class="border border-gray-100 rounded-md p-4">
     <div
       class="flex items-center"
       :class="[
@@ -62,7 +62,7 @@ export default {
         <slot />
       </div>
       <div
-        class="transition transform duration-200 ease-in-out transition-transform"
+        class="transition transition-transform duration-200 ease-in-out"
         :class="[
           iconLeft ? 'mr-2' : 'ml-2',
           {
@@ -76,7 +76,7 @@ export default {
       </div>
     </div>
     <div
-      class="ease-in-out duration-300 transition-all"
+      class="transition-all duration-300 ease-in-out"
       :class=" {
         'overflow-y-hidden': !flux.expandedCompleted,
       }"

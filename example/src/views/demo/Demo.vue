@@ -28,7 +28,7 @@ import ButtonDemo from './ButtonDemo.vue'
 
 <template>
   <div class="mx-5">
-    <div class="space-y-5 my-5">
+    <div class="my-5 space-y-5">
       <!-- <ModalDemo /> -->
       <ButtonDemo />
       <!-- <TagDemo />

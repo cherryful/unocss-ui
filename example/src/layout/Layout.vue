@@ -6,12 +6,12 @@ import Footer from './Footer.vue'
 </script>
 
 <template>
-  <div class="flex bg-gray-100 h-screen">
+  <div class="h-screen flex bg-gray-100">
     <Sidebar />
-    <div class="flex flex-col flex-1 overflow-hidden">
+    <div class="flex flex-1 flex-col overflow-hidden">
       <Header />
-      <main class="flex-1 bg-gray-100 overflow-y-auto overflow-x-hidden">
-        <div class="px-4 py-6 sm:mt-3 mx-auto container">
+      <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100">
+        <div class="mx-auto px-4 py-6 container sm:mt-3">
           <RouterView v-slot="{ Component }">
             <component :is="Component" />
           </RouterView>

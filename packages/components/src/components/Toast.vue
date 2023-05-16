@@ -64,7 +64,7 @@ export default {
 <template>
   <TransitionGroup
     tag="div"
-    class="fixed gap-2 z-200 grid sm:min-w-96"
+    class="fixed z-200 grid gap-2 sm:min-w-96"
     :class="{
       'left-1/2 -translate-x-1/2': align === 'center',
       'left-6': align === 'left',

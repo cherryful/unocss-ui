@@ -4,7 +4,6 @@ import { ref } from 'vue'
 const value = ref('')
 
 function onEnter() {
-  // eslint-disable-next-line no-console
   console.log(value.value)
 }
 </script>

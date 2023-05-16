@@ -36,7 +36,7 @@ export default {
 
 <template>
   <div
-    class="text-xs shadow-sm whitespace-nowrap cursor-default inline-block font-medium"
+    class="inline-block cursor-default whitespace-nowrap text-xs font-medium shadow-sm"
     :class="[
       typeClass,
       `rounded-${rounded}`,
@@ -51,7 +51,7 @@ export default {
       <div v-if="closeable" class="flex">
         <slot />
         <svg
-          class="cursor-pointer ease-in-out h-4 w-4 ml-1 stroke-2 transition-colors duration-150 hover:text-gray-700"
+          class="ml-1 h-4 w-4 cursor-pointer stroke-2 transition-colors duration-150 ease-in-out hover:text-gray-700"
           width="24" height="24" viewBox="0 0 24 24" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round" fill="none" role="presentation"
           @click="$emit('close')"
         >

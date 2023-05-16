@@ -47,11 +47,11 @@ export default {
 <template>
   <label
     :for="uid"
-    class="inline-flex items-center select-none font-medium text-gray-900 leading-6"
+    class="inline-flex select-none items-center font-medium leading-6 text-gray-900"
     :class="[
-      disabled ? 'opacity-60 cursor-not-allowed' : 'cursor-pointer',
+      disabled ? 'cursor-not-allowed opacity-60' : 'cursor-pointer',
       {
-        'rounded border-1 p-2 transition-colors duration-150 ease-in-out': bordered,
+        'border-1 rounded p-2 transition-colors duration-150 ease-in-out': bordered,
         'border-gray-300': bordered && !checked && !disabled,
         [`border-${type}-500`]: bordered && checked,
       },

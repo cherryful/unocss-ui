@@ -26,7 +26,7 @@
       <ULoading type="error" class="h-15 w-15" />
       <ULoading>
         <template #icon>
-          <div class="text-blue-500 animate-spin h-8 w-8 i-mdi:ULoading" />
+          <div class="i-mdi:ULoading h-8 w-8 animate-spin text-blue-500" />
         </template>
       </ULoading>
       <ULoading class="h-10 w-10">
@@ -36,7 +36,7 @@
       </ULoading>
       <ULoading>
         <template #icon>
-          <div class="cursor-default animate-pulse">
+          <div class="animate-pulse cursor-default">
             ULoading...
           </div>
         </template>
@@ -47,11 +47,11 @@
       Wrap Content:
       <div class="flex items-center space-x-5">
         <ULoading>
-          <div class="items-center border bg-white border-gray-100 rounded-lg max-w-sm block dark:bg-gray-800 dark:hover:bg-gray-700 p-6 shadow-md dark:border-gray-800">
-            <h5 class="mb-2 text-2xl font-bold text-gray-900 tracking-tight dark:text-white">
+          <div class="block max-w-sm items-center border border-gray-100 rounded-lg bg-white p-6 shadow-md dark:border-gray-800 dark:bg-gray-800 dark:hover:bg-gray-700">
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
               Noteworthy technology acquisitions 2021
             </h5>
-            <p class="text-gray-700 font-normal dark:text-gray-400">
+            <p class="font-normal text-gray-700 dark:text-gray-400">
               Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.
             </p>
           </div>
