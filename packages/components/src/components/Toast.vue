@@ -15,11 +15,13 @@ const props = withDefaults(defineProps<{
   align?: 'left' | 'center' | 'right'
   timeout?: number
   queue?: boolean
+  zIndex?: number
 }>(), {
   position: 'top',
   align: 'center',
   timeout: 2500,
   queue: true,
+  zIndex: 100,
 })
 
 const flux = reactive({
@@ -63,7 +65,7 @@ export default {
 
 <template>
   <div
-    class="fixed z-200 w-4/5 sm:w-96"
+    class="fixed w-4/5 sm:w-96"
     :class="{
       'left-1/2 -translate-x-1/2': align === 'center',
       'left-6': align === 'left',
@@ -71,6 +73,7 @@ export default {
       'top-4': position === 'top',
       'bottom-6 ': position === 'bottom',
     }"
+    :style="{ zIndex }"
   >
     <TransitionGroup
       tag="ul"

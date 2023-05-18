@@ -92,7 +92,7 @@ const sizes = ['sm', 'base', 'lg']
           </div>
           <component
             :is="renderRadio(state, 'size', item)"
-            v-for="(item, idx) in sizes" :key="idx"
+            v-for="item in sizes" :key="item"
           />
         </div>
         <div class="flex items-center gap-2">

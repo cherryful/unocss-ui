@@ -7,27 +7,31 @@ const props = withDefaults(defineProps<{
   modelValue: boolean
   dismissible?: boolean
   dismissButton?: boolean
-  size?: 'sm' | 'base' | 'md' | 'lg' | 'xl' | 'full'
+  width?: 'sm' | 'base' | 'md' | 'lg' | 'xl' | 'full'
   padded?: boolean
+  zIndex?: number
 }>(), {
   dismissible: true,
   dismissButton: true,
   padded: true,
-  size: 'base',
+  width: 'base',
+  zIndex: 30,
 })
 
-const emits = defineEmits<{
+const emit = defineEmits<{
   (e: 'update:modelValue', value: boolean): void
+  (e: 'close'): void
 }>()
 
 const isOpen = computed({
   get: () => props.modelValue,
-  set: val => emits('update:modelValue', val),
+  set: val => emit('update:modelValue', val),
 })
 
 function close() {
   if (props.dismissible)
     isOpen.value = false
+  emit('close')
 }
 
 // Lock DOM scroll when modelValue is `true`
@@ -44,10 +48,13 @@ export default {
 <template>
   <Teleport to="body">
     <div
-      class="fixed inset-0 z-30 overflow-y-auto transition-all ease-in"
+      class="fixed inset-0 overflow-y-auto transition-all ease-in"
       :class="[
         isOpen ? 'visible' : 'invisible duration-100 ease-in',
       ]"
+      :style="{
+        zIndex,
+      }"
     >
       <!-- overlay -->
       <div
@@ -60,15 +67,16 @@ export default {
       <!-- dialog -->
       <div class="min-h-full flex items-center justify-center p-2 sm:p-6">
         <div
-          class="relative inline-block rounded-lg bg-white shadow-xl transition-all dark:bg-gray-900"
+          v-bind="$attrs"
+          class="relative inline-block w-full rounded-lg bg-white shadow-xl transition-all dark:bg-gray-900"
           :class="[
             {
-              'w-full sm:max-w-sm': size === 'sm',
-              'w-full sm:max-w-lg': size === 'base',
-              'w-full sm:max-w-xl': size === 'md',
-              'w-full sm:max-w-3xl': size === 'lg',
-              'w-full sm:max-w-5xl': size === 'xl',
-              'w-full': size === 'full',
+              'sm:max-w-sm': width === 'sm',
+              'sm:max-w-lg': width === 'base',
+              'sm:max-w-xl': width === 'md',
+              'sm:max-w-3xl': width === 'lg',
+              'sm:max-w-5xl': width === 'xl',
+              'sm:max-w-full': width === 'full',
               'p-4 sm:p-6': padded,
             },
             isOpen
@@ -77,11 +85,10 @@ export default {
           ]"
           role="dialog"
           aria-modal="true"
-          aria-labelledby="modal-headline"
         >
           <button
             v-if="dismissButton"
-            class="absolute right-4 top-4 h-6 w-6 rounded-full bg-gray-100 p-1 text-gray-700 dark:bg-gray-800 hover:bg-gray-200 dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:hover:bg-gray-700"
+            class="absolute right-4 top-4 h-6 w-6 rounded-full bg-gray-100 p-1 text-gray-700 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500"
             aria-label="close"
             @click="close"
           >
@@ -89,7 +96,17 @@ export default {
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
+          <div v-if="$slots.header" class="mb-5 text-lg font-bold">
+            <slot name="header">
+              Header
+            </slot>
+          </div>
           <slot />
+          <div v-if="$slots.footer" class="mt-5 sm:flex sm:flex-row-reverse sm:gap-2">
+            <slot name="footer">
+              Footer
+            </slot>
+          </div>
         </div>
       </div>
     </div>

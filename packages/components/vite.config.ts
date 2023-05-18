@@ -13,12 +13,12 @@ export default defineConfig({
   build: {
     target: 'modules',
     // cssCodeSplit: true,
+    emptyOutDir: false,
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
-      name: 'unocss-ui',
-      fileName: format => `unocss-ui.${format}.js`,
+      name: '@unocss-ui/components',
+      fileName: format => `components.${format}.js`,
     },
-    emptyOutDir: false,
     outDir: 'dist',
     rollupOptions: {
       external: ['vue'],

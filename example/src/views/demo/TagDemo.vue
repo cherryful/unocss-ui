@@ -108,7 +108,7 @@ const rounds = ['sm', 'md', 'lg', 'full']
           </div>
           <component
             :is="renderRadio(state, 'size', item)"
-            v-for="(item, idx) in sizes" :key="idx"
+            v-for="item in sizes" :key="item"
           />
         </div>
         <div class="flex flex-wrap items-center gap-2">
@@ -140,7 +140,7 @@ const rounds = ['sm', 'md', 'lg', 'full']
       <div class="space-x-4 space-y-3">
         <component
           :is="h(UTag, { size: item }, { default: () => item })"
-          v-for="(item, idx) in sizes" :key="idx"
+          v-for="item in sizes" :key="item"
         />
       </div>
     </Sample>

@@ -4,20 +4,21 @@ import { onUnmounted, watch } from 'vue'
 const props = withDefaults(defineProps<{
   modelValue?: boolean
   placement?: 'top' | 'right' | 'bottom' | 'left'
+  width: 'sm' | 'md' | 'lg'
 }>(), {
   modelValue: false,
   placement: 'left',
 })
 
-const emits = defineEmits(['update:modelValue'])
+const emit = defineEmits(['update:modelValue'])
 
 function close() {
-  emits('update:modelValue', !props.modelValue)
+  emit('update:modelValue', !props.modelValue)
 }
 
 watch(
   () => props.modelValue,
-  val => document.body.style.overflow = val ? 'hidden' : 'auto',
+  val => document.body.style.overflow = (val ? 'hidden' : 'auto'),
 )
 
 onUnmounted(() => {

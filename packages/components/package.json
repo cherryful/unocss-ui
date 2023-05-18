@@ -1,7 +1,7 @@
 {
   "name": "@unocss-ui/components",
   "type": "module",
-  "version": "0.0.1-alpha.2",
+  "version": "0.0.1-alpha.3",
   "private": false,
   "description": "A simple vue3 ui lib built with unocss.",
   "author": "cherryful <https://github.com/cherryful>",
@@ -27,15 +27,15 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "require": "./dist/unocss-ui.umd.js",
-      "import": "./dist/unocss-ui.es.js"
+      "require": "./dist/components.umd.js",
+      "import": "./dist/components.es.js"
     },
     "./style.css": {
       "import": "./dist/style.css"
     }
   },
-  "main": "./dist/unocss-ui.umd.js",
-  "module": "./dist/unocss-ui.es.js",
+  "main": "./dist/components.umd.js",
+  "module": "./dist/components.es.js",
   "types": "./dist/index.d.ts",
   "files": [
     "dist"
@@ -60,5 +60,8 @@
     "vite": "^4.3.5",
     "vite-plugin-dts": "^2.3.0",
     "vue-tsc": "^1.6.4"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

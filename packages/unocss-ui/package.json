@@ -1,14 +1,54 @@
 {
   "name": "unocss-ui",
   "type": "module",
-  "version": "0.0.1.alpha.1",
-  "description": "UnocssUI css rules for unocss preset.",
+  "version": "0.0.1-alpha.4",
+  "description": "A Vue3 component library built with Unocss.",
   "author": "cherryful <https://github.com/cherryful>",
   "license": "MIT",
   "homepage": "https://github.com/cherryful/unocss-ui",
-  "keywords": ["unocss"],
-  "main": "index.js",
+  "keywords": [
+    "unocss-ui",
+    "unocss",
+    "unocss ui"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cherryful/unocss-ui",
+    "directory": "packages/unocss-ui"
+  },
+  "bugs": {
+    "url": "https://github.com/cherryful/unocss-ui/issues"
+  },
+  "sideEffects": false,
+  "main": "./dist/unocss-ui.umd.cjs",
+  "types": "./dist/types/unocss-ui/src/index.d.ts",
+  "module": "./dist/unocss-ui.js",
+  "exports": {
+    ".": {
+      "types": "./dist/types/unocss-ui/src/index.d.ts",
+      "require": "./dist/unocss-ui.umd.js",
+      "import": "./dist/unocss-ui.es.js"
+    },
+    "./style.css": {
+      "import": "./dist/style.css"
+    }
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "vue-tsc --declaration --emitDeclarationOnly --skipLibCheck && vite build",
+    "stub": "vue-tsc --declaration --emitDeclarationOnly --skipLibCheck && vite build --watch"
+  },
+  "dependencies": {
+    "@unocss-ui/components": "workspace:*",
+    "@unocss-ui/preset": "workspace:*"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "4.2.2",
+    "vite": "4.3.5"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

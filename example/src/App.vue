@@ -1,4 +1,11 @@
-<script setup lang="ts">
+<script setup>
+import { ref } from 'vue'
+
+const xxx = ref(null)
+
+window.showAlert = function (msg) {
+  xxx.value.info(msg)
+}
 </script>
 
 <template>

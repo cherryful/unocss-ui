@@ -82,7 +82,7 @@ const sizes = ['sm', 'base', 'lg']
           </div>
           <component
             :is="renderRadio(state, 'type', item)"
-            v-for="(item, idx) in types" :key="idx"
+            v-for="item in types" :key="item"
           />
         </div>
         <div class="flex flex-wrap items-center gap-2">
@@ -91,7 +91,7 @@ const sizes = ['sm', 'base', 'lg']
           </div>
           <component
             :is="renderRadio(state, 'size', item)"
-            v-for="(item, idx) in sizes" :key="idx"
+            v-for="item in sizes" :key="item"
           />
         </div>
         <div class="flex items-center gap-2">
@@ -106,7 +106,7 @@ const sizes = ['sm', 'base', 'lg']
       <div class="space-x-4 space-y-3">
         <component
           :is="h(UButton, { size: item }, { default: () => item })"
-          v-for="(item, idx) in sizes" :key="idx"
+          v-for="item in sizes" :key="item"
         />
       </div>
     </Sample>

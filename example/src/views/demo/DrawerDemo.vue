@@ -31,7 +31,7 @@ const drawer = reactive({
     </div>
   </div>
 
-  <UDrawer v-model="drawer.left" placement="left" />
+  <UDrawer v-model="drawer.left" placement="left" width="lg" />
   <UDrawer v-model="drawer.right" placement="right" />
   <UDrawer v-model="drawer.top" placement="top" />
   <UDrawer v-model="drawer.bottom" placement="bottom" />

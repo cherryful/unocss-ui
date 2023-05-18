@@ -2,7 +2,7 @@
 
 This is a Vue3 component library based on Unocss. Its simplicity is its biggest feature, as almost all components rely only on a single .vue file, without depending on too much other code. 
 
-⚠️ This component library is still under construction and is currently only suitable for learning purposes.
+> ⚠️ This component library is still under construction and is currently only suitable for learning purposes.
 
 ## Usage
 
@@ -28,12 +28,6 @@ createApp(App).use(unocssui).mount('#app')
 
 ### Customization
 
-Need to install `@unocss-ui/preset` first.
-
-```
-pnpm add -D @unocss-ui/preset
-```
-
 You can customize the theme of the component library by passing in the `theme` option.
 
 > Currently, only customization of colors is supported, and you must use the colors of the palette.
@@ -43,7 +37,7 @@ You can customize the theme of the component library by passing in the `theme` o
 import { defineConfig, presetUno } from 'unocss'
 import { colors } from 'unocss/preset-mini'
 
-import { presetUnocssUI } from '@unocss-ui/preset'
+import { presetUnocssUI } from 'unocss-ui'
 
 export default defineConfig({
   theme: {
@@ -72,21 +66,8 @@ cd unocss-ui
 pnpm install
 ```
 
-Need to build the preset first.
-
-```bash
-pnpm build:preset
-```
-
 Develop and preview components.
 
 ```bash
 pnpm dev:example
-```
-
-Build and preview.
-
-```bash
-pnpm build:npm
-pnpm dev:demo
 ```

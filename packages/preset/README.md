@@ -2,6 +2,12 @@
 
 The preset for UnocssUI. It's used as style support for components and also as a standalone package.
 
+## Usage
+
+Default, it's included in `unocss-ui`, you don't need to install it again.
+
+For standalone usage, you can install it by:
+
 ```
 pnpm add -D @unocss-ui/preset
 ```
@@ -13,6 +19,7 @@ Add preset into unocss config.
 import { defineConfig, presetUno } from 'unocss'
 import { colors } from 'unocss/preset-mini'
 
+// import { presetUnocssUI } from 'unocss-ui'
 import { presetUnocssUI } from '@unocss-ui/preset'
 
 export default defineConfig({
