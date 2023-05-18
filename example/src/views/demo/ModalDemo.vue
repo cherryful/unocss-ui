@@ -23,9 +23,9 @@ const snippets = {
 
 const state = ref({
   show: false,
-  content: 'button',
+  content: 'This is the content of the modal',
   width: 'base',
-  padded: false,
+  padded: true,
   dismissible: true,
   dismissButton: true,
 })
