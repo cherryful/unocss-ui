@@ -2,6 +2,9 @@
 import { ref } from 'vue'
 
 // import { UAlert, UButton, UCheckbox, UDrawer, ULoading, UModal, URadio, USwitch, UTag, UToast } from '@unocss-ui/components'
+// import { UButton } from 'unocss-ui'
+
+import { UAlert, UButton, UCheckbox, UDrawer, ULoading, UModal, URadio, USwitch, UTag, UToast } from 'unocss-ui'
 
 const drawer = ref(false)
 const modal = ref(false)

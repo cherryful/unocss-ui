@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@unocss-ui/components": "workspace:*",
-    "unocss-ui": "workspace:0.0.1-alpha.3",
+    "unocss-ui": "workspace:*",
     "vue": "^3.2.47"
   },
   "devDependencies": {

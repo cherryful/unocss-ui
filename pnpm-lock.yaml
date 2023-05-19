@@ -47,7 +47,7 @@ importers:
         specifier: workspace:*
         version: link:../packages/components
       unocss-ui:
-        specifier: workspace:0.0.1-alpha.3
+        specifier: workspace:*
         version: link:../packages/unocss-ui
       vue:
         specifier: ^3.2.47
