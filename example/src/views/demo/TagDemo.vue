@@ -7,8 +7,6 @@ import PageWrap from '@/components/PageWrap.vue'
 import Sample from '@/components/Sample.vue'
 import Playground from '@/components/Playground.vue'
 
-import { renderRadio } from '@/helper'
-
 function onClose() {
   alert('close')
 }
@@ -97,28 +95,43 @@ const rounds = ['sm', 'md', 'lg', 'full']
           <div class="w-16">
             type
           </div>
-          <component
-            :is="renderRadio(state, 'type', item)"
-            v-for="(item, idx) in types" :key="idx"
-          />
+          <URadio
+            v-for="item in types" :key="item"
+            v-model="state.type"
+            :type="item"
+            :value="item"
+            @update:model-value="state.type = item"
+          >
+            {{ item }}
+          </URadio>
         </div>
         <div class="flex flex-wrap items-center gap-2">
           <div class="w-16">
             size
           </div>
-          <component
-            :is="renderRadio(state, 'size', item)"
+          <URadio
             v-for="item in sizes" :key="item"
-          />
+            v-model="state.size"
+            :type="item"
+            :value="item"
+            @update:model-value="state.size = item"
+          >
+            {{ item }}
+          </URadio>
         </div>
         <div class="flex flex-wrap items-center gap-2">
           <div class="w-16">
             rounded
           </div>
-          <component
-            :is="renderRadio(state, 'rounded', item)"
-            v-for="(item, idx) in rounds" :key="idx"
-          />
+          <URadio
+            v-for="item in rounds" :key="item"
+            v-model="state.rounded"
+            :type="item"
+            :value="item"
+            @update:model-value="state.rounded = item"
+          >
+            {{ item }}
+          </URadio>
         </div>
         <div class="flex items-center gap-2">
           <div class="w-16">

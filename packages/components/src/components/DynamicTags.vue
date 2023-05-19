@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Component } from 'vue'
 import { computed, reactive, ref } from 'vue'
-import { uniqueId } from '../helper'
+import uniqueId from 'lodash-es/uniqueId'
 import Tag from './Tag.vue'
 
 const props = withDefaults(defineProps<{

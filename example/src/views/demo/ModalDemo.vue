@@ -6,7 +6,6 @@ import UModal from '../../../../packages/components/src/components/Modal.vue'
 import PageWrap from '@/components/PageWrap.vue'
 import Sample from '@/components/Sample.vue'
 import Playground from '@/components/Playground.vue'
-import { renderRadio } from '@/helper'
 
 const show = ref(false)
 const dismissibleShow = ref(false)
@@ -66,10 +65,15 @@ const widths = ['sm', 'base', 'md', 'lg', 'xl', 'full']
           <div class="w-16">
             width
           </div>
-          <component
-            :is="renderRadio(state, 'width', item)"
+          <URadio
             v-for="item in widths" :key="item"
-          />
+            v-model="state.width"
+            :type="item"
+            :value="item"
+            @update:model-value="state.width = item"
+          >
+            {{ item }}
+          </URadio>
         </div>
         <div class="flex items-center gap-2">
           <div class="w-16">

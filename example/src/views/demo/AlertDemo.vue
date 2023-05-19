@@ -1,12 +1,11 @@
 <script setup>
 import { ref } from 'vue'
 
-import UAlert from '../../../../packages/components/src/components/Alert.vue'
+// import UAlert from '../../../../packages/components/src/components/Alert.vue'
 
 import PageWrap from '@/components/PageWrap.vue'
 import Sample from '@/components/Sample.vue'
 import Playground from '@/components/Playground.vue'
-import { renderRadio } from '@/helper'
 
 const snippets = {
   type: [
@@ -134,10 +133,15 @@ const types = ['primary', 'secondary', 'accent', 'success', 'info', 'warning', '
           <div class="w-16">
             type
           </div>
-          <component
-            :is="renderRadio(state, 'type', item)"
-            v-for="(item, idx) in types" :key="idx"
-          />
+          <URadio
+            v-for="item in types" :key="item"
+            v-model="state.type"
+            :type="item"
+            :value="item"
+            @update:model-value="state.type = item"
+          >
+            {{ item }}
+          </URadio>
         </div>
         <div class="flex items-center gap-2">
           <div class="w-16">

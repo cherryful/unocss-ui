@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { uniqueId } from '../helper'
+import uniqueId from 'lodash-es/uniqueId'
 
 const props = withDefaults(defineProps<{
   modelValue?: any

@@ -9,7 +9,7 @@
       </span>
     </div>
     <div class="space-y-3">
-      <div class="min-h-20 flex items-center justify-center border-2 border-dashed p-5">
+      <div class="min-h-24 flex items-center justify-center border-2 border-dashed p-5">
         <slot name="preview" />
       </div>
       <div class="space-y-5">

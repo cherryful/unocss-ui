@@ -5,7 +5,6 @@ import UInput from '../../../../packages/components/src/components/Input.vue'
 import PageWrap from '@/components/PageWrap.vue'
 import Playground from '@/components/Playground.vue'
 import Sample from '@/components/Sample.vue'
-import { renderRadio } from '@/helper'
 
 const value = ref('')
 
@@ -75,6 +74,7 @@ function onClear() {
 }
 
 const sizes = ['sm', 'md', 'lg']
+const inputTypes = ['text', 'password', 'number']
 </script>
 
 <template>
@@ -127,18 +127,29 @@ const sizes = ['sm', 'md', 'lg']
           <div class="w-32">
             type
           </div>
-          <component :is="renderRadio(state, 'type', 'text')" />
-          <component :is="renderRadio(state, 'type', 'password')" />
-          <component :is="renderRadio(state, 'type', 'number')" />
+          <URadio
+            v-for="item in inputTypes" :key="item"
+            v-model="state.type"
+            :type="item"
+            :value="item"
+            @update:model-value="state.type = item"
+          >
+            {{ item }}
+          </URadio>
         </div>
         <div class="flex flex-wrap items-center gap-2">
           <div class="w-32">
             size
           </div>
-          <component
-            :is="renderRadio(state, 'size', item)"
+          <URadio
             v-for="item in sizes" :key="item"
-          />
+            v-model="state.size"
+            :type="item"
+            :value="item"
+            @update:model-value="state.size = item"
+          >
+            {{ item }}
+          </URadio>
         </div>
         <div class="flex items-center gap-2">
           <div class="w-40">

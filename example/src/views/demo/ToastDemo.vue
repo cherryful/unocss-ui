@@ -6,8 +6,6 @@ import PageWrap from '@/components/PageWrap.vue'
 import Sample from '@/components/Sample.vue'
 import Playground from '@/components/Playground.vue'
 
-import { renderRadio } from '@/helper'
-
 // for typescript
 // type UToastCtx = InstanceType<typeof UToast>
 // const toast = ref<UToastCtx | null>(null)
@@ -209,28 +207,43 @@ const aligns = ['left', 'center', 'right']
           <div class="w-20">
             type
           </div>
-          <component
-            :is="renderRadio(state, 'type', item)"
+          <URadio
             v-for="item in types" :key="item"
-          />
+            v-model="state.type"
+            :type="item"
+            :value="item"
+            @update:model-value="state.type = item"
+          >
+            {{ item }}
+          </URadio>
         </div>
         <div class="flex flex-wrap items-center gap-2">
           <div class="w-20">
             position
           </div>
-          <component
-            :is="renderRadio(state, 'position', item)"
+          <URadio
             v-for="item in positions" :key="item"
-          />
+            v-model="state.position"
+            :type="item"
+            :value="item"
+            @update:model-value="state.position = item"
+          >
+            {{ item }}
+          </URadio>
         </div>
         <div class="flex flex-wrap items-center gap-2">
           <div class="w-20">
             align
           </div>
-          <component
-            :is="renderRadio(state, 'align', item)"
+          <URadio
             v-for="item in aligns" :key="item"
-          />
+            v-model="state.align"
+            :type="item"
+            :value="item"
+            @update:model-value="state.align = item"
+          >
+            {{ item }}
+          </URadio>
         </div>
         <div class="flex items-center gap-2">
           <div class="w-20">
