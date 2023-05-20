@@ -180,25 +180,22 @@ onMounted(async () => {
   </template>
 
   <div class="mt-10 flex justify-between">
-    <template v-if="lastRoute">
-      <RouterLink :to="lastRoute.path">
-        <button class="flex items-center gap-2">
-          <span class="i-mdi:arrow-left inline-block h-6 w-6" />
-          <span>
-            {{ lastRoute.name }}
-          </span>
-        </button>
-      </RouterLink>
-    </template>
-    <template v-if="nextRoute">
-      <RouterLink :to="nextRoute.path">
-        <button class="flex items-center gap-2">
-          <span>
-            {{ nextRoute.name }}
-          </span>
-          <span class="i-mdi:arrow-right inline-block h-6 w-6" />
-        </button>
-      </RouterLink>
-    </template>
+    <RouterLink v-if="lastRoute" :to="lastRoute.path">
+      <button class="hover:text-primary-500 flex items-center gap-2 text-gray-700">
+        <span class="i-mdi:arrow-left inline-block h-6 w-6" />
+        <span>
+          {{ lastRoute.name }}
+        </span>
+      </button>
+    </RouterLink>
+    <div v-else />
+    <RouterLink v-if="nextRoute" :to="nextRoute.path">
+      <button class="hover:text-primary-500 flex items-center gap-2 text-gray-700">
+        <span>
+          {{ nextRoute.name }}
+        </span>
+        <span class="i-mdi:arrow-right inline-block h-6 w-6" />
+      </button>
+    </RouterLink>
   </div>
 </template>

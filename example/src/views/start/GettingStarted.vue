@@ -1,0 +1,3 @@
+<template>
+  GettingStarted building...
+</template>

@@ -7,10 +7,11 @@ export const routes: Array<RouteRecordRaw> = [
   {
     name: 'General',
     path: '/',
-    redirect: '/home',
+    redirect: '/getting-started',
     component: Layout,
     children: [
-      { name: 'Home', path: '/home', component: () => import('@/views/Home.vue') },
+      { name: 'GettingStarted', path: '/getting-started', component: () => import('@/views/start/GettingStarted.vue') },
+      { name: 'Customization', path: '/customization', component: () => import('@/views/start/Customization.vue') },
     ],
   },
   {
