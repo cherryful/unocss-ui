@@ -3,7 +3,7 @@ import { ref } from 'vue'
 
 import USwitch from '../../../../packages/components/src/components/Switch.vue'
 
-import PageWrap from '@/components/PageWrap.vue'
+import DocWrap from '@/components/DocWrap.vue'
 import Sample from '@/components/Sample.vue'
 import Playground from '@/components/Playground.vue'
 
@@ -63,7 +63,7 @@ const sizes = ['sm', 'base', 'lg']
 </script>
 
 <template>
-  <PageWrap title="Switch Demo">
+  <DocWrap>
     <Playground>
       <template #preview>
         <USwitch
@@ -136,7 +136,7 @@ const sizes = ['sm', 'base', 'lg']
       </div>
     </Sample>
     <Sample title="type" :snippets="snippets.type">
-      <div class="flex gap-4">
+      <div class="flex flex-wrap gap-4">
         <USwitch v-model="checkValue" type="primary" />
         <USwitch v-model="checkValue" type="secondary" />
         <USwitch v-model="checkValue" type="accent" />
@@ -169,5 +169,5 @@ const sizes = ['sm', 'base', 'lg']
         manual
       </USwitch>
     </Sample>
-  </PageWrap>
+  </DocWrap>
 </template>

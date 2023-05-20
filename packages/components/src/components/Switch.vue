@@ -21,8 +21,8 @@ const props = withDefaults(defineProps<{
   disabled: false,
   icon: false,
   readonly: false,
-  checkedValue: undefined,
-  uncheckedValue: undefined,
+  checkedValue: true,
+  uncheckedValue: false,
 })
 
 const emits = defineEmits<{

@@ -2,15 +2,15 @@
 import { h, ref } from 'vue'
 
 import UBadge from '../../../../packages/components/src/components/Badge.vue'
-import PageWrap from '@/components/PageWrap.vue'
+import DocWrap from '@/components/DocWrap.vue'
 import Sample from '@/components/Sample.vue'
 import Playground from '@/components/Playground.vue'
 
 const snippets = {
   size: [
-    '<UBadge size="sm">sm</UBadge>',
-    '<UBadge size="base">base</UBadge>',
-    '<UBadge size="lg">lg</UBadge>',
+    '<UBadge size="sm" content="sm">sm</UBadge>',
+    '<UBadge size="md" content="md">md</UBadge>',
+    '<UBadge size="lg" content="lg">lg</UBadge>',
   ],
   type: [
     '<UBadge type="primary">primary</UBadge>',
@@ -24,9 +24,9 @@ const snippets = {
 }
 
 const state = ref({
-  content: 'badge',
+  content: '15',
   type: 'default',
-  size: 'base',
+  size: 'md',
 })
 
 const types = ['default', 'primary', 'secondary', 'accent', 'success', 'info', 'warning', 'error']
@@ -34,14 +34,15 @@ const sizes = ['sm', 'md', 'lg']
 </script>
 
 <template>
-  <PageWrap title="Badge Demo">
+  <DocWrap>
     <Playground>
       <template #preview>
         <UBadge
           :type="state.type"
           :size="state.size"
+          :content="state.content"
         >
-          {{ state.content }}
+          badge
         </UBadge>
       </template>
       <template #props>
@@ -82,11 +83,16 @@ const sizes = ['sm', 'md', 'lg']
       </template>
     </Playground>
     <Sample title="size" :snippets="snippets.size">
-      <div class="space-x-4">
-        <component
-          :is="h(UBadge, { size: item }, { default: () => item })"
-          v-for="item in sizes" :key="item"
-        />
+      <div class="flex gap-6">
+        <UBadge size="sm" content="sm">
+          sm
+        </UBadge>
+        <UBadge size="md" content="md">
+          md
+        </UBadge>
+        <UBadge size="lg" content="lg">
+          lg
+        </UBadge>
       </div>
     </Sample>
     <Sample title="type" :snippets="snippets.type">
@@ -97,5 +103,5 @@ const sizes = ['sm', 'md', 'lg']
         />
       </div>
     </Sample>
-  </PageWrap>
+  </DocWrap>
 </template>

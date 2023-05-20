@@ -1,4 +1,5 @@
 <script setup lang="ts">
+// TODO: Update component and demo
 withDefaults(defineProps<{
   type?: 'default' | 'success' | 'info' | 'warning' | 'error' | 'primary' | 'secondary' | 'accent'
   size?: 'sm' | 'md' | 'lg'

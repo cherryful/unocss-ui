@@ -3,7 +3,7 @@ import { ref } from 'vue'
 
 import UModal from '../../../../packages/components/src/components/Modal.vue'
 
-import PageWrap from '@/components/PageWrap.vue'
+import DocWrap from '@/components/DocWrap.vue'
 import Sample from '@/components/Sample.vue'
 import Playground from '@/components/Playground.vue'
 
@@ -33,7 +33,7 @@ const widths = ['sm', 'base', 'md', 'lg', 'xl', 'full']
 </script>
 
 <template>
-  <PageWrap title="Modal Demo">
+  <DocWrap>
     <Playground>
       <template #preview>
         <UModal
@@ -84,7 +84,7 @@ const widths = ['sm', 'base', 'md', 'lg', 'xl', 'full']
       </template>
     </Playground>
     <Sample title="width" :snippets="snippets.width">
-      <div class="space-x-4 space-y-3">
+      <div class="flex flex-wrap gap-3">
         <UButton
           type="primary" @click="() => {
             width = 'sm'
@@ -213,5 +213,5 @@ const widths = ['sm', 'base', 'md', 'lg', 'xl', 'full']
         </div>
       </UModal>
     </Sample>
-  </PageWrap>
+  </DocWrap>
 </template>

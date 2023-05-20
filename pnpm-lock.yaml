@@ -136,9 +136,6 @@ importers:
       '@iconify-json/mdi':
         specifier: ^1.1.51
         version: 1.1.51
-      '@iconify-json/mi':
-        specifier: ^1.1.4
-        version: 1.1.4
       '@julr/unocss-preset-forms':
         specifier: ^0.0.5
         version: 0.0.5(unocss@0.51.12)
@@ -621,12 +618,6 @@ packages:
 
   /@iconify-json/mdi@1.1.51:
     resolution: {integrity: sha512-fyf4N7GBaUw2A//v3vjsJ440qd69c+pN4PazOp6901ALM3QcKGAVWcISOhZ1J6jVF2zNsxrwMYHoOoP2UrAkCw==}
-    dependencies:
-      '@iconify/types': 2.0.0
-    dev: true
-
-  /@iconify-json/mi@1.1.4:
-    resolution: {integrity: sha512-FO3sWZH1OqRPOSNZPE6vDUtLz6gSrCner3GVG82iB/ICIqP14C7y5EygHIMQgRinBgoBGOnnoX+7jVBbnwMJ1Q==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true

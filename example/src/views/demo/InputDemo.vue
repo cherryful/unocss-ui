@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 
 import UInput from '../../../../packages/components/src/components/Input.vue'
-import PageWrap from '@/components/PageWrap.vue'
+import DocWrap from '@/components/DocWrap.vue'
 import Playground from '@/components/Playground.vue'
 import Sample from '@/components/Sample.vue'
 
@@ -78,7 +78,7 @@ const inputTypes = ['text', 'password', 'number']
 </script>
 
 <template>
-  <PageWrap title="Input Demo">
+  <DocWrap>
     <Playground>
       <template #preview>
         <UInput
@@ -226,5 +226,5 @@ const inputTypes = ['text', 'password', 'number']
     <Sample title="other" :snippets="snippets.other">
       <UInput v-model="value" @keyup.enter="value = 'enter'" />
     </Sample>
-  </PageWrap>
+  </DocWrap>
 </template>

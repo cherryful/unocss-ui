@@ -2,18 +2,19 @@
 import { computed, ref, watch } from 'vue'
 
 const props = withDefaults(defineProps<{
-  data: Array<any>
+  data?: Array<any>
   actions?: Array<{
     name: string
     clicked: Function
   }>
   loading?: boolean
 }>(), {
+  data: () => [],
   actions: () => [],
   loading: false,
 })
 
-const selectIds = ref <Array<number | string>>([])
+const selectIds = ref<Array<number | string>>([])
 watch(() => props.data, () => selectIds.value = [])
 
 const indeterminate = computed(() => {
@@ -68,8 +69,8 @@ export default {
               >
                 <td :colspan="99">
                   <slot name="loading">
-                    <div :class="{ 'opacity-50': loading }">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><rect width="6" height="14" x="1" y="4" fill="#888888"><animate id="svgSpinnersBarsScaleFade0" fill="freeze" attributeName="y" begin="0;svgSpinnersBarsScaleFade1.end-0.25s" dur="0.75s" values="1;5" /><animate fill="freeze" attributeName="height" begin="0;svgSpinnersBarsScaleFade1.end-0.25s" dur="0.75s" values="22;14" /><animate fill="freeze" attributeName="opacity" begin="0;svgSpinnersBarsScaleFade1.end-0.25s" dur="0.75s" values="1;.2" /></rect><rect width="6" height="14" x="9" y="4" fill="currentColor" opacity=".4"><animate fill="freeze" attributeName="y" begin="svgSpinnersBarsScaleFade0.begin+0.15s" dur="0.75s" values="1;5" /><animate fill="freeze" attributeName="height" begin="svgSpinnersBarsScaleFade0.begin+0.15s" dur="0.75s" values="22;14" /><animate fill="freeze" attributeName="opacity" begin="svgSpinnersBarsScaleFade0.begin+0.15s" dur="0.75s" values="1;.2" /></rect><rect width="6" height="14" x="17" y="4" fill="currentColor" opacity=".3"><animate id="svgSpinnersBarsScaleFade1" fill="freeze" attributeName="y" begin="svgSpinnersBarsScaleFade0.begin+0.3s" dur="0.75s" values="1;5" /><animate fill="freeze" attributeName="height" begin="svgSpinnersBarsScaleFade0.begin+0.3s" dur="0.75s" values="22;14" /><animate fill="freeze" attributeName="opacity" begin="svgSpinnersBarsScaleFade0.begin+0.3s" dur="0.75s" values="1;.2" /></rect></svg>
+                    <div :class="{ 'opacity-80': loading }">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g stroke="#888888"><circle cx="12" cy="12" r="9.5" fill="none" stroke-linecap="round" stroke-width="3"><animate attributeName="stroke-dasharray" calcMode="spline" dur="1.5s" keySplines="0.42,0,0.58,1;0.42,0,0.58,1;0.42,0,0.58,1" keyTimes="0;0.475;0.95;1" repeatCount="indefinite" values="0 150;42 150;42 150;42 150" /><animate attributeName="stroke-dashoffset" calcMode="spline" dur="1.5s" keySplines="0.42,0,0.58,1;0.42,0,0.58,1;0.42,0,0.58,1" keyTimes="0;0.475;0.95;1" repeatCount="indefinite" values="0;-16;-59;-59" /></circle><animateTransform attributeName="transform" dur="2s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12" /></g></svg>
                     </div>
                   </slot>
                 </td>
@@ -82,7 +83,7 @@ export default {
                     </template>
                     <template v-else>
                       <!-- <div class="i-simple-icons:protodotio select-none text-5xl text-gray-400" /> -->
-                      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="#888888" d="M12 11.997a1.316 1.316 0 1 1 0-2.632a1.316 1.316 0 0 1 0 2.632zm2.916-.021c0-2.828-1.109-5.397-2.916-7.298a10.556 10.556 0 0 0-2.916 7.298c0 1.297.234 2.535.66 3.683c-.618.9-1.074 2.16-1.275 3.616c.639-.767 1.422-1.306 2.292-1.591c.363.555.78 1.096 1.239 1.574c.461-.494.876-1.02 1.239-1.59c.87.271 1.653.826 2.29 1.576c-.199-1.456-.655-2.716-1.275-3.615c.427-1.155.66-2.385.66-3.69l.002.037zM12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10s-4.477 10-10 10zm0-22C5.373 0 0 5.373 0 12s5.373 12 12 12s12-5.373 12-12S18.627 0 12 0z" /></svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"><path fill="#888888" d="M12 11.997a1.316 1.316 0 1 1 0-2.632a1.316 1.316 0 0 1 0 2.632zm2.916-.021c0-2.828-1.109-5.397-2.916-7.298a10.556 10.556 0 0 0-2.916 7.298c0 1.297.234 2.535.66 3.683c-.618.9-1.074 2.16-1.275 3.616c.639-.767 1.422-1.306 2.292-1.591c.363.555.78 1.096 1.239 1.574c.461-.494.876-1.02 1.239-1.59c.87.271 1.653.826 2.29 1.576c-.199-1.456-.655-2.716-1.275-3.615c.427-1.155.66-2.385.66-3.69l.002.037zM12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10s-4.477 10-10 10zm0-22C5.373 0 0 5.373 0 12s5.373 12 12 12s12-5.373 12-12S18.627 0 12 0z" /></svg>
                     </template>
                   </div>
                 </td>
@@ -93,7 +94,7 @@ export default {
                   class="duration-300 hover:bg-gray-50"
                   :class="{
                     'bg-gray-50': selectIds.includes(item.id),
-                    'opacity-70': loading,
+                    'opacity-30': loading,
                   }"
                 >
                   <!-- Selection box for the body -->

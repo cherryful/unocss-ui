@@ -3,54 +3,54 @@ import { ref } from 'vue'
 
 // import UAlert from '../../../../packages/components/src/components/Alert.vue'
 
-import PageWrap from '@/components/PageWrap.vue'
+import DocWrap from '@/components/DocWrap.vue'
 import Sample from '@/components/Sample.vue'
 import Playground from '@/components/Playground.vue'
 
 const snippets = {
   type: [
-    `<UAlert type="primary">
+`<UAlert type="primary">
   I'm an alert with the type of primary
 </UAlert>`,
-    `<UAlert type="secondary">
+`<UAlert type="secondary">
   I'm an alert with the type of secondary
 </UAlert>`,
-    `<UAlert type="accent">
+`<UAlert type="accent">
   I'm an alert with the type of accent
 </UAlert>`,
-    `<UAlert type="success">
+`<UAlert type="success">
   I'm an alert with the type of success
 </UAlert>`,
-    `<UAlert type="info">
+`<UAlert type="info">
   I'm an alert with the type of info
 </UAlert>`,
-    `<UAlert type="warning">
+`<UAlert type="warning">
   I'm an alert with the type of warning
 </UAlert>`,
-    `<UAlert type="error">
+`<UAlert type="error">
   I'm an alert with the type of error
 </UAlert>`,
   ],
   colorful: [
-    `<UAlert type="primary" colorful>
+`<UAlert type="primary" colorful>
   I'm an alert with the type of primary
 </UAlert>`,
-    `<UAlert type="secondary" colorful>
+`<UAlert type="secondary" colorful>
   I'm an alert with the type of secondary
 </UAlert>`,
-    `<UAlert type="accent" colorful>
+`<UAlert type="accent" colorful>
   I'm an alert with the type of accent
 </UAlert>`,
-    `<UAlert type="success" colorful>
+`<UAlert type="success" colorful>
   I'm an alert with the type of success
 </UAlert>`,
-    `<UAlert type="info" colorful>
+`<UAlert type="info" colorful>
   I'm an alert with the type of info
 </UAlert>`,
-    `<UAlert type="warning" colorful>
+`<UAlert type="warning" colorful>
   I'm an alert with the type of warning
 </UAlert>`,
-    `<UAlert type="error" colorful>
+`<UAlert type="error" colorful>
   I'm an alert with the type of error
 </UAlert>`,
   ],
@@ -63,16 +63,16 @@ const snippets = {
 </UAlert>`,
   ],
   bordered: [
-    `<UAlert type="primary" bordered>
+`<UAlert type="primary" bordered>
   I'm an alert with the type of primary
 </UAlert>`,
-    `<UAlert type="primary" colorful bordered>
+`<UAlert type="primary" colorful bordered>
   I'm an alert with the type of primary
 </UAlert>`,
   ],
   closeable: [
     '<UToast ref="toast" />',
-    `<UAlert closeable @close="$refs.toast.success('you click the close!')">
+`<UAlert closeable @close="$refs.toast.success('you click the close!')">
   I'm an alert with the close icon and event
 </UAlert>`,
 `<UAlert closeable @close="$refs.toast.success('you click the close!')">
@@ -96,7 +96,7 @@ const types = ['primary', 'secondary', 'accent', 'success', 'info', 'warning', '
 </script>
 
 <template>
-  <PageWrap title="Alert Demo">
+  <DocWrap>
     <Playground>
       <template #preview>
         <UAlert
@@ -231,6 +231,7 @@ const types = ['primary', 'secondary', 'accent', 'success', 'info', 'warning', '
         </UAlert>
       </div>
     </Sample>
-  </PageWrap>
+  </DocWrap>
+
   <UToast ref="toast" />
 </template>

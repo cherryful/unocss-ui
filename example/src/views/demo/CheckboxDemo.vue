@@ -3,7 +3,7 @@ import { ref } from 'vue'
 
 import UCheckbox from '../../../../packages/components/src/components/Checkbox.vue'
 
-import PageWrap from '@/components/PageWrap.vue'
+import DocWrap from '@/components/DocWrap.vue'
 import Sample from '@/components/Sample.vue'
 import Playground from '@/components/Playground.vue'
 
@@ -52,7 +52,7 @@ const sizes = ['sm', 'base', 'lg']
 </script>
 
 <template>
-  <PageWrap title="Checkbox Demo">
+  <DocWrap>
     <Playground>
       <template #preview>
         <UCheckbox
@@ -147,5 +147,5 @@ const sizes = ['sm', 'base', 'lg']
         {{ checkValue }}
       </UCheckbox>
     </Sample>
-  </PageWrap>
+  </DocWrap>
 </template>

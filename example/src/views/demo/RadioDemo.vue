@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 
 // import URadio from '../../../../packages/components/src/components/Radio.vue'
-import PageWrap from '@/components/PageWrap.vue'
+import DocWrap from '@/components/DocWrap.vue'
 import Sample from '@/components/Sample.vue'
 import Playground from '@/components/Playground.vue'
 
@@ -81,7 +81,7 @@ const types = ['primary', 'secondary', 'accent', 'success', 'info', 'warning', '
 </script>
 
 <template>
-  <PageWrap title="Radio Demo">
+  <DocWrap>
     <Playground>
       <template #preview>
         <UToast ref="toast" />
@@ -117,7 +117,7 @@ const types = ['primary', 'secondary', 'accent', 'success', 'info', 'warning', '
         </div>
       </template>
       <template #props>
-        <div class="flex gap-2">
+        <div class="flex flex-wrap gap-2">
           <UCheckbox v-model="state.disabled">
             disabled
           </UCheckbox>
@@ -151,7 +151,7 @@ const types = ['primary', 'secondary', 'accent', 'success', 'info', 'warning', '
       </template>
     </Playground>
     <Sample title="type" :snippets="snippets.type">
-      <div class="flex gap-4">
+      <div class="flex flex-wrap gap-4">
         <URadio v-model="checkValue" value="primary" type="primary">
           primary
         </URadio>
@@ -214,5 +214,5 @@ const types = ['primary', 'secondary', 'accent', 'success', 'info', 'warning', '
         </URadio>
       </div>
     </Sample>
-  </PageWrap>
+  </DocWrap>
 </template>

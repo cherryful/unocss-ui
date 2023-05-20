@@ -1,17 +1,17 @@
 <script setup>
-import { h, ref } from 'vue'
+import { ref } from 'vue'
 
 import UButton from '../../../../packages/components/src/components/Button/Button.vue'
 
-import PageWrap from '@/components/PageWrap.vue'
+import DocWrap from '@/components/DocWrap.vue'
 import Sample from '@/components/Sample.vue'
 import Playground from '@/components/Playground.vue'
 
 const snippets = {
   size: [
-    '<UButton size="sm">button</UButton>',
-    '<UButton size="base">button</UButton>',
-    '<UButton size="lg">button</UButton>',
+    '<UButton size="sm">sm</UButton>',
+    '<UButton size="md">md</UButton>',
+    '<UButton size="lg">lg</UButton>',
   ],
   type: [
     '<UButton>default</UButton>',
@@ -27,37 +27,29 @@ const snippets = {
     '<UButton disabled> disabled </UButton>',
   ],
   icon: [
-    `<UButton>
+`<UButton>
   <div class="flex items-center justify-center">
     <span class="i-mdi:lightning-bolt text-4" />
     <span> Lightning </span>
   </div>
 </UButton>`,
   ],
-//   custom: [
-//     `<UButton custom="bg-pink-500 text-white hover:bg-pink-700 focus:ring-pink-500 p-2">
-//   Pink Button
-// </UButton>`,
-// `<UButton custom="bg-orange-500 text-white hover:bg-orange-700 focus:ring-orange-500 border-rounded p-3">
-//   Orange Huge Button
-// </UButton>`,
-//   ],
 }
 
 const state = ref({
   content: 'button',
   type: 'default',
-  size: 'base',
+  size: 'md',
   disabled: false,
   custom: '',
 })
 
 const types = ['default', 'primary', 'secondary', 'accent', 'success', 'info', 'warning', 'error']
-const sizes = ['sm', 'base', 'lg']
+const sizes = ['sm', 'md', 'lg']
 </script>
 
 <template>
-  <PageWrap title="Button Demo">
+  <DocWrap>
     <Playground>
       <template #preview>
         <UButton
@@ -112,55 +104,56 @@ const sizes = ['sm', 'base', 'lg']
       </template>
     </Playground>
     <Sample title="size" :snippets="snippets.size">
-      <div class="space-x-4 space-y-3">
-        <component
-          :is="h(UButton, { size: item }, { default: () => item })"
-          v-for="item in sizes" :key="item"
-        />
+      <div class="flex flex-wrap gap-4">
+        <UButton size="sm">
+          sm
+        </UButton>
+        <UButton size="md">
+          md
+        </UButton>
+        <UButton size="lg">
+          lg
+        </UButton>
       </div>
     </Sample>
     <Sample title="type" :snippets="snippets.type">
-      <div class="space-x-4 space-y-3">
-        <component
-          :is="h(UButton, { type: item }, { default: () => item })"
-          v-for="(item, idx) in types" :key="idx"
-        />
-      </div>
-    </Sample>
-    <Sample title="rounded" :snippets="snippets.type">
-      <div class="space-x-4 space-y-3">
-        <component
-          :is="h(UButton, { type: item }, { default: () => item })"
-          v-for="(item, idx) in types" :key="idx"
-        />
+      <div class="flex flex-wrap gap-4">
+        <UButton>default</UButton>
+        <UButton type="primary">
+          primary
+        </UButton>
+        <UButton type="secondary">
+          secondary
+        </UButton>
+        <UButton type="accent">
+          accent
+        </UButton>
+        <UButton type="success">
+          success
+        </UButton>
+        <UButton type="info">
+          info
+        </UButton>
+        <UButton type="warning">
+          warning
+        </UButton>
+        <UButton type="error">
+          error
+        </UButton>
       </div>
     </Sample>
     <Sample title="disabled" :snippets="snippets.disabled">
-      <div class="space-x-4 space-y-3">
-        <UButton disabled>
-          disabled
-        </UButton>
-      </div>
+      <UButton disabled>
+        disabled
+      </UButton>
     </Sample>
     <Sample title="icon" :snippets="snippets.icon">
-      <div class="space-x-4 space-y-3">
-        <UButton>
-          <div class="flex items-center justify-center">
-            <span class="i-mdi:lightning-bolt text-4" />
-            <span> Lightning </span>
-          </div>
-        </UButton>
-      </div>
+      <UButton>
+        <div class="flex items-center justify-center">
+          <span class="i-mdi:lightning-bolt text-4" />
+          <span> Lightning </span>
+        </div>
+      </UButton>
     </Sample>
-    <!-- <Sample title="custom" :snippets="snippets.custom">
-      <div class="space-y-3 space-x-4">
-        <UButton custom="bg-pink-500 text-white hover:bg-pink-700 focus:ring-pink-500 p-2">
-          Pink Button
-        </UButton>
-        <UButton custom="bg-orange-500 text-white hover:bg-orange-700 focus:ring-orange-500 border-rounded p-3">
-          Orange Huge Button
-        </UButton>
-      </div>
-    </Sample> -->
-  </PageWrap>
+  </DocWrap>
 </template>

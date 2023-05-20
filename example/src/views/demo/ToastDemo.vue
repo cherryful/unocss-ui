@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import UToast from '../../../../packages/components/src/components/Toast.vue'
 
-import PageWrap from '@/components/PageWrap.vue'
+import DocWrap from '@/components/DocWrap.vue'
 import Sample from '@/components/Sample.vue'
 import Playground from '@/components/Playground.vue'
 
@@ -138,7 +138,7 @@ const aligns = ['left', 'center', 'right']
 </script>
 
 <template>
-  <PageWrap title="Toast Demo">
+  <DocWrap>
     <Playground>
       <template #preview>
         <UToast
@@ -263,15 +263,13 @@ const aligns = ['left', 'center', 'right']
     </Playground>
     <Sample title="Base" :snippets="snippets.base">
       <UToast ref="toast_basic" />
-      <div class="space-x-4 space-y-3">
-        <UButton @click="$refs.toast_basic?.show('success', 'It is simple to use the toast.')">
-          show
-        </UButton>
-      </div>
+      <UButton @click="$refs.toast_basic?.show('success', 'It is simple to use the toast.')">
+        show
+      </UButton>
     </Sample>
     <Sample title="Type" :snippets="snippets.type">
       <UToast ref="toast_type" />
-      <div class="space-x-4 space-y-3">
+      <div class="flex gap-4">
         <UButton type="success" @click="$refs.toast_type?.success('This is the success toast.')">
           success
         </UButton>
@@ -312,7 +310,7 @@ const aligns = ['left', 'center', 'right']
           </div>
         </div>
       </UToast>
-      <div class="space-x-4 space-y-3">
+      <div class="flex gap-4">
         <UButton
           type="success"
           @click="$refs.toast_custom.success('This is the success toast.')"
@@ -341,7 +339,7 @@ const aligns = ['left', 'center', 'right']
     </Sample>
     <Sample title="Timeout" :snippets="snippets.timeout">
       <UToast ref="toast_timeout" :timeout="500" />
-      <div class="space-x-4 space-y-3">
+      <div class="flex gap-4">
         <UButton @click="$refs.toast_timeout?.info('This toast will disappear after 500ms.')">
           500 ms
         </UButton>
@@ -349,14 +347,14 @@ const aligns = ['left', 'center', 'right']
     </Sample>
     <Sample title="No Queue" :snippets="snippets.queue">
       <UToast ref="toast_queue" :queue="false" />
-      <div class="space-x-4 space-y-3">
+      <div class="flex gap-4">
         <UButton @click="$refs.toast_queue.success('This is the no queue toast.')">
           no queue
         </UButton>
       </div>
     </Sample>
     <Sample title="Placement" :snippets="snippets.placement">
-      <div class="space-x-4 space-y-3">
+      <div class="flex gap-4">
         <UToast ref="toast_top_left" position="top" align="left" />
         <UButton @click="$refs.toast_top_left?.success('This is the top left toast.')">
           top-left
@@ -375,5 +373,5 @@ const aligns = ['left', 'center', 'right']
         </UButton>
       </div>
     </Sample>
-  </PageWrap>
+  </DocWrap>
 </template>

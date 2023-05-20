@@ -17,8 +17,8 @@ const props = withDefaults(defineProps<{
   size: 'base',
   checked: false,
   disabled: false,
-  checkedValue: undefined,
-  uncheckedValue: undefined,
+  checkedValue: true,
+  uncheckedValue: false,
   labelLeft: false,
 })
 

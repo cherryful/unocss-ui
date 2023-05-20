@@ -52,7 +52,6 @@
   },
   "devDependencies": {
     "@iconify-json/mdi": "^1.1.51",
-    "@iconify-json/mi": "^1.1.4",
     "@julr/unocss-preset-forms": "^0.0.5",
     "@types/lodash-es": "^4.17.7",
     "@unocss-ui/preset": "workspace:*",

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { computed, reactive } from 'vue'
+import { computed, reactive, watch } from 'vue'
 import { vOnClickOutside } from '@vueuse/components'
 
-export interface Option {
+export interface SelectOption {
   label: string
   value: string | number
   [key: string]: unknown
@@ -10,17 +10,16 @@ export interface Option {
 
 const props = withDefaults(defineProps<{
   label?: string
-  modelValue: string | number | null
+  modelValue?: string | number | null
   placeholder?: string
   disabled?: boolean
   clearable?: boolean
   filterable?: boolean
-  options?: Array<Option>
-  display?: string
+  options?: Array<SelectOption>
   errorMessage?: string
 }>(), {
   label: '',
-  display: 'label',
+  modelValue: null,
   placeholder: 'Please select',
   disabled: false,
   clearable: false,
@@ -31,33 +30,42 @@ const props = withDefaults(defineProps<{
 
 const emit = defineEmits<{
   (evt: 'update:modelValue', val: string | number | null): void
-  (evt: 'change', val: string | number | null): void
 }>()
 
 const selected = computed({
   get: () => props.modelValue,
   set: (val) => {
+    flux.inputValue = selectedLabel(val)
     emit('update:modelValue', val)
-    emit('change', val)
   },
 })
 
-const selectedLabel = computed(() => {
-  return props.options?.find(opt => opt.value === selected.value)?.[props.display] || props.placeholder
+watch(() => props.modelValue, val => flux.inputValue = selectedLabel(val))
+
+function selectedLabel(val: string | number | null) {
+  return props.options?.find(opt => opt.value === val)?.label || ''
+}
+
+const filteredOptions = computed(() => {
+  if (!props.filterable)
+    return props.options
+  return props.options?.filter((opt) => {
+    return opt.label?.includes(flux.inputValue as string)
+  })
 })
 
 const flux = reactive({
   show: false,
+  inputValue: selectedLabel(props.modelValue),
   onSelect(value: string | number | null) {
-    flux.show = false
     selected.value = value
-  },
-  display(item: Option) {
-    return item[props.display || 'label']
-  },
-  clear() {
-    selected.value = null
     flux.show = false
+  },
+  filter(val: any) {
+    if (!props.filterable)
+      return
+    flux.inputValue = val
+    flux.show = true
   },
   toggleMenu() {
     if (props.disabled)
@@ -80,37 +88,39 @@ export default {
     </label>
     <div
       v-on-click-outside="() => flux.show = false"
-      class="relative my-1"
+      class="relative mt-2"
     >
-      <button
-        type="button"
-        class="group relative w-full rounded-md bg-white py-1.5 pl-3 pr-10 text-left shadow-sm ring-1 ring-inset sm:text-sm sm:leading-6 focus:outline-none focus:ring-2"
-        aria-haspopup="listbox" aria-expanded="true" aria-labelledby="listbox-label"
-        :class="{
-          'text-red-500 ring-red-500 focus:ring-red-500': errorMessage,
-          'text-gray-900 ring-gray-300 focus:ring-indigo-600': !errorMessage,
-          'cursor-not-allowed opacity-40': disabled,
-          'cursor-default': !disabled,
+      <input
+        type="text"
+        class="focus:ring-primary-600 w-full border-0 rounded-md bg-white py-1.5 pl-3 pr-8 text-sm shadow-sm ring-1 ring-inset sm:leading-6 placeholder:text-slate-400 focus:ring-2 focus:ring-inset"
+        :class="[
+          disabled ? 'cursor-not-allowed opacity-40' : 'cursor-default',
+          errorMessage ? 'text-red-500 ring-red-500 focus:ring-red-500' : 'text-gray-700 ring-gray-300 focus:ring-primary-600',
+        ]"
+        :disabled="disabled"
+        :placeholder="placeholder"
+        :readonly="!filterable"
+        :value="flux.inputValue"
+        @click="() => flux.toggleMenu()"
+        @input="($e: any) => {
+          flux.show = true
+          flux.inputValue = $e.target.value
         }"
+      >
+      <button
+        class="group absolute inset-y-0 right-0 mr-1.5 text-gray-400"
+        :class="[disabled ? 'cursor-not-allowed opacity-40' : 'cursor-default']"
         @click="flux.toggleMenu"
       >
-        <span v-if="!selected" class="block min-h-6 text-gray-400">
-          {{ placeholder }}
-        </span>
-        <span v-else class="block truncate">
-          {{ selectedLabel }}
-        </span>
-        <span class="absolute inset-y-0 right-0 flex items-center pr-2 text-gray-500">
-          <template v-if="clearable && selected">
-            <div
-              class="i-mi:select group-hover:i-mdi:close-circle-outline h-5 w-5 group-hover:h-5 group-hover:w-5 hover:cursor-pointer"
-              @click.stop="flux.clear"
-            />
-          </template>
-          <template v-else>
-            <div class="i-mi:select h-5 w-5" />
-          </template>
-        </span>
+        <template v-if="clearable && selected">
+          <div
+            class="i-mdi:unfold-more-horizontal group-hover:i-mdi:close-circle-outline h-5 w-5 text-gray-400 duration-100 group-hover:h-5 group-hover:w-5 hover:cursor-pointer"
+            @click.stop="selected = null"
+          />
+        </template>
+        <template v-else>
+          <div class="i-mdi:unfold-more-horizontal h-5 w-5" />
+        </template>
       </button>
       <transition
         leave-active-class="transition ease-in duration-100"
@@ -118,34 +128,28 @@ export default {
         leave-to-class="opacity-0"
       >
         <ul
-          v-if="flux.show"
-          class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 sm:text-sm focus:outline-none" tabindex="-1" role="listbox" aria-labelledby="listbox-label" aria-activedescendant="listbox-option-3"
+          v-if="flux.show && filteredOptions.length"
+          class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-sm shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" tabindex="-1"
         >
           <li
-            v-for="option of options"
-            id="listbox-option-0"
-            :key="option.value"
-            role="option"
-            class="text relative cursor-default select-none py-2 pl-3 pr-9"
+            v-for="option of filteredOptions" id="listbox-option-0" :key="option.value"
+            class="text relative cursor-default select-none py-2 pl-3 duration-100"
             :class="{
               'bg-primary-500 text-white ': modelValue === option.value,
               'hover:bg-primary-500 text-gray-900 hover:text-white': modelValue !== option.value,
             }"
             @click="flux.onSelect(option.value)"
           >
-            <template v-if="modelValue === option.value">
+            <slot name="option" :item="option" :active="modelValue === option.value">
               <span class="block truncate font-normal">
-                {{ flux.display(option) }}
+                {{ option.label }}
               </span>
-              <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-white">
-                <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                  <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-                </svg>
-              </span>
-            </template>
-            <template v-else>
-              {{ flux.display(option) }}
-            </template>
+              <template v-if="modelValue === option.value">
+                <span class="absolute inset-y-0 right-0 flex items-center pr-3 text-white">
+                  <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"> <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" /> </svg>
+                </span>
+              </template>
+            </slot>
           </li>
         </ul>
       </transition>

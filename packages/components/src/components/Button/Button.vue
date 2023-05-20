@@ -1,24 +1,14 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-
 const props = withDefaults(defineProps<{
   as?: 'button' | 'a'
   type?: 'default' | 'success' | 'info' | 'warning' | 'error' | 'primary' | 'secondary' | 'accent'
-  size?: 'sm' | 'base' | 'lg'
+  size?: 'sm' | 'md' | 'lg'
   disabled?: boolean
-  custom?: string
 }>(), {
   as: 'button',
-  size: 'base',
+  size: 'md',
   type: 'default',
   disabled: false,
-  custom: '',
-})
-
-const typeClass = computed(() => {
-  if (props.type === 'default')
-    return 'text-gray-700 bg-gray-100 hover:bg-gray-200 focus:ring-gray-500'
-  return `text-white bg-${props.type}-500 hover:bg-${props.type}-600 focus:ring-${props.type}-500`
 })
 </script>
 
@@ -29,19 +19,25 @@ export default {
 </script>
 
 <template>
-  <component
-    :is="as"
-    v-bind="$attrs"
-    type="button"
-    :disabled="disabled"
-    :aria-disabled="disabled"
-    class="inline-flex cursor-pointer items-center justify-center whitespace-nowrap rounded-md font-sans text-xs font-semibold leading-4 shadow-sm disabled:cursor-not-allowed disabled:opacity-30 focus:outline-none focus:ring-2 focus:ring-offset-2"
-    :class="[typeClass, {
-      'px-2 py-1': size === 'sm',
-      'px-3 py-2': size === 'base',
-      'px-10 py-4': size === 'lg',
-    }]"
-  >
-    <slot />
-  </component>
+  <div class="flex items-center">
+    <component
+      :is="as"
+      v-bind="$attrs"
+      type="button"
+      :disabled="disabled"
+      :aria-disabled="disabled"
+      class="inline-flex cursor-pointer items-center justify-center whitespace-nowrap rounded-md font-sans text-xs font-semibold leading-4 shadow-sm disabled:cursor-not-allowed disabled:opacity-30 focus:outline-none focus:ring-2 focus:ring-offset-2"
+      :class="[
+        type === 'default'
+          ? 'text-gray-700 bg-gray-100 hover:bg-gray-200 focus:ring-gray-500'
+          : `text-white bg-${props.type}-500 hover:bg-${props.type}-600 focus:ring-${props.type}-500`,
+        {
+          'px-2 py-1': size === 'sm',
+          'px-3 py-2': size === 'md',
+          'px-4 py-3': size === 'lg',
+        }]"
+    >
+      <slot />
+    </component>
+  </div>
 </template>
