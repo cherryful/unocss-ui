@@ -7,6 +7,7 @@
     "build:components": "pnpm --filter @unocss-ui/components build",
     "build:preset": "pnpm --filter @unocss-ui/preset build",
     "build:unocss-ui": "pnpm --filter unocss-ui build",
+    "build:all": "pnpm build:preset && pnpm build:components && pnpm build:unocss-ui",
 
     "dev:example": "pnpm --filter example dev",
     "build:example": "pnpm --filter example build",

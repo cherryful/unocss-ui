@@ -15,6 +15,7 @@ withDefaults(defineProps<{
 <script lang="ts">
 export default {
   name: 'UButton',
+  inheritAttrs: false,
 }
 </script>
 

@@ -1,9 +1,10 @@
-<script setup lang="ts">
+<script setup>
 import { ref } from 'vue'
+import cherryfulImgUrl from '../assets/cherryful.png'
 import { useSidebar } from '@/composables/useSidebar'
 
-const dropdownOpen = ref(false)
 const { isOpen } = useSidebar()
+const dropdownOpen = ref(false)
 const notificationOpen = ref(false)
 </script>
 
@@ -16,20 +17,16 @@ const notificationOpen = ref(false)
         class="text-gray-500 lg:hidden focus:outline-none"
         @click="isOpen = true"
       >
-        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M4 6H20M4 12H20M4 18H11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
+        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M4 6H20M4 12H20M4 18H11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /> </svg>
       </button>
 
       <div class="relative mx-4 lg:mx-0">
         <span class="absolute inset-y-0 left-0 flex items-center pl-3">
-          <svg class="h-5 w-5 text-gray-500" viewBox="0 0 24 24" fill="none">
-            <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
+          <svg class="h-5 w-5 text-gray-500" viewBox="0 0 24 24" fill="none"> <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /> </svg>
         </span>
 
         <input
-          class="text-primary-600 focus:ring-primary-500 focus:border-primary-600 w-32 border-gray-200 rounded-md py-2 pl-10 pr-4 sm:w-64 focus:ring-2"
+          class="focus:ring-primary-500 focus:border-primary-600 w-32 border-gray-200 rounded-md py-2 pl-10 pr-4 text-gray-700 sm:w-64 focus:ring-2"
           type="text"
           placeholder="Search"
         >
@@ -37,6 +34,13 @@ const notificationOpen = ref(false)
     </div>
 
     <div class="flex items-center">
+      <div class="flex items-center">
+        <a
+          target="_blank"
+          href="https://github.com/cherryful/unocss-ui"
+          class="i-mdi:github h-6 w-6"
+        />
+      </div>
       <div class="flex items-center">
         <div class="relative">
           <button
@@ -60,18 +64,19 @@ const notificationOpen = ref(false)
             style="width: 20rem"
           >
             <a
-              href="#"
+              target="_blank"
+              href="https://www.github.com/cherryful"
               class="hover:bg-primary-600 flex items-center px-4 py-3 text-gray-600 -mx-2 hover:text-white"
             >
               <img
                 class="mx-1 h-8 w-8 rounded-full object-cover"
-                src="https://images.unsplash.com/photo-1552774021-9ebbb764f03e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80"
+                :src="cherryfulImgUrl"
                 alt="avatar"
               >
               <p class="mx-2 text-sm">
-                <span class="font-bold" href="#">Evan Josh</span> replied on the
-                <span class="text-primary-400 font-bold" href="#">Upload Image</span>
-                artical . 2m
+                <span class="font-bold" href="#">cherryful</span> produced
+                <span class="text-primary-400 font-bold" href="#">new and interesting projects!</span>
+                Welcome to view and star!
               </p>
             </a>
           </div>
@@ -84,7 +89,7 @@ const notificationOpen = ref(false)
         >
           <img
             class="h-full w-full object-cover"
-            src="https://images.unsplash.com/photo-1528892952291-009c663ce843?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=296&q=80"
+            src="https://avatars.githubusercontent.com/u/48195906?s=96&v=4"
             alt="Your avatar"
           >
         </button>
@@ -108,23 +113,14 @@ const notificationOpen = ref(false)
             class="absolute right-0 z-20 mt-2 w-48 rounded-lg bg-white py-1 shadow-xl"
           >
             <a
-              href="#"
+              href="https://github.com/szluyu99"
+              target="_blank"
               class="hover:bg-primary-600 flex rounded-md px-4 py-2 text-sm text-gray-700 hover:text-white"
             >
               <svg xmlns="http://www.w3.org/2000/svg" class="mr-1 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
               </svg>
               Profile
-            </a>
-            <a
-              href="#"
-              class="hover:bg-primary-600 flex rounded-md px-4 py-2 text-sm text-gray-700 hover:text-white"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" class="mr-1 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-              Settings
             </a>
           </div>
         </transition>

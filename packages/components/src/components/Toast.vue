@@ -65,6 +65,7 @@ export default {
 
 <template>
   <div
+    v-show="flux.events.length"
     class="fixed w-4/5 sm:w-96"
     :class="{
       'left-1/2 -translate-x-1/2': align === 'center',

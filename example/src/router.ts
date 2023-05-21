@@ -1,18 +1,19 @@
 import type { RouteRecordRaw } from 'vue-router'
 import { createRouter, createWebHashHistory } from 'vue-router'
 
+const Markdown = () => import('@/components/Markdown.vue')
 const Layout = () => import('@/layout/Layout.vue')
 
 export const routes: Array<RouteRecordRaw> = [
   {
     name: 'General',
     path: '/',
-    redirect: '/getting-started',
+    redirect: '/general/getting-started',
     component: Layout,
     children: [
-      { name: 'GettingStarted', path: '/getting-started', component: () => import('@/views/start/GettingStarted.vue') },
-      { name: 'Customization', path: '/customization', component: () => import('@/views/start/Customization.vue') },
-    ],
+      { name: 'GettingStarted', path: '/general/getting-started', component: Markdown, meta: { markdown: true, icon: 'i-mdi:language-markdown' } },
+      { name: 'Customization', path: '/general/customization', component: Markdown, meta: { markdown: true, icon: 'i-mdi:language-markdown' } },
+      { name: 'UnoCSS', path: 'https://github.com/unocss/unocss', component: Markdown, meta: { external: true, icon: 'i-mdi:link-variant' } }],
   },
   {
     name: 'Component',

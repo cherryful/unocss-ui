@@ -1,3 +1,0 @@
-<template>
-  Customization building...
-</template>

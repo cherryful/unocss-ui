@@ -1,3 +1,4 @@
+// TODO: i18n
 export default {
   components: {
     UInput: {

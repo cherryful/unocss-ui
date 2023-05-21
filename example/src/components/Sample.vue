@@ -132,7 +132,6 @@ onMounted(() => {
         </button>
       </div>
     </div>
-
-    <UToast ref="toastRef" position="top" align="right" />
   </section>
+  <UToast ref="toastRef" position="top" align="right" />
 </template>

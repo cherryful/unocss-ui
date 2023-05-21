@@ -2,6 +2,7 @@ import { resolve } from 'node:path'
 import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import Unocss from 'unocss/vite'
+import Markdown from 'vite-plugin-vue-markdown'
 
 import { visualizer } from 'rollup-plugin-visualizer'
 
@@ -15,18 +16,18 @@ export default defineConfig(
       },
     },
     plugins: [
-      Vue(),
-      // https://github.com/unocss/unocss
+      Vue({ include: [/\.vue$/, /\.md$/] }),
       Unocss(), // uno.config.ts
+      Markdown(),
       visualizer({ open: true, gzipSize: true, brotliSize: true }),
     ],
-    server: {
-      proxy: {
-        '/api': {
-          target: 'http://localhost:8765',
-          changeOrigin: true,
-        },
-      },
-    },
+    // server: {
+    // proxy: {
+    //   '/api': {
+    //     target: 'http://localhost:8765',
+    //     changeOrigin: true,
+    //   },
+    // },
+    // },
   },
 )
