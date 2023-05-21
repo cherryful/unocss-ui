@@ -77,8 +77,8 @@ const flux = reactive({
   },
 
   close() {
+    flux.status && emit('close')
     setTimeout(() => flux.status = false, 100)
-    emit('close')
   },
 
 })

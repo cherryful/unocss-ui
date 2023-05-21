@@ -15,7 +15,7 @@ const state = ref({
   checkedValue: '',
   uncheckedValue: '',
   type: 'primary',
-  size: 'base',
+  size: 'md',
   disabled: false,
   labelLeft: false,
 })
@@ -23,7 +23,7 @@ const state = ref({
 const snippets = {
   size: [
     '<UCheckbox v-model="checksValue" size="sm" />',
-    '<UCheckbox v-model="checksValue" size="base" />',
+    '<UCheckbox v-model="checksValue" size="md" />',
     '<UCheckbox v-model="checksValue" size="lg" />',
   ],
   type: [
@@ -48,7 +48,7 @@ const snippets = {
 }
 
 const types = ['primary', 'secondary', 'accent', 'success', 'info', 'warning', 'error']
-const sizes = ['sm', 'base', 'lg']
+const sizes = ['sm', 'md', 'lg']
 </script>
 
 <template>
@@ -116,7 +116,7 @@ const sizes = ['sm', 'base', 'lg']
     <Sample title="size" :snippets="snippets.size">
       <div class="flex gap-4">
         <UCheckbox v-model="checkValue" size="sm" />
-        <UCheckbox v-model="checkValue" size="base" />
+        <UCheckbox v-model="checkValue" size="md" />
         <UCheckbox v-model="checkValue" size="lg" />
       </div>
     </Sample>

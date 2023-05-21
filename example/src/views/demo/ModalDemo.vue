@@ -147,25 +147,23 @@ const widths = ['sm', 'base', 'md', 'lg', 'xl', 'full']
       </div>
     </Sample>
     <Sample title="dismissible" :snippets="snippets.dismissible">
-      <div class="space-x-4">
-        <UModal v-model="dismissibleShow" :dismissible="false" :dismiss-button="false">
-          <template #header>
-            This is the header
-          </template>
-          You can only dismiss this modal by clicking the buttons below.
-          <template #footer>
-            <UButton type="error" @click="dismissibleShow = false">
-              Close
-            </UButton>
-          </template>
-        </UModal>
-        <UButton type="warning" @click="() => { dismissibleShow = true }">
-          not dismissible
-        </UButton>
-      </div>
+      <UModal v-model="dismissibleShow" :dismissible="false" :dismiss-button="false">
+        <template #header>
+          This is the header
+        </template>
+        You can only dismiss this modal by clicking the buttons below.
+        <template #footer>
+          <UButton type="error" @click="dismissibleShow = false">
+            Close
+          </UButton>
+        </template>
+      </UModal>
+      <UButton type="warning" @click="() => { dismissibleShow = true }">
+        not dismissible
+      </UButton>
     </Sample>
     <Sample title="slot" :snippets="snippets.slot">
-      <div class="space-x-4">
+      <div class="flex gap-4">
         <UButton @click="() => { slotShow = true }">
           #header, #footer
         </UButton>

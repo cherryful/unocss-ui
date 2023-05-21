@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const props = withDefaults(defineProps<{
+withDefaults(defineProps<{
   as?: 'button' | 'a'
   type?: 'default' | 'success' | 'info' | 'warning' | 'error' | 'primary' | 'secondary' | 'accent'
   size?: 'sm' | 'md' | 'lg'
@@ -30,7 +30,7 @@ export default {
       :class="[
         type === 'default'
           ? 'text-gray-700 bg-gray-100 hover:bg-gray-200 focus:ring-gray-500'
-          : `text-white bg-${props.type}-500 hover:bg-${props.type}-600 focus:ring-${props.type}-500`,
+          : `text-white bg-${type}-500 hover:bg-${type}-600 focus:ring-${type}-500`,
         {
           'px-2 py-1': size === 'sm',
           'px-3 py-2': size === 'md',

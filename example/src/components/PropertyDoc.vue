@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, getCurrentInstance, onMounted, reactive } from 'vue'
 import { useRouter } from 'vue-router'
+import docs from '@/locales/en'
 
 const props = withDefaults(defineProps<{
   components?: Array<string> | string | null
@@ -38,6 +39,7 @@ async function getComponentsProperties() {
 
   for (const c of components) {
     const component = allComponents?.[c] as any
+
     if (component) {
       // props
       const componentProps = component.props
@@ -56,7 +58,15 @@ async function getComponentsProperties() {
         // emits
         properties[c] = { emits: component.emits, ...properties[c] }
 
-        // TODO: slots
+        // slots
+        // TODO: optimize and i18n
+        if (docs.components[c]?.slots) {
+          const slotsArr = Object.entries(docs.components[c].slots).map(([name, value]) => ({
+            name,
+            description: (value as any).description,
+          }))
+          properties[c] = { slots: slotsArr, ...properties[c] }
+        }
       }
     }
   }
@@ -86,38 +96,38 @@ onMounted(async () => {
           </p>
           <UTable :data="item.props">
             <template #headers>
-              <th scope="col" class="col-span-3 px-3 py-3.5 text-sm font-semibold text-gray-900 sm:pl-6">
+              <th scope="col" class="table-th">
                 Name
               </th>
-              <th scope="col" class="col-span-3 px-3 py-3.5 text-sm font-semibold text-gray-900 sm:pl-6">
+              <th scope="col" class="table-th">
                 Type
               </th>
-              <th scope="col" class="col-span-3 px-3 py-3.5 text-sm font-semibold text-gray-900 sm:pl-6">
+              <th scope="col" class="table-th">
                 Required
               </th>
-              <th scope="col" class="col-span-3 px-3 py-3.5 text-sm font-semibold text-gray-900 sm:pl-6">
+              <!-- <th scope="col" class="table-th">
                 Value
-              </th>
-              <th scope="col" class="col-span-3 px-3 py-3.5 text-sm font-semibold text-gray-900 sm:pl-6">
+              </th> -->
+              <th scope="col" class="table-th">
                 Default
               </th>
             </template>
             <template #rows="{ row }">
-              <td class="w-16 whitespace-nowrap px-3.5 py-2 pl-4 text-center text-gray-500 sm:pl-6">
+              <td class="table-td">
                 <span class="text-primary-600">
                   {{ row.name }}
                 </span>
               </td>
-              <td class="w-16 whitespace-nowrap px-3.5 py-2 pl-4 text-center text-gray-500 sm:pl-6">
+              <td class="table-td">
                 {{ row.type }}
               </td>
-              <td class="w-16 whitespace-nowrap px-3.5 py-2 pl-4 text-center text-gray-500 sm:pl-6">
+              <td class="table-td">
                 {{ row.required }}
               </td>
-              <td class="w-16 whitespace-nowrap px-3.5 py-2 pl-4 text-center text-gray-500 sm:pl-6">
-                TODO
-              </td>
-              <td class="w-16 whitespace-nowrap px-3.5 py-2 pl-4 text-center text-gray-500 sm:pl-6">
+              <!-- <td class="table-td">
+                TODO: get type options, such as "sm | md | lg"
+              </td> -->
+              <td class="table-td">
                 {{ row.defaultValue }}
               </td>
             </template>
@@ -130,20 +140,20 @@ onMounted(async () => {
           </p>
           <UTable :data="item.emits">
             <template #headers>
-              <th scope="col" class="col-span-3 px-3 py-3.5 text-sm font-semibold text-gray-900 sm:pl-6">
+              <th scope="col" class="table-th">
                 Name
               </th>
-              <th scope="col" class="col-span-3 px-3 py-3.5 text-sm font-semibold text-gray-900 sm:pl-6">
+              <th scope="col" class="table-th">
                 Description
               </th>
             </template>
             <template #rows="{ row }">
-              <td class="w-16 whitespace-nowrap px-3.5 py-2 pl-4 text-center text-gray-500 sm:pl-6">
+              <td class="table-td w-1/2">
                 <span class="text-secondary-600">
                   @{{ row }}
                 </span>
               </td>
-              <td class="w-16 whitespace-nowrap px-3.5 py-2 pl-4 text-center text-gray-500 sm:pl-6">
+              <td class="table-td w-1/2">
                 -
               </td>
             </template>
@@ -156,21 +166,21 @@ onMounted(async () => {
           </p>
           <UTable :data="item.slots">
             <template #headers>
-              <th scope="col" class="col-span-3 px-3 py-3.5 text-sm font-semibold text-gray-900 sm:pl-6">
+              <th scope="col" class="table-th">
                 Name
               </th>
-              <th scope="col" class="col-span-3 px-3 py-3.5 text-sm font-semibold text-gray-900 sm:pl-6">
+              <th scope="col" class="table-th">
                 Description
               </th>
             </template>
             <template #rows="{ row }">
-              <td class="w-16 whitespace-nowrap px-3.5 py-2 pl-4 text-center text-gray-500 sm:pl-6">
-                <span class="text-secondary-600">
-                  {{ row }}
+              <td class="table-td w-1/2">
+                <span class="text-accent-600">
+                  {{ row.name }}
                 </span>
               </td>
-              <td class="w-16 whitespace-nowrap px-3.5 py-2 pl-4 text-center text-gray-500 sm:pl-6">
-                ...
+              <td class="table-td w-1/2">
+                {{ row.description }}
               </td>
             </template>
           </UTable>
@@ -179,6 +189,7 @@ onMounted(async () => {
     </div>
   </template>
 
+  <!-- Flipping pages  -->
   <div class="mt-10 flex justify-between">
     <RouterLink v-if="lastRoute" :to="lastRoute.path">
       <button class="hover:text-primary-500 flex items-center gap-2 text-gray-700">
@@ -199,3 +210,12 @@ onMounted(async () => {
     </RouterLink>
   </div>
 </template>
+
+<style scoped>
+.table-th {
+  @apply col-span-3 px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:pl-6
+}
+.table-td {
+  @apply whitespace-nowrap px-3.5 py-2 pl-4 text-left text-gray-500 sm:pl-6;
+}
+</style>

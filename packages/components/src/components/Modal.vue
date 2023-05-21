@@ -70,6 +70,7 @@ export default {
           v-bind="$attrs"
           class="relative inline-block w-full rounded-lg bg-white shadow-xl transition-all dark:bg-gray-900"
           :class="[
+            padded ? 'p-4 sm:p-6' : 'p2',
             {
               'sm:max-w-sm': width === 'sm',
               'sm:max-w-lg': width === 'base',
@@ -77,7 +78,6 @@ export default {
               'sm:max-w-3xl': width === 'lg',
               'sm:max-w-5xl': width === 'xl',
               'sm:max-w-full': width === 'full',
-              'p-4 sm:p-6': padded,
             },
             isOpen
               ? 'translate-y-0 opacity-100 duration-300 sm:scale-100'

@@ -5,7 +5,7 @@ import uniqueId from 'lodash-es/uniqueId'
 const props = withDefaults(defineProps<{
   modelValue?: any
   type?: 'success' | 'info' | 'warning' | 'error' | 'primary' | 'secondary' | 'accent'
-  size?: 'sm' | 'base' | 'lg'
+  size?: 'sm' | 'md' | 'lg'
   checked?: boolean
   disabled?: boolean
   checkedValue?: any
@@ -14,7 +14,7 @@ const props = withDefaults(defineProps<{
 }>(), {
   modelValue: false,
   type: 'primary',
-  size: 'base',
+  size: 'md',
   checked: false,
   disabled: false,
   checkedValue: true,
@@ -74,7 +74,7 @@ export default {
         disabled ? 'cursor-not-allowed opacity-30' : 'cursor-pointer',
         {
           'h-3 w-3': size === 'sm',
-          'h-4 w-4': size === 'base',
+          'h-4 w-4': size === 'md',
           'h-5 w-5': size === 'lg',
         },
       ]"
