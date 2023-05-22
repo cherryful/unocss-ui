@@ -27,7 +27,7 @@ const welcome = ref('hi! gratulation to you! you can use this ui lib!')
         {{ welcome }}
       </UAlert>
     </div>
-    <div class="space-x-4">
+    <div class="flex gap-3">
       <UButton type="primary" @click="$refs.toast?.success(welcome)">
         Show Toast
       </UButton>

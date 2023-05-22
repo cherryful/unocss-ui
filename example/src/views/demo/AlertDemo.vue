@@ -138,7 +138,6 @@ const types = ['primary', 'secondary', 'accent', 'success', 'info', 'warning', '
             v-model="state.type"
             :type="item"
             :value="item"
-            @update:model-value="state.type = item"
           >
             {{ item }}
           </URadio>

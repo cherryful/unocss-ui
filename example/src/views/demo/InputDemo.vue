@@ -132,7 +132,6 @@ const inputTypes = ['text', 'password', 'number']
             v-model="state.type"
             :type="item"
             :value="item"
-            @update:model-value="state.type = item"
           >
             {{ item }}
           </URadio>
@@ -146,7 +145,6 @@ const inputTypes = ['text', 'password', 'number']
             v-model="state.size"
             :type="item"
             :value="item"
-            @update:model-value="state.size = item"
           >
             {{ item }}
           </URadio>

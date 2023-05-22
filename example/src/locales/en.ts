@@ -44,5 +44,15 @@ export default {
         },
       },
     },
+    UDynamicTags: {
+      slots: {
+        trigger: {
+          description: 'custom trigger',
+        },
+        input: {
+          description: 'custom input',
+        },
+      },
+    },
   },
 } as any

@@ -10,6 +10,7 @@ export function presetUnocssUI(): Preset {
     name: '@unocss-ui/preset',
     safelist: [
       ...types.map(t => nums.map(n => `bg-${t}-${n}`)).flat(),
+      ...types.map(t => nums.map(n => `hover:bg-${t}-${n}`)).flat(),
       ...types.map(t => nums.map(n => `border-${t}-${n}`)).flat(),
       ...types.map(t => nums.map(n => `text-${t}-${n}`)).flat(),
       ...types.map(t => nums.map(n => `focus:ring-${t}-${n}`)).flat(),

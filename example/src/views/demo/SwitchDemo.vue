@@ -100,7 +100,6 @@ const sizes = ['sm', 'base', 'lg']
             v-model="state.type"
             :type="item"
             :value="item"
-            @update:model-value="state.type = item"
           >
             {{ item }}
           </URadio>
@@ -114,7 +113,6 @@ const sizes = ['sm', 'base', 'lg']
             v-model="state.size"
             :type="item"
             :value="item"
-            @update:model-value="state.size = item"
           >
             {{ item }}
           </URadio>

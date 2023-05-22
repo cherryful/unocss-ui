@@ -29,7 +29,7 @@ const newTagInputRef = ref<HTMLInputElement | null>(null)
 
 const flux = reactive({
   newTag: '',
-  typing: false,
+  typing: false, // if user is typing
 
   clickAdd: () => {
     flux.typing = true

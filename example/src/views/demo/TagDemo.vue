@@ -91,7 +91,6 @@ const rounds = ['sm', 'md', 'lg', 'full']
             v-model="state.type"
             :type="item"
             :value="item"
-            @update:model-value="state.type = item"
           >
             {{ item }}
           </URadio>
@@ -105,7 +104,6 @@ const rounds = ['sm', 'md', 'lg', 'full']
             v-model="state.size"
             :type="item"
             :value="item"
-            @update:model-value="state.size = item"
           >
             {{ item }}
           </URadio>
@@ -119,7 +117,6 @@ const rounds = ['sm', 'md', 'lg', 'full']
             v-model="state.rounded"
             :type="item"
             :value="item"
-            @update:model-value="state.rounded = item"
           >
             {{ item }}
           </URadio>

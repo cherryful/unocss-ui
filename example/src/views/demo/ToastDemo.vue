@@ -212,7 +212,6 @@ const aligns = ['left', 'center', 'right']
             v-model="state.type"
             :type="item"
             :value="item"
-            @update:model-value="state.type = item"
           >
             {{ item }}
           </URadio>
@@ -226,7 +225,6 @@ const aligns = ['left', 'center', 'right']
             v-model="state.position"
             :type="item"
             :value="item"
-            @update:model-value="state.position = item"
           >
             {{ item }}
           </URadio>
@@ -240,7 +238,6 @@ const aligns = ['left', 'center', 'right']
             v-model="state.align"
             :type="item"
             :value="item"
-            @update:model-value="state.align = item"
           >
             {{ item }}
           </URadio>

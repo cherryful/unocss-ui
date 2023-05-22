@@ -70,7 +70,6 @@ const widths = ['sm', 'base', 'md', 'lg', 'xl', 'full']
             v-model="state.width"
             :type="item"
             :value="item"
-            @update:model-value="state.width = item"
           >
             {{ item }}
           </URadio>

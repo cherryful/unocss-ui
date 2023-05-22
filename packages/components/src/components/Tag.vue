@@ -30,7 +30,7 @@ export default {
       class="block cursor-default whitespace-nowrap text-xs font-medium shadow-sm"
       :class="[
         `rounded-${rounded}`,
-        type === 'default' ? 'bg-gray-100 text-gray-800' : `bg-${type}-100 text-${type}-800 hover:bg-${type}-600`,
+        type === 'default' ? 'bg-gray-100 text-gray-800' : `bg-${type}-100 text-${type}-800`,
         {
           'border border-gray-300': border,
           'px-2 py-1': size === 'sm',

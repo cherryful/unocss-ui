@@ -135,7 +135,6 @@ const triggers = ['click', 'hover']
             v-model="state.position"
             :type="item"
             :value="item"
-            @update:model-value="state.position = item"
           >
             {{ item }}
           </URadio>
@@ -149,7 +148,6 @@ const triggers = ['click', 'hover']
             v-model="state.trigger"
             :type="item"
             :value="item"
-            @update:model-value="state.trigger = item"
           >
             {{ item }}
           </URadio>

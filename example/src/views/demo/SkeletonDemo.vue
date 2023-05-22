@@ -51,7 +51,6 @@ const ass = ['div', 'span', 'button']
             v-for="item in ass" :key="item"
             v-model="state.as"
             :value="item"
-            @update:model-value="state.as = item"
           >
             {{ item }}
           </URadio>

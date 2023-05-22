@@ -48,8 +48,8 @@ async function getComponentsProperties() {
           const prop = componentProps[p]
           return {
             name: p,
-            type: prop.type?.name || '-',
-            required: prop.required,
+            type: prop.type?.name,
+            required: prop.required, // FIXME: dev working, build not working
             defaultValue: prop.default,
           }
         })
