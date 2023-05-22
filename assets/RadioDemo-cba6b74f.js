@@ -1,0 +1,36 @@
+import{_ as R,P as h}from"./Playground-b7a95378.js";import{_ as v}from"./Sample.vue_vue_type_script_setup_true_lang-d87805c9.js";import{r as y,d as _,k as a,a as p,y as o,b as s,c as m,A as r,F as c,j as U,i as x,t as C,n as V,l as f}from"./index-5b38dc66.js";const S={class:"flex gap-4"},$={class:"flex flex-wrap gap-2"},B={class:"flex flex-wrap items-center gap-2"},N=s("div",{class:"w-16"}," type ",-1),T={class:"flex flex-wrap gap-4"},D={class:"flex gap-4"},F={class:"flex gap-4"},P={class:"flex gap-4"},L={__name:"RadioDemo",setup(j){const u=y(!0),d=y({checkValue:!1,type:"primary",disabled:!1,hidden:!1,bordered:!1,circleColored:!1,defaultSlot:!0}),n={type:[`<URadio v-model="checkValue" value="primary" type="primary">
+  primary
+</URadio>`,`<URadio v-model="checkValue" value="secondary" type="secondary">
+  secondary
+</URadio>`,`<URadio v-model="checkValue" value="accent" type="accent">
+  accent
+</URadio>`,`<URadio v-model="checkValue" value="success" type="success">
+  success
+</URadio>`,`<URadio v-model="checkValue" value="info" type="info">
+  info
+</URadio>`,`<URadio v-model="checkValue" value="warning" type="warning">
+  warning
+</URadio>`,`<URadio v-model="checkValue" value="error" type="error">
+  error
+</URadio>`],disabled:[`<URadio v-model="checkValue" value="disabled" disabled>
+  disabled
+</URadio>`],bordered:[`<URadio v-model="checkValue" value="bordered" bordered>
+  bordered
+</URadio>`,`<URadio v-model="checkValue" value="circle-colored" circle-colored>
+  circle-colored
+</URadio>`],custom:[`<URadio v-slot="{ checked }" v-model="checkValue" hidden type="success" value="success">
+  <div
+    class="h-8 w-8 border-2 border-white rounded-full bg-green-500"
+    :class=" { 'ring-green-500 ring-2': checked }"
+  />
+</URadio>`,`<URadio v-slot="{ checked }" v-model="checkValue" hidden type="info" value="info">
+  <div
+    class="h-8 w-8 border-2 border-white rounded-full bg-blue-500"
+    :class="{ 'ring-blue-500 ring-2': checked }" 
+  />
+</URadio>`,`<URadio v-slot="{ checked }" v-model="checkValue" hidden type="warning" value="warning">
+  <div
+    class="h-8 w-8 border-2 border-white rounded-full bg-yellow-500"
+    :class="{ 'ring-yellow-500 ring-2': checked }"
+  />
+</URadio>`]},g=["primary","secondary","accent","success","info","warning","error"];return(b,l)=>{const k=f("UToast"),t=f("URadio"),i=f("UCheckbox");return p(),_(R,null,{default:a(()=>[o(h,null,{preview:a(()=>[o(k,{ref:"toast"},null,512),s("div",S,[o(t,{modelValue:d.value.checkValue,"onUpdate:modelValue":[l[0]||(l[0]=e=>d.value.checkValue=e),l[1]||(l[1]=e=>b.$refs.toast.info(`update:model-value: ${e}`))],type:d.value.type,disabled:d.value.disabled,bordered:d.value.bordered,"circle-colored":d.value.circleColored,hidden:d.value.hidden,value:!0},{default:a(()=>[d.value.defaultSlot?(p(),m(c,{key:0},[r(" true ")],64)):U("",!0)]),_:1},8,["modelValue","type","disabled","bordered","circle-colored","hidden"]),o(t,{modelValue:d.value.checkValue,"onUpdate:modelValue":[l[2]||(l[2]=e=>d.value.checkValue=e),l[3]||(l[3]=e=>b.$refs.toast.info(`update:model-value: ${e}`))],type:d.value.type,disabled:d.value.disabled,bordered:d.value.bordered,"circle-colored":d.value.circleColored,hidden:d.value.hidden,value:!1},{default:a(()=>[d.value.defaultSlot?(p(),m(c,{key:0},[r(" false ")],64)):U("",!0)]),_:1},8,["modelValue","type","disabled","bordered","circle-colored","hidden"])])]),props:a(()=>[s("div",$,[o(i,{modelValue:d.value.disabled,"onUpdate:modelValue":l[4]||(l[4]=e=>d.value.disabled=e)},{default:a(()=>[r(" disabled ")]),_:1},8,["modelValue"]),o(i,{modelValue:d.value.bordered,"onUpdate:modelValue":l[5]||(l[5]=e=>d.value.bordered=e)},{default:a(()=>[r(" bordered ")]),_:1},8,["modelValue"]),o(i,{modelValue:d.value.hidden,"onUpdate:modelValue":l[6]||(l[6]=e=>d.value.hidden=e)},{default:a(()=>[r(" hidden ")]),_:1},8,["modelValue"]),o(i,{modelValue:d.value.circleColored,"onUpdate:modelValue":l[7]||(l[7]=e=>d.value.circleColored=e)},{default:a(()=>[r(" circleColored ")]),_:1},8,["modelValue"]),o(i,{modelValue:d.value.defaultSlot,"onUpdate:modelValue":l[8]||(l[8]=e=>d.value.defaultSlot=e)},{default:a(()=>[r(" defaultSlot ")]),_:1},8,["modelValue"])]),s("div",B,[N,(p(),m(c,null,x(g,e=>o(t,{key:e,modelValue:d.value.type,"onUpdate:modelValue":l[9]||(l[9]=w=>d.value.type=w),type:e,value:e},{default:a(()=>[r(C(e),1)]),_:2},1032,["modelValue","type","value"])),64))])]),_:1}),o(v,{title:"type",snippets:n.type},{default:a(()=>[s("div",T,[o(t,{modelValue:u.value,"onUpdate:modelValue":l[10]||(l[10]=e=>u.value=e),value:"primary",type:"primary"},{default:a(()=>[r(" primary ")]),_:1},8,["modelValue"]),o(t,{modelValue:u.value,"onUpdate:modelValue":l[11]||(l[11]=e=>u.value=e),value:"secondary",type:"secondary"},{default:a(()=>[r(" secondary ")]),_:1},8,["modelValue"]),o(t,{modelValue:u.value,"onUpdate:modelValue":l[12]||(l[12]=e=>u.value=e),value:"accent",type:"accent"},{default:a(()=>[r(" accent ")]),_:1},8,["modelValue"]),o(t,{modelValue:u.value,"onUpdate:modelValue":l[13]||(l[13]=e=>u.value=e),value:"success",type:"success"},{default:a(()=>[r(" success ")]),_:1},8,["modelValue"]),o(t,{modelValue:u.value,"onUpdate:modelValue":l[14]||(l[14]=e=>u.value=e),value:"info",type:"info"},{default:a(()=>[r(" info ")]),_:1},8,["modelValue"]),o(t,{modelValue:u.value,"onUpdate:modelValue":l[15]||(l[15]=e=>u.value=e),value:"warning",type:"warning"},{default:a(()=>[r(" warning ")]),_:1},8,["modelValue"]),o(t,{modelValue:u.value,"onUpdate:modelValue":l[16]||(l[16]=e=>u.value=e),value:"error",type:"error"},{default:a(()=>[r(" error ")]),_:1},8,["modelValue"])])]),_:1},8,["snippets"]),o(v,{title:"disabled",snippets:n.disabled},{default:a(()=>[s("div",D,[o(t,{modelValue:u.value,"onUpdate:modelValue":l[17]||(l[17]=e=>u.value=e),value:"disabled",disabled:""},{default:a(()=>[r(" disabled ")]),_:1},8,["modelValue"])])]),_:1},8,["snippets"]),o(v,{title:"border && circle-colored",snippets:n.bordered},{default:a(()=>[s("div",F,[o(t,{modelValue:u.value,"onUpdate:modelValue":l[18]||(l[18]=e=>u.value=e),value:"bordered",bordered:""},{default:a(()=>[r(" bordered ")]),_:1},8,["modelValue"]),o(t,{modelValue:u.value,"onUpdate:modelValue":l[19]||(l[19]=e=>u.value=e),value:"circle-colored","circle-colored":""},{default:a(()=>[r(" circle-colored ")]),_:1},8,["modelValue"])])]),_:1},8,["snippets"]),o(v,{title:"custom",snippets:n.custom},{default:a(()=>[s("div",P,[o(t,{modelValue:u.value,"onUpdate:modelValue":l[20]||(l[20]=e=>u.value=e),hidden:"",type:"success",value:"success"},{default:a(({checked:e})=>[s("div",{class:V(["h-8 w-8 border-2 border-white rounded-full bg-green-500",{"ring-green-500 ring-2":e}])},null,2)]),_:1},8,["modelValue"]),o(t,{modelValue:u.value,"onUpdate:modelValue":l[21]||(l[21]=e=>u.value=e),hidden:"",type:"info",value:"info"},{default:a(({checked:e})=>[s("div",{class:V(["h-8 w-8 border-2 border-white rounded-full bg-blue-500",{"ring-blue-500 ring-2":e}])},null,2)]),_:1},8,["modelValue"]),o(t,{modelValue:u.value,"onUpdate:modelValue":l[22]||(l[22]=e=>u.value=e),hidden:"",type:"warning",value:"warning"},{default:a(({checked:e})=>[s("div",{class:V(["h-8 w-8 border-2 border-white rounded-full bg-yellow-500",{"ring-yellow-500 ring-2":e}])},null,2)]),_:1},8,["modelValue"])])]),_:1},8,["snippets"])]),_:1})}}};export{L as default};
