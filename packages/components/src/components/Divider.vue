@@ -2,9 +2,11 @@
 withDefaults(defineProps<{
   align?: 'left' | 'right' | 'center'
   dashed?: boolean
+  thickness: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
 }>(), {
   align: 'center',
   dashed: false,
+  thickness: 2,
 })
 </script>
 
@@ -15,22 +17,24 @@ export default {
 </script>
 
 <template>
-  <div class="relative">
-    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+  <div class="w-full" v-bind="$attrs">
+    <div class="relative">
+      <div class="absolute inset-0 flex items-center">
+        <div
+          class="w-full border-t border-t-1 border-gray-300"
+          :class="[`border-t-${thickness}`, { 'border-dashed': dashed }]"
+        />
+      </div>
       <div
-        class="w-full border-t border-gray-300"
-        :class="{ 'border-dashed': dashed }"
-      />
-    </div>
-    <div
-      class="relative flex"
-      :class="{
-        'justify-center': align === 'center',
-        'justify-end': align === 'right',
-        'justify-start': align === 'left',
-      }"
-    >
-      <slot />
+        class="relative flex"
+        :class="{
+          'justify-center': align === 'center',
+          'justify-end': align === 'right',
+          'justify-start': align === 'left',
+        }"
+      >
+        <slot />
+      </div>
     </div>
   </div>
 </template>

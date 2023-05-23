@@ -54,5 +54,12 @@ export default {
         },
       },
     },
+    ULoading: {
+      slots: {
+        icon: {
+          description: 'custom icon',
+        },
+      },
+    },
   },
 } as any

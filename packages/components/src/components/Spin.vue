@@ -1,26 +1,12 @@
 <script setup lang="ts">
-import { nextTick, onMounted, ref } from 'vue'
-
-const props = withDefaults(defineProps<{
+withDefaults(defineProps<{
   show?: boolean
   type?: 'success' | 'info' | 'warning' | 'error' | 'primary' | 'secondary' | 'accent'
   thickness?: number
 }>(), {
   show: true,
   type: 'primary',
-  thickness: 8,
-})
-
-const wrapper = ref<HTMLElement | null>(null)
-const spinner = ref<HTMLElement | null>(null)
-
-onMounted(() => {
-  nextTick(() => {
-    if (wrapper.value && spinner.value) {
-      const size = wrapper.value.getBoundingClientRect().width / props.thickness
-      spinner.value.style.borderWidth = `${size}px`
-    }
-  })
+  thickness: 5,
 })
 </script>
 
@@ -32,19 +18,16 @@ export default {
 
 <template>
   <div
-    ref="wrapper"
-    v-bind="$attrs"
-    :class="{
+    v-bind="$attrs" :class="{
       'h-8 w-8': !$attrs.hasOwnProperty('class'),
     }"
   >
     <slot name="icon">
       <div
-        ref="spinner"
         class="inline-block h-full w-full animate-spin border-gray-300 rounded-full bg-transparent"
-        :class="`border-r-${type}-500`"
+        :class="[`border-r-${type}-500`, `border-${thickness}`]"
       >
-        <span class="sr-only">Loading...</span>
+        <span class="sr-only">loading</span>
       </div>
     </slot>
   </div>

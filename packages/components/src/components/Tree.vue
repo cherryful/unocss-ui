@@ -2,17 +2,17 @@
 import { computed, nextTick, onMounted, ref } from 'vue'
 import Checkbox from './Checkbox.vue'
 
-export interface Option {
+export interface TreeOption {
   label: string
   value: any
   hidden?: boolean
   disabled?: boolean
-  children?: Option[]
+  children?: TreeOption[]
 }
 
 const props = withDefaults(defineProps<{
   modelValue?: any
-  options?: Array<Option>
+  options?: Array<TreeOption>
   cascade?: boolean
   selectable?: boolean
   defaultExpandedKeys?: Array<any>
@@ -26,7 +26,7 @@ const props = withDefaults(defineProps<{
 
 const emits = defineEmits(['update:modelValue'])
 
-const options = ref<Array<Option>>(props.options)
+const options = ref<Array<TreeOption>>(props.options)
 const checkedValues = computed({
   get: () => props.modelValue,
   set: val => emits('update:modelValue', val),

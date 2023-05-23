@@ -30,7 +30,11 @@ const checkedValues = ref([])
 
 <template>
   <div>
-    Cascade Selectable Tree : {{ checkedValues }}
+    <p>
+      checked Values : {{ checkedValues }}
+    </p>
+
+    Cascade Selectable Tree
     <UTree v-model="checkedValues" :options="options" cascade selectable :default-expanded-keys="['A']" />
 
     Not Selectable:

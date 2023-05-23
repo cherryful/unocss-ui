@@ -14,15 +14,20 @@ const props = withDefaults(defineProps<{
   height: 'md',
 })
 
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(['update:modelValue', 'close'])
 
 watch(
   () => props.modelValue,
   (val) => {
-    emit('update:modelValue', val)
+    val && emit('update:modelValue', val)
     document.body.style.overflow = (val ? 'hidden' : 'auto')
   },
 )
+
+function close() {
+  emit('update:modelValue', false)
+  emit('close')
+}
 
 onUnmounted(() => {
   document.body.style.overflow = 'auto'
@@ -37,8 +42,8 @@ export default {
 
 <template>
   <Teleport to="body">
-    <!-- FIXME: j -->
-    <div v-if="modelValue" class="fixed inset-0 z-40" @click="$emit('update:modelValue', false)">
+    <!-- FIXME: -->
+    <div v-if="modelValue" class="fixed inset-0 z-40" @click="close">
       <div class="absolute inset-0 bg-gray-500 opacity-75" />
     </div>
     <div

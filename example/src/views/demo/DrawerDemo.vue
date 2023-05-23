@@ -1,6 +1,8 @@
 <script setup>
 import { reactive } from 'vue'
 
+import UDrawer from '../../../../packages/components/src/components/Drawer.vue'
+
 import DocWrap from '@/components/DocWrap.vue'
 import Playground from '@/components/Playground.vue'
 import Sample from '@/components/Sample.vue'
@@ -82,7 +84,7 @@ const durations = ['100', '200', '300', '400', '500', '600']
           :placement="state.placement"
           :width="state.width"
           :duration="state.duration"
-          @update:model-value="val => $refs.toast?.info(val)"
+          @close="$refs.toast?.success('close')"
         >
           <div class="h-full w-full flex items-center justify-center">
             <button class="i-mdi:close h-6 w-6" @click="state.show = false" />
