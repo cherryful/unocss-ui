@@ -1,3 +1,5 @@
+// ! need to copy 'style.css' from @unocss/components dist.
+
 import install, {
   UAlert,
   UBadge,
