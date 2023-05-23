@@ -40,6 +40,13 @@ const snippets = {
   </button>
 </UDivider>`,
   ],
+  custom: [
+`<div class="w-full">
+  111
+  <UDivider class="my-10" />
+  222
+</div>`,
+  ],
 }
 
 const aligns = ['left', 'center', 'right']
@@ -134,7 +141,7 @@ const thicknesses = [1, 2, 3, 4, 5]
         </UDivider>
       </div>
     </Sample>
-    <Sample title="custom" :snippets="snippets.slot">
+    <Sample title="custom" :snippets="snippets.custom">
       <div class="w-full">
         111
         <UDivider class="my-10" />
