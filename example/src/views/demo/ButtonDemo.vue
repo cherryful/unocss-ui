@@ -7,6 +7,14 @@ import DocWrap from '@/components/DocWrap.vue'
 import Sample from '@/components/Sample.vue'
 import Playground from '@/components/Playground.vue'
 
+const state = ref({
+  content: 'button',
+  type: 'default',
+  size: 'md',
+  disabled: false,
+  custom: '',
+})
+
 const snippets = {
   size: [
     '<UButton size="sm">sm</UButton>',
@@ -35,14 +43,6 @@ const snippets = {
 </UButton>`,
   ],
 }
-
-const state = ref({
-  content: 'button',
-  type: 'default',
-  size: 'md',
-  disabled: false,
-  custom: '',
-})
 
 const types = ['default', 'primary', 'secondary', 'accent', 'success', 'info', 'warning', 'error']
 const sizes = ['sm', 'md', 'lg']

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import UTree from '../../../../packages/components/src/components/Tree.vue'
 
 const options: any = [
   {
@@ -35,9 +36,18 @@ const checkedValues = ref([])
     </p>
 
     Cascade Selectable Tree
-    <UTree v-model="checkedValues" :options="options" cascade selectable :default-expanded-keys="['A']" />
+    <UTree
+      v-model="checkedValues"
+      :options="options"
+      cascade
+      selectable
+      :default-expanded-keys="['A']"
+    />
 
     Not Selectable:
-    <UTree v-model="checkedValues" :options="options" />
+    <UTree
+      v-model="checkedValues"
+      :options="options"
+    />
   </div>
 </template>

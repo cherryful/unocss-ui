@@ -24,12 +24,12 @@ const props = withDefaults(defineProps<{
   defaultExpandedKeys: () => [],
 })
 
-const emits = defineEmits(['update:modelValue'])
+const emit = defineEmits(['update:modelValue'])
 
 const options = ref<Array<TreeOption>>(props.options)
 const checkedValues = computed({
   get: () => props.modelValue,
-  set: val => emits('update:modelValue', val),
+  set: val => emit('update:modelValue', val),
 })
 
 function handleCheck(e: Event) {
@@ -96,7 +96,7 @@ export default {
       <Checkbox
         v-if="selectable"
         v-model="checkedValues"
-        :value="item.value"
+        :checked-value="item.value"
         :disabled="item.disabled"
         @change="handleCheck"
       >
@@ -113,8 +113,10 @@ export default {
         <template v-if="!item.hidden">
           <div class="flex cursor-pointer items-center gap-1 px-2 py-0.5 transition-100">
             <Checkbox
-              v-if="selectable" v-model="checkedValues" :value="sub.value" :disabled="sub.disabled"
-              @change="handleCheck"
+              v-if="selectable"
+              v-model="checkedValues"
+              :checked-value="item.value"
+              :disabled="sub.disabled"
             >
               {{ sub.label }}
             </Checkbox>
