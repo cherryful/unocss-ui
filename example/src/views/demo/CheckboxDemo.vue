@@ -9,6 +9,7 @@ import Playground from '@/components/Playground.vue'
 
 const checkValue = ref(true)
 const customValue = ref('checked')
+const checkValues = ref([])
 
 const state = ref({
   checkValue: true,
@@ -44,7 +45,22 @@ const snippets = {
   {{ customValue }}
 </UCheckbox>`,
   ],
-  labelLeft: [],
+  labelLeft: [
+`<UCheckbox v-model="checkValue" label-left>
+  {{ checkValue }}
+</UCheckbox>`,
+  ],
+  group: [
+    'const checkValues = ref([])',
+`<div class="flex gap-4">
+  <UCheckbox v-model="checkValues" value="A">
+    A
+  </UCheckbox>
+  <UCheckbox v-model="checkValues" value="B">
+    B
+  </UCheckbox>
+</div>`,
+  ],
 }
 
 const types = ['primary', 'secondary', 'accent', 'success', 'info', 'warning', 'error']
@@ -144,6 +160,20 @@ const sizes = ['sm', 'md', 'lg']
       <UCheckbox v-model="checkValue" label-left>
         {{ checkValue }}
       </UCheckbox>
+    </Sample>
+    <Sample title="checkbox group" :snippets="snippets.group">
+      <p class="mr-4">
+        checkValues:
+        {{ checkValues }}
+      </p>
+      <div class="flex gap-4">
+        <UCheckbox v-model="checkValues" value="A">
+          A
+        </UCheckbox>
+        <UCheckbox v-model="checkValues" value="B">
+          B
+        </UCheckbox>
+      </div>
     </Sample>
   </DocWrap>
 </template>

@@ -8,6 +8,13 @@ const props = withDefaults(defineProps<{
   size?: 'sm' | 'md' | 'lg'
   checked?: boolean
   disabled?: boolean
+  /**
+   * for Multiple values
+   */
+  value?: any
+  /**
+   * for Single value
+   */
   checkedValue?: any
   uncheckedValue?: any
   labelLeft?: boolean
@@ -17,12 +24,13 @@ const props = withDefaults(defineProps<{
   size: 'md',
   checked: false,
   disabled: false,
+  value: null,
   checkedValue: true,
   uncheckedValue: false,
   labelLeft: false,
 })
 
-const emits = defineEmits<{
+const emit = defineEmits<{
   (evt: 'update:modelValue', val: any): void
 }>()
 
@@ -30,6 +38,11 @@ const uid = uniqueId('checkbox-')
 
 const checkValue = computed({
   get: () => {
+    // multiple values
+    if (props.value)
+      return props.modelValue || props.value
+
+    // single value
     if (props.checkedValue && props.modelValue === props.checkedValue)
       return true
     if (props.uncheckedValue && props.modelValue === props.uncheckedValue)
@@ -37,11 +50,23 @@ const checkValue = computed({
     return props.modelValue || props.checked
   },
   set: (val) => {
-    if (props.checkedValue && val)
-      val = props.checkedValue
-    else if (props.uncheckedValue && !val)
-      val = props.uncheckedValue
-    emits('update:modelValue', val)
+    // multiple values
+    if (props.value) {
+      emit('update:modelValue', val)
+      return
+    }
+
+    // single value
+    if (props.checkedValue && val) {
+      emit('update:modelValue', props.checkedValue)
+      return
+    }
+    else if (props.uncheckedValue && !val) {
+      emit('update:modelValue', props.uncheckedValue)
+      return
+    }
+
+    emit('update:modelValue', val)
   },
 })
 </script>
@@ -69,7 +94,9 @@ export default {
       v-bind="$attrs"
       type="checkbox"
       :disabled="disabled"
-      class="border-gray-300 rounded" :class="[
+      :value="value"
+      class="border-gray-300 rounded"
+      :class="[
         `text-${type}-400 focus:ring-${type}-500`,
         disabled ? 'cursor-not-allowed opacity-30' : 'cursor-pointer',
         {
@@ -90,5 +117,3 @@ export default {
     </template>
   </div>
 </template>
-
-<style scoped></style>

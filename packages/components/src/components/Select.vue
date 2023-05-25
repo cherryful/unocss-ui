@@ -88,7 +88,7 @@ export default {
     </label>
     <div
       v-on-click-outside="() => flux.show = false"
-      class="relative mt-2"
+      class="relative"
     >
       <input
         type="text"
@@ -122,7 +122,7 @@ export default {
           <div class="i-mdi:unfold-more-horizontal h-5 w-5" />
         </template>
       </button>
-      <transition
+      <Transition
         leave-active-class="transition ease-in duration-100"
         leave-from-class="opacity-100"
         leave-to-class="opacity-0"
@@ -152,7 +152,7 @@ export default {
             </slot>
           </li>
         </ul>
-      </transition>
+      </Transition>
     </div>
     <div v-if="errorMessage" class="text-xs text-red-500">
       {{ errorMessage }}

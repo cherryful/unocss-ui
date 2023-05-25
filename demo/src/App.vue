@@ -4,7 +4,7 @@ import { ref } from 'vue'
 // import { UAlert, UButton, UCheckbox, UDrawer, ULoading, UModal, URadio, USwitch, UTag, UToast } from '@unocss-ui/components'
 // import { UButton } from 'unocss-ui'
 
-import { UAlert, UButton, UCheckbox, UDrawer, ULoading, UModal, URadio, USwitch, UTag, UToast } from 'unocss-ui'
+import { UAlert, UButton, UCheckbox, UDrawer, ULoading, UModal, URadio, USelect, USwitch, UTag, UToast } from 'unocss-ui'
 
 const drawer = ref(false)
 const modal = ref(false)
@@ -12,8 +12,22 @@ const modal = ref(false)
 const checkboxValue = ref(true)
 const switchValue = ref(true)
 const radioValue = ref('primary')
+const inputValue = ref('')
+const selectedValue = ref('')
 
 const welcome = ref('hi! gratulation to you! you can use this ui lib!')
+
+const selectOptions = [
+  { label: 'Vue', value: 'vue' },
+  { label: 'Angular', value: 'angular' },
+  { label: 'React', value: 'react' },
+  { label: 'Svelte', value: 'svelte' },
+  { label: 'JavaScript', value: 'js' },
+  { label: 'TypeScript', value: 'ts' },
+  { label: 'UnoCSS', value: 'unocss' },
+  { label: 'TailwindCSS', value: 'tailwindcss' },
+  { label: 'JQuery', value: 'jquery' },
+]
 </script>
 
 <template>
@@ -84,6 +98,17 @@ const welcome = ref('hi! gratulation to you! you can use this ui lib!')
       <URadio v-model="radioValue" value="secondary" type="secondary">
         secondary
       </URadio>
+    </div>
+    <div class="flex items-center gap-4">
+      <USelect
+        v-model="selectedValue"
+        :options="selectOptions"
+        clearable
+      />
+      <UInput
+        v-model="inputValue"
+        placeholder="Yo~~~~~~~~~~~~~~~"
+      />
     </div>
   </div>
 

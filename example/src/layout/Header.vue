@@ -100,7 +100,7 @@ const notificationOpen = ref(false)
           @click="dropdownOpen = false"
         />
 
-        <transition
+        <Transition
           enter-active-class="transition duration-150 ease-out transform"
           enter-from-class="scale-95 opacity-0"
           enter-to-class="scale-100 opacity-100"
@@ -123,7 +123,7 @@ const notificationOpen = ref(false)
               Profile
             </a>
           </div>
-        </transition>
+        </Transition>
       </div>
     </div>
   </header>
