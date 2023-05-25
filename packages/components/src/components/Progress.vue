@@ -2,13 +2,13 @@
 import { computed } from 'vue'
 
 const props = withDefaults(defineProps<{
-  color?: 'primary' | 'secondary' | 'accent' | 'error' | 'success' | 'warning' | 'info'
+  type?: 'primary' | 'secondary' | 'accent' | 'error' | 'success' | 'warning' | 'info'
   percentage: number
   scoreLength?: number
   tag?: string
   variant?: 'bar' | 'circle' | 'score'
 }>(), {
-  color: 'primary',
+  type: 'primary',
   scoreLength: 5,
   tag: 'div',
   variant: 'bar',
@@ -32,8 +32,9 @@ export default {
     <template v-if="variant === 'bar'">
       <div class="overflow-hidden rounded-lg bg-gray-200 dark:bg-gray-700">
         <div
+          v-bind="$attrs"
           class="h-2 rounded-lg"
-          :class="[[color]]"
+          :class="`bg-${type}-500 text-${type}-500`"
           :style="{ width: `${percentage}%` }"
         />
       </div>
@@ -45,7 +46,7 @@ export default {
           stroke="currentColor" stroke-linejoin="round" stroke-linecap="round" stroke-width="8" fill="none" cx="50" cy="50" r="40"
         />
         <circle
-          :class="[[color]]"
+          :class="`bg-${type}-500 text-${type}-500`"
           :style="{ strokeDasharray: `${circleProgress} 252` }"
           stroke="currentColor" stroke-linejoin="round" stroke-linecap="round" stroke-width="8" fill="none" cx="50" cy="50" r="40"
         />
@@ -57,41 +58,11 @@ export default {
           v-for="index in scoreLength" :key="index"
           class="inline-block h-2 w-3 rounded-sm"
           :class="{
-            'bg-gray-200 dark:bg-gray-700': !isScoreActive(index), // TODO: dark mode
-            'bg-primary-500': isScoreActive(index) && color === 'primary',
-            'bg-secondary-500': isScoreActive(index) && color === 'secondary',
-            'bg-success-500': isScoreActive(index) && color === 'success',
-            'bg-error-500': isScoreActive(index) && color === 'error',
-            'bg-warning-500': isScoreActive(index) && color === 'warning',
-            'bg-info-500': isScoreActive(index) && color === 'info',
-            'bg-accent-500': isScoreActive(index) && color === 'accent',
+            'bg-gray-200': !isScoreActive(index),
+            [`bg-${type}-500`]: isScoreActive(index),
           }"
         />
       </div>
     </template>
   </component>
 </template>
-
-<style scoped>
-.primary {
-  @apply bg-primary-500 text-primary-500
-}
-.secondary {
-  @apply bg-secondary-500 text-secondary-500
-}
-.accent {
-  @apply bg-accent-500 text-accent-500
-}
-.success {
-  @apply bg-success-500 text-success-500
-}
-.info {
-  @apply bg-info-500 text-info-500
-}
-.warning {
-  @apply bg-warning-500 text-warning-500
-}
-.error {
-  @apply bg-error-500 text-error-500
-}
-</style>
