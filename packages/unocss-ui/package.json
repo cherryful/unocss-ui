@@ -6,11 +6,6 @@
   "author": "cherryful <https://github.com/cherryful>",
   "license": "MIT",
   "homepage": "https://github.com/cherryful/unocss-ui",
-  "keywords": [
-    "unocss-ui",
-    "unocss",
-    "unocss ui"
-  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cherryful/unocss-ui",
@@ -19,10 +14,12 @@
   "bugs": {
     "url": "https://github.com/cherryful/unocss-ui/issues"
   },
+  "keywords": [
+    "unocss-ui",
+    "unocss",
+    "unocss ui"
+  ],
   "sideEffects": false,
-  "main": "./dist/unocss-ui.umd.cjs",
-  "types": "./dist/types/unocss-ui/src/index.d.ts",
-  "module": "./dist/unocss-ui.js",
   "exports": {
     ".": {
       "types": "./dist/types/unocss-ui/src/index.d.ts",
@@ -33,6 +30,9 @@
       "import": "./dist/style.css"
     }
   },
+  "main": "./dist/unocss-ui.umd.cjs",
+  "module": "./dist/unocss-ui.js",
+  "types": "./dist/types/unocss-ui/src/index.d.ts",
   "files": [
     "dist"
   ],
