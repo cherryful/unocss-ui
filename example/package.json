@@ -12,7 +12,6 @@
   },
   "dependencies": {
     "@highlightjs/vue-plugin": "^2.1.0",
-    "@unocss-ui/components": "workspace:*",
     "@vueuse/core": "^10.1.2",
     "highlight.js": "^11.8.0",
     "pinia": "^2.0.36",

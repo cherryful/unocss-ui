@@ -77,9 +77,6 @@ importers:
       '@highlightjs/vue-plugin':
         specifier: ^2.1.0
         version: 2.1.0(highlight.js@11.8.0)(vue@3.2.47)
-      '@unocss-ui/components':
-        specifier: workspace:*
-        version: link:../packages/components
       '@vueuse/core':
         specifier: ^10.1.2
         version: 10.1.2(vue@3.2.47)

@@ -1,6 +1,5 @@
 <script setup>
 import { ref } from 'vue'
-import { UButton } from '@unocss-ui/components'
 import UProgress from '../../../../packages/components/src/components/Progress.vue'
 
 import DocWrap from '@/components/DocWrap.vue'
