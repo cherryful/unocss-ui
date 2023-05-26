@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, nextTick, onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 
 export interface TreeOption {
   label: string
@@ -24,7 +24,6 @@ const props = withDefaults(defineProps<{
 })
 
 const emit = defineEmits(['update:modelValue'])
-
 const theOptions = ref<Array<TreeOption>>(props.options)
 
 const checkedValues = computed({
@@ -35,41 +34,44 @@ const checkedValues = computed({
 function handleCheck(e: Event) {
   if (!props.cascade)
     return
-  const val = (e.target as any).value
-  theOptions.value.forEach((item) => {
-    if (item.value === val) {
-      if (checkedValues.value.includes(val)) {
-        item.children?.forEach((sub) => {
-          if (!checkedValues.value.includes(sub.value) && !sub.disabled)
-            checkedValues.value.push(sub.value)
-        })
-      }
-      else {
-        item.children?.forEach((sub) => {
-          if (checkedValues.value.includes(sub.value))
-            checkedValues.value.splice(checkedValues.value.indexOf(sub.value), 1)
-        })
-      }
-    }
-  })
+  const { value } = (e.target as HTMLInputElement)
+  checkOption(
+    theOptions.value.find(item => item.value === value)!,
+    checkedValues.value.includes(value),
+  )
+}
+
+function checkOption(option: TreeOption, checked: boolean) {
+  if (option.disabled)
+    return
+
+  if (checked) {
+    if (!checkedValues.value.includes(option.value))
+      checkedValues.value.push(option.value)
+  }
+  else {
+    if (checkedValues.value.includes(option.value))
+      checkedValues.value.splice(checkedValues.value.indexOf(option.value), 1)
+  }
+
+  if (props.cascade && option.children)
+    option.children.forEach(sub => checkOption(sub, checked))
+}
+
+function handleExpand(option: TreeOption) {
+  option.hidden = true
+
+  if (!props.defaultExpandedKeys.length)
+    return
+
+  if (props.defaultExpandedKeys.includes(option.value))
+    option.hidden = false
+  option.children?.forEach(sub => handleExpand(sub))
 }
 
 onMounted(() => {
-  theOptions.value.forEach(item => item.hidden = true)
-  nextTick(() => {
-    const expandedKeys = props.defaultExpandedKeys
-    if (!expandedKeys.length)
-      return
-
-    theOptions.value.forEach((item) => {
-      if (expandedKeys.includes(item.value))
-        item.hidden = false
-      item.children?.forEach((sub) => {
-        if (expandedKeys.includes(sub.value))
-          item.hidden = false
-      })
-    })
-  })
+  // default expanded keys
+  theOptions.value.forEach(item => handleExpand(item))
 })
 </script>
 
@@ -130,7 +132,7 @@ export default {
             :options="item.children"
             :default-expanded-keys="defaultExpandedKeys"
           >
-            <template #option="slotProps: any">
+            <template #option="slotProps: { item: TreeOption } ">
               <slot name="option" :item="slotProps.item">
                 {{ slotProps.item.label }}
               </slot>

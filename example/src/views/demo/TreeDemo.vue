@@ -1,16 +1,14 @@
 <script setup>
 import { ref } from 'vue'
-import UTree from '../../../../packages/components/src/components/Tree.vue'
 
+import UTree from '../../../../packages/components/src/components/Tree.vue'
 import DocWrap from '@/components/DocWrap.vue'
 import Sample from '@/components/Sample.vue'
 import Playground from '@/components/Playground.vue'
 
-const checkedValues1 = ref([])
 const checkedValues2 = ref([])
 const checkedValues3 = ref([])
 const checkedValues4 = ref([])
-const checkedValues5 = ref([])
 
 const state = ref({
   checkedValues: [],
@@ -21,8 +19,7 @@ const state = ref({
 
 const snippets = {
   base: [],
-  selectable: [],
-  cascade: [],
+  selectableAndCascade: [],
   defaultExpanded: [],
   custom: [],
 }
@@ -49,41 +46,46 @@ const options = [
         children: [
           { label: 'B31', value: 'B31' },
           { label: 'B32', value: 'B32' },
-          { label: 'B33', value: 'B33' },
+          {
+            label: 'B33',
+            value: 'B33',
+            children: [
+              { label: 'B331', value: 'B331' },
+              { label: 'B332', value: 'B332' },
+              {
+                label: 'B333',
+                value: 'B333',
+                children: [
+                  { label: 'B3331', value: 'B3331' },
+                  { label: 'B3332', value: 'B3332' },
+                  { label: 'B3333', value: 'B3333' },
+                ],
+              },
+            ],
+          },
         ],
       },
     ],
   },
 ]
 
-const stateOptions = [
-  {
-    label: 'AA',
-    value: 'AA',
-    children: [
-      { label: 'AA1', value: 'AA1' },
-      { label: 'AA2', value: 'AA2' },
-      { label: 'AA3', value: 'AA3', disabled: true },
-    ],
-  },
-  {
-    label: 'BB',
-    value: 'BB',
-    children: [
-      { label: 'BB1', value: 'BB1' },
-      { label: 'BB2', value: 'BB2' },
-      {
-        label: 'BB3',
-        value: 'BB3',
-        children: [
-          { label: 'BB31', value: 'BB31' },
-          { label: 'BB32', value: 'BB32' },
-          { label: 'BB33', value: 'BB33' },
-        ],
-      },
-    ],
-  },
-]
+const options2 = deepCopy(options)
+const options3 = deepCopy(options)
+const options4 = deepCopy(options)
+const stateOptions = deepCopy(options)
+
+function deepCopy(arr) {
+  const result = Array.isArray(arr) ? [] : {}
+  for (const key in arr) {
+    if (Object.prototype.hasOwnProperty.call(arr, key)) {
+      if (typeof arr[key] === 'object' && arr[key] !== null)
+        result[key] = deepCopy(arr[key])
+      else
+        result[key] = arr[key]
+    }
+  }
+  return result
+}
 </script>
 
 <template>
@@ -99,7 +101,14 @@ const stateOptions = [
             :options="stateOptions"
             :cascade="state.cascade"
             :selectable="state.selectable"
-          />
+          >
+            <template v-if="state.custom" #option="{ item }">
+              <div class="flex items-center gap-1">
+                <span class="i-mdi:lightning-bolt h-4 w-4" />
+                {{ item.label }}
+              </div>
+            </template>
+          </UTree>
         </div>
       </template>
       <template #props>
@@ -119,17 +128,18 @@ const stateOptions = [
     <Sample title="base" :snippets="snippets.base">
       <UTree :options="options" />
     </Sample>
-    <Sample title="selectable" :snippets="snippets.selectable">
-      <UTree v-model="checkedValues2" :options="options" selectable />
+    <Sample title="selectable & cascade" :snippets="snippets.selectableAndCascade">
+      <UTree v-model="checkedValues2" :options="options2" selectable cascade />
     </Sample>
-    <Sample title="cascade" :snippets="snippets.cascade">
-      <UTree v-model="checkedValues3" :options="options" selectable cascade />
+    <Sample title="default-expanded-keys" :snippets="snippets.defaultExpanded">
+      <UTree
+        v-model="checkedValues3"
+        :options="options3"
+        :default-expanded-keys="['A', 'B', 'B3', 'B33']"
+      />
     </Sample>
-    <!-- <Sample title="default-expanded-keys" :snippets="snippets.defaultExpanded">
-      <UTree v-model="checkedValues4" :options="options" :default-expanded-keys="['A']" />
-    </Sample> -->
     <Sample title="custom" :snippets="snippets.custom">
-      <UTree v-model="checkedValues5" :options="options" cascade selectable>
+      <UTree v-model="checkedValues4" :options="options4" cascade selectable>
         <template #option="{ item }">
           <div class="flex items-center gap-1">
             <span class="i-mdi:lightning-bolt h-4 w-4" />

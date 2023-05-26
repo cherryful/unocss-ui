@@ -61,5 +61,12 @@ export default {
         },
       },
     },
+    UTree: {
+      slots: {
+        option: {
+          description: 'custom option',
+        },
+      },
+    },
   },
 } as any
