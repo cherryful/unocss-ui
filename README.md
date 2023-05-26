@@ -1,5 +1,7 @@
 # unocss-ui
 
+> 作者关于组件库的博文介绍：[基于原子化思想的 Vue3 组件库 UnoCSS UI](https://luzhenyu.blog.csdn.net/article/details/130799232)
+
 This is a Vue3 component library based on Unocss. Its simplicity is its biggest feature, as almost all components rely only on a single `.vue` file, without depending on too much other code. 
 
 > ⚠️ This component library is still under construction and is currently only suitable for learning purposes.
