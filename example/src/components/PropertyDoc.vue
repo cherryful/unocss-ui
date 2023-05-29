@@ -94,7 +94,7 @@ onMounted(async () => {
           <p class="my-2 text-xl">
             Props
           </p>
-          <UTable :data="item.props">
+          <UTable :data="item.props" header-color>
             <template #headers>
               <th scope="col" class="table-th">
                 Name
@@ -138,7 +138,7 @@ onMounted(async () => {
           <p class="my-2 text-xl">
             Events
           </p>
-          <UTable :data="item.emits">
+          <UTable :data="item.emits" header-color>
             <template #headers>
               <th scope="col" class="table-th">
                 Name
@@ -164,7 +164,7 @@ onMounted(async () => {
           <p class="my-2 text-xl">
             Slots
           </p>
-          <UTable :data="item.slots">
+          <UTable :data="item.slots" header-color>
             <template #headers>
               <th scope="col" class="table-th">
                 Name

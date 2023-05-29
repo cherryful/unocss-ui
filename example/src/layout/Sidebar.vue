@@ -6,7 +6,7 @@ import { routes } from '@/router'
 const { isOpen } = useSidebar()
 const route = useRoute()
 
-interface menuType {
+interface MenuType {
   name: string
   children: Array<{
     name: string
@@ -16,7 +16,7 @@ interface menuType {
   }>
 }
 
-const menus: Array<menuType> = routes.map(e => ({
+const menus: Array<MenuType> = routes.map(e => ({
   name: e.name,
   children: e.children?.map(ee => ({
     name: ee.name,
@@ -24,7 +24,7 @@ const menus: Array<menuType> = routes.map(e => ({
     icon: ee.meta?.icon || 'i-mdi:lightning-bolt',
     externalLink: ee.meta?.external,
   })),
-}) as menuType)
+}) as MenuType)
 </script>
 
 <template>

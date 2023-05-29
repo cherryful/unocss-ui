@@ -19,6 +19,7 @@
     "vue-router": "^4.2.0"
   },
   "devDependencies": {
+    "@iconify-json/heroicons": "^1.1.10",
     "@iconify-json/mdi": "^1.1.51",
     "@unocss/reset": "^0.51.12",
     "@vitejs/plugin-vue": "^4.2.2",

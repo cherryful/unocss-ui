@@ -125,12 +125,18 @@ const snippets = {
   </template>
 </UTable>`,
   ],
+  tree: [],
 }
 
 const state = ref({
   loading: false,
   empty: false,
   bulk: false,
+  divided: false,
+  striped: false,
+  bordered: false,
+  caption: false,
+  headerColor: false,
 })
 
 const list = [
@@ -157,12 +163,39 @@ const list = [
   },
 ]
 
+const treeList = [
+  {
+    id: 1,
+    name: 'Fruit',
+    children: [
+      { name: 'apple', price: 15, status: 'canEat' },
+      { name: 'orange', price: 18, status: 'canEat' },
+      { name: 'pear', price: 12, status: 'canNotEat' },
+      { name: 'cherry', price: 20, status: 'canNotEat' },
+    ],
+  },
+  {
+    id: 2,
+    name: 'Toys',
+    children: [
+      { name: 'Bear', price: 18, status: 'good' },
+      { name: 'Cat', price: 15, status: 'good' },
+      { name: 'Dog', price: 28, status: 'bad' },
+    ],
+  },
+
+]
+
 const bulkActions = [
   {
     name: 'Delete All',
     clicked: keys => alert(keys),
   },
 ]
+
+function onMouseenter(row) {
+  console.log('mouse hover: ', row)
+}
 </script>
 
 <template>
@@ -171,43 +204,69 @@ const bulkActions = [
       <template #preview>
         <UTable
           :loading="state.loading"
+          :divided="state.divided"
+          :bordered="state.bordered"
+          :striped="state.striped"
           :data="!state.empty ? list : []"
           :actions="state.bulk ? bulkActions : []"
+          :header-color="state.headerColor"
+          @hover-row="val => onMouseenter(val)"
         >
+          <template v-if="state.caption" #top>
+            This is the caption with the class `caption-top`
+          </template>
+          <template v-if="state.caption" #bottom>
+            This is the caption with the class `caption-bottom`
+          </template>
           <template #headers>
-            <th scope="col" class="col-span-3 px-3 py-3.5 text-sm font-semibold text-gray-900 sm:pl-6">
+            <th scope="col" class="table-th font-bold">
               Name
             </th>
-            <th scope="col" class="col-span-3 px-3 py-3.5 text-sm font-semibold text-gray-900 sm:pl-6">
+            <th scope="col" class="table-th">
               Age
             </th>
-            <th scope="col" class="col-span-3 px-3 py-3.5 text-sm font-semibold text-gray-900 sm:pl-6">
+            <th scope="col" class="table-th">
               Email
             </th>
-            <th scope="col" class="col-span-3 px-3 py-3.5 text-sm font-semibold text-gray-900 sm:pl-6">
+            <th scope="col" class="table-th">
               Status
             </th>
           </template>
           <template #rows="{ row }">
-            <td class="w-16 whitespace-nowrap px-3.5 py-2 pl-4 text-center text-sm text-gray-500 sm:pl-6">
+            <td class="table-td font-bold">
               {{ row.name }}
             </td>
-            <td class="w-16 whitespace-nowrap px-3.5 py-2 pl-4 text-center text-sm text-gray-500 sm:pl-6">
+            <td class="table-td">
               {{ row.age }}
             </td>
-            <td class="w-16 whitespace-nowrap px-3.5 py-2 pl-4 text-center text-sm text-gray-500 sm:pl-6">
+            <td class="table-td">
               {{ row.email }}
             </td>
-            <td class="w-16 whitespace-nowrap px-3.5 py-2 pl-4 text-center text-sm text-gray-500 sm:pl-6">
+            <td class="table-td">
               {{ row.status }}
             </td>
           </template>
         </UTable>
       </template>
       <template #props>
-        <div class="flex gap-2">
+        <div class="flex flex-wrap gap-2">
+          <UCheckbox v-model="state.caption">
+            caption
+          </UCheckbox>
           <UCheckbox v-model="state.loading">
             loading
+          </UCheckbox>
+          <UCheckbox v-model="state.divided">
+            divided
+          </UCheckbox>
+          <UCheckbox v-model="state.bordered">
+            bordered
+          </UCheckbox>
+          <UCheckbox v-model="state.striped">
+            striped
+          </UCheckbox>
+          <UCheckbox v-model="state.headerColor">
+            headerColor
           </UCheckbox>
           <UCheckbox v-model="state.empty">
             empty
@@ -221,30 +280,30 @@ const bulkActions = [
     <Sample title="base" :snippets="snippets.base">
       <UTable :data="list">
         <template #headers>
-          <th scope="col" class="col-span-3 px-3 py-3.5 text-sm font-semibold text-gray-900 sm:pl-6">
+          <th scope="col" class="table-th">
             Name
           </th>
-          <th scope="col" class="col-span-3 px-3 py-3.5 text-sm font-semibold text-gray-900 sm:pl-6">
+          <th scope="col" class="table-th">
             Age
           </th>
-          <th scope="col" class="col-span-3 px-3 py-3.5 text-sm font-semibold text-gray-900 sm:pl-6">
+          <th scope="col" class="table-th">
             Email
           </th>
-          <th scope="col" class="col-span-3 px-3 py-3.5 text-sm font-semibold text-gray-900 sm:pl-6">
+          <th scope="col" class="table-th">
             Status
           </th>
         </template>
         <template #rows="{ row }">
-          <td class="whitespace-nowrap px-3.5 py-2 pl-4 text-center text-sm text-gray-500 sm:pl-6">
+          <td class="table-td">
             {{ row.name }}
           </td>
-          <td class="whitespace-nowrap px-3.5 py-2 pl-4 text-center text-sm text-gray-500 sm:pl-6">
+          <td class="table-td">
             {{ row.age }}
           </td>
-          <td class="whitespace-nowrap px-3.5 py-2 pl-4 text-center text-sm text-gray-500 sm:pl-6">
+          <td class="table-td">
             {{ row.email }}
           </td>
-          <td class="whitespace-nowrap px-3.5 py-2 pl-4 text-center text-sm text-gray-500 sm:pl-6">
+          <td class="table-td">
             {{ row.status }}
           </td>
         </template>
@@ -253,30 +312,30 @@ const bulkActions = [
     <Sample title="empty" :snippets="snippets.empty">
       <UTable :data="[]">
         <template #headers>
-          <th scope="col" class="col-span-3 px-3 py-3.5 text-sm font-semibold text-gray-900 sm:pl-6">
+          <th scope="col" class="table-th">
             Name
           </th>
-          <th scope="col" class="col-span-3 px-3 py-3.5 text-sm font-semibold text-gray-900 sm:pl-6">
+          <th scope="col" class="table-th">
             Age
           </th>
-          <th scope="col" class="col-span-3 px-3 py-3.5 text-sm font-semibold text-gray-900 sm:pl-6">
+          <th scope="col" class="table-th">
             Email
           </th>
-          <th scope="col" class="col-span-3 px-3 py-3.5 text-sm font-semibold text-gray-900 sm:pl-6">
+          <th scope="col" class="table-th">
             Status
           </th>
         </template>
         <template #rows="{ row }">
-          <td class="w-16 whitespace-nowrap px-3.5 py-2 pl-4 text-center text-sm text-gray-500 sm:pl-6">
+          <td class="table-td">
             {{ row.name }}
           </td>
-          <td class="w-16 whitespace-nowrap px-3.5 py-2 pl-4 text-center text-sm text-gray-500 sm:pl-6">
+          <td class="table-td">
             {{ row.age }}
           </td>
-          <td class="w-16 whitespace-nowrap px-3.5 py-2 pl-4 text-center text-sm text-gray-500 sm:pl-6">
+          <td class="table-td">
             {{ row.email }}
           </td>
-          <td class="w-16 whitespace-nowrap px-3.5 py-2 pl-4 text-center text-sm text-gray-500 sm:pl-6">
+          <td class="table-td">
             {{ row.status }}
           </td>
         </template>
@@ -285,30 +344,30 @@ const bulkActions = [
     <Sample title="loading" :snippets="snippets.loading">
       <UTable :data="list" loading>
         <template #headers>
-          <th scope="col" class="col-span-3 px-3 py-3.5 text-sm font-semibold text-gray-900 sm:pl-6">
+          <th scope="col" class="table-th">
             Name
           </th>
-          <th scope="col" class="col-span-3 px-3 py-3.5 text-sm font-semibold text-gray-900 sm:pl-6">
+          <th scope="col" class="table-th">
             Age
           </th>
-          <th scope="col" class="col-span-3 px-3 py-3.5 text-sm font-semibold text-gray-900 sm:pl-6">
+          <th scope="col" class="table-th">
             Email
           </th>
-          <th scope="col" class="col-span-3 px-3 py-3.5 text-sm font-semibold text-gray-900 sm:pl-6">
+          <th scope="col" class="table-th">
             Status
           </th>
         </template>
         <template #rows="{ row }">
-          <td class="w-16 whitespace-nowrap px-3.5 py-2 pl-4 text-center text-sm text-gray-500 sm:pl-6">
+          <td class="table-td">
             {{ row.name }}
           </td>
-          <td class="w-16 whitespace-nowrap px-3.5 py-2 pl-4 text-center text-sm text-gray-500 sm:pl-6">
+          <td class="table-td">
             {{ row.age }}
           </td>
-          <td class="w-16 whitespace-nowrap px-3.5 py-2 pl-4 text-center text-sm text-gray-500 sm:pl-6">
+          <td class="table-td">
             {{ row.email }}
           </td>
-          <td class="w-16 whitespace-nowrap px-3.5 py-2 pl-4 text-center text-sm text-gray-500 sm:pl-6">
+          <td class="table-td">
             {{ row.status }}
           </td>
         </template>
@@ -317,30 +376,30 @@ const bulkActions = [
     <Sample title="bulkActions" :snippets="snippets.bulkActions">
       <UTable :data="list" :actions="bulkActions">
         <template #headers>
-          <th scope="col" class="col-span-3 px-3 py-3.5 text-sm font-semibold text-gray-900 sm:pl-6">
+          <th scope="col" class="table-th">
             Name
           </th>
-          <th scope="col" class="col-span-3 px-3 py-3.5 text-sm font-semibold text-gray-900 sm:pl-6">
+          <th scope="col" class="table-th">
             Age
           </th>
-          <th scope="col" class="col-span-3 px-3 py-3.5 text-sm font-semibold text-gray-900 sm:pl-6">
+          <th scope="col" class="table-th">
             Email
           </th>
-          <th scope="col" class="col-span-3 px-3 py-3.5 text-sm font-semibold text-gray-900 sm:pl-6">
+          <th scope="col" class="table-th">
             Status
           </th>
         </template>
         <template #rows="{ row }">
-          <td class="w-16 whitespace-nowrap px-3.5 py-2 pl-4 text-center text-sm text-gray-500 sm:pl-6">
+          <td class="table-td">
             {{ row.name }}
           </td>
-          <td class="w-16 whitespace-nowrap px-3.5 py-2 pl-4 text-center text-sm text-gray-500 sm:pl-6">
+          <td class="table-td">
             {{ row.age }}
           </td>
-          <td class="w-16 whitespace-nowrap px-3.5 py-2 pl-4 text-center text-sm text-gray-500 sm:pl-6">
+          <td class="table-td">
             {{ row.email }}
           </td>
-          <td class="w-16 whitespace-nowrap px-3.5 py-2 pl-4 text-center text-sm text-gray-500 sm:pl-6">
+          <td class="table-td">
             {{ row.status }}
           </td>
         </template>
@@ -349,35 +408,35 @@ const bulkActions = [
     <Sample title="icon" :snippets="snippets.icon">
       <UTable :data="list">
         <template #headers>
-          <th scope="col" class="col-span-3 px-3 py-3.5 text-sm font-semibold text-gray-900 sm:pl-6">
+          <th scope="col" class="table-th">
             Name
           </th>
-          <th scope="col" class="col-span-3 px-3 py-3.5 text-sm font-semibold text-gray-900 sm:pl-6">
+          <th scope="col" class="table-th">
             Age
           </th>
-          <th scope="col" class="col-span-3 px-3 py-3.5 text-sm font-semibold text-gray-900 sm:pl-6">
+          <th scope="col" class="table-th">
             Email
           </th>
-          <th scope="col" class="col-span-3 px-3 py-3.5 text-sm font-semibold text-gray-900 sm:pl-6">
+          <th scope="col" class="table-th">
             Status
           </th>
-          <th scope="col" class="col-span-3 px-4 py-3.5 text-sm font-semibold text-gray-900" />
+          <th scope="col" class="table-th" />
         </template>
         <template #rows="{ row }">
-          <td class="whitespace-nowrap px-3.5 py-2 pl-4 text-center text-sm text-gray-500 sm:pl-6">
+          <td class="table-td">
             {{ row.name }}
           </td>
-          <td class="whitespace-nowrap px-3.5 py-2 pl-4 text-center text-sm text-gray-500 sm:pl-6">
+          <td class="table-td">
             {{ row.age }}
           </td>
-          <td class="whitespace-nowrap px-3.5 py-2 pl-4 text-center text-sm text-gray-500 sm:pl-6">
+          <td class="table-td">
             {{ row.email }}
           </td>
-          <td class="whitespace-nowrap px-3.5 py-2 pl-4 text-center text-sm text-gray-500 sm:pl-6">
+          <td class="table-td">
             {{ row.status }}
           </td>
-          <td class="whitespace-nowrap px-3.5 py-2 pl-4 text-center text-base text-gray-500 sm:pl-6">
-            <div class="flex items-center justify-center gap-3 lg:px-4">
+          <td class="table-td">
+            <div class="flex items-center justify-center gap-3 text-lg lg:px-4">
               <span class="i-mdi:apple inline-block cursor-pointer" />
               <span class="i-mdi:lightning-bolt cursor-pointer" />
               <span class="i-mdi:mail cursor-pointer" />
@@ -386,5 +445,56 @@ const bulkActions = [
         </template>
       </UTable>
     </Sample>
+    <Sample title="tree" :snippets="snippets.tree">
+      <UTable :data="treeList" tree :actions="bulkActions" default-expand-all>
+        <template #headers>
+          <th scope="col" class="table-th">
+            Name
+          </th>
+          <th scope="col" class="table-th">
+            Price
+          </th>
+          <th scope="col" class="table-th">
+            Status
+          </th>
+        </template>
+        <template #rows="{ row }">
+          <th colspan="5" scope="colgroup" class="table-td">
+            {{ row.name }}
+          </th>
+        </template>
+        <template #subs="{ sub }">
+          <td class="table-sub first">
+            {{ sub.name }}
+          </td>
+          <td class="table-sub other">
+            {{ sub.price }}
+          </td>
+          <td class="table-sub other">
+            {{ sub.status }}
+          </td>
+        </template>
+      </UTable>
+    </Sample>
   </DocWrap>
 </template>
+
+<style lang="scss" scoped>
+.table-th {
+  @apply col-span-3 px-3 py-3.5 font-semibold text-left text-gray-900 sm:pl-6;
+}
+
+.table-td {
+  @apply whitespace-nowrap px-3.5 py-2 pl-4 text-left text-gray-500 sm:pl-6;
+}
+
+.table-sub {
+  @apply whitespace-nowrap px-3.5 py-2 text-left text-gray-500;
+  &.first {
+    @apply pl-6 sm:pl-9;
+  }
+  &.other {
+    @apply pl-4 sm:pl-6;
+  }
+}
+</style>

@@ -93,6 +93,9 @@ importers:
         specifier: ^4.2.0
         version: 4.2.0(vue@3.2.47)
     devDependencies:
+      '@iconify-json/heroicons':
+        specifier: ^1.1.10
+        version: 1.1.10
       '@iconify-json/mdi':
         specifier: ^1.1.51
         version: 1.1.51
@@ -614,6 +617,12 @@ packages:
 
   /@humanwhocodes/object-schema@1.2.1:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
+    dev: true
+
+  /@iconify-json/heroicons@1.1.10:
+    resolution: {integrity: sha512-BQNQIQEL6QZ4FoPxJzLrTBAz7OHQezFFdEEl3gyDOZK8rawIIaPl7AtOZrvyOoSgtkU/Xp8V9pJ5JekdREEsQA==}
+    dependencies:
+      '@iconify/types': 2.0.0
     dev: true
 
   /@iconify-json/mdi@1.1.51:

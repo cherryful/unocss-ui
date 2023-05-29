@@ -91,7 +91,7 @@ export default {
           :type="type"
           :disabled="disabled"
           :placeholder="placeholder"
-          class="text-field-input"
+          class="text-field-input focus:ring-primary-600"
           :class=" {
             // size
             'py-1': size === 'sm',
@@ -149,9 +149,9 @@ export default {
 
 <style lang="scss" scoped>
 .text-field-input {
-  @apply w-full border border-slate-400 rounded z-2 text-sm;
-  @apply bg-white dark:bg-slate-800 leading-tight;
-  @apply focus:outline-none focus:ring-1 focus:ring-primary-400 focus:border-primary-400;
+  @apply w-full border-0 rounded z-2 text-sm;
+  @apply bg-white ring-1 ring-inset ring-gray-300;
+  @apply focus:outline-none focus:ring-2;
   @apply placeholder-gray-400 placeholder:text-sm;
   &.danger {
     @apply border-error-500 focus:ring-error-500 focus:border-error-500;

@@ -68,24 +68,6 @@ const options = [
     ],
   },
 ]
-
-const options2 = deepCopy(options)
-const options3 = deepCopy(options)
-const options4 = deepCopy(options)
-const stateOptions = deepCopy(options)
-
-function deepCopy(arr) {
-  const result = Array.isArray(arr) ? [] : {}
-  for (const key in arr) {
-    if (Object.prototype.hasOwnProperty.call(arr, key)) {
-      if (typeof arr[key] === 'object' && arr[key] !== null)
-        result[key] = deepCopy(arr[key])
-      else
-        result[key] = arr[key]
-    }
-  }
-  return result
-}
 </script>
 
 <template>
@@ -98,7 +80,7 @@ function deepCopy(arr) {
           </div>
           <UTree
             v-model="state.checkedValues"
-            :options="stateOptions"
+            :options="options"
             :cascade="state.cascade"
             :selectable="state.selectable"
           >
@@ -129,17 +111,17 @@ function deepCopy(arr) {
       <UTree :options="options" />
     </Sample>
     <Sample title="selectable & cascade" :snippets="snippets.selectableAndCascade">
-      <UTree v-model="checkedValues2" :options="options2" selectable cascade />
+      <UTree v-model="checkedValues2" :options="options" selectable cascade />
     </Sample>
     <Sample title="default-expanded-keys" :snippets="snippets.defaultExpanded">
       <UTree
         v-model="checkedValues3"
-        :options="options3"
+        :options="options"
         :default-expanded-keys="['A', 'B', 'B3', 'B33']"
       />
     </Sample>
     <Sample title="custom" :snippets="snippets.custom">
-      <UTree v-model="checkedValues4" :options="options4" cascade selectable>
+      <UTree v-model="checkedValues4" :options="options" cascade selectable>
         <template #option="{ item }">
           <div class="flex items-center gap-1">
             <span class="i-mdi:lightning-bolt h-4 w-4" />

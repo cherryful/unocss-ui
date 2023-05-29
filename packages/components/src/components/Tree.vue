@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 
 export interface TreeOption {
   label: string
@@ -26,6 +26,10 @@ const props = withDefaults(defineProps<{
 const emit = defineEmits(['update:modelValue'])
 const theOptions = ref<Array<TreeOption>>(props.options)
 
+watch(() => props.options, (val) => {
+  theOptions.value = deepCopy(val)
+})
+
 const checkedValues = computed({
   get: () => props.modelValue,
   set: val => emit('update:modelValue', val),
@@ -42,7 +46,7 @@ function handleCheck(e: Event) {
 }
 
 function checkOption(option: TreeOption, checked: boolean) {
-  if (option.disabled)
+  if (!option || option.disabled)
     return
 
   if (checked) {
@@ -73,6 +77,19 @@ onMounted(() => {
   // default expanded keys
   theOptions.value.forEach(item => handleExpand(item))
 })
+
+function deepCopy(arr: any) {
+  const result: any = Array.isArray(arr) ? [] : {}
+  for (const key in arr) {
+    if (Object.prototype.hasOwnProperty.call(arr, key)) {
+      if (typeof arr[key] === 'object' && arr[key] !== null)
+        result[key] = deepCopy(arr[key])
+      else
+        result[key] = arr[key]
+    }
+  }
+  return result
+}
 </script>
 
 <script lang="ts">
@@ -103,7 +120,7 @@ export default {
             type="checkbox"
             :disabled="item.disabled"
             :value="item.value"
-            class="text-primary-400 focus:ring-primary-500 border-gray-300 rounded"
+            class="focus:ring-primary-500 text-primary-400 border-gray-300 rounded"
             :class="item.disabled ? 'cursor-not-allowed opacity-30' : 'cursor-pointer'"
             @change="handleCheck"
           >

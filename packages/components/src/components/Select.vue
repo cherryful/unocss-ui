@@ -92,7 +92,7 @@ export default {
     >
       <input
         type="text"
-        class="focus:ring-primary-600 w-full border-0 rounded-md bg-white py-1.5 pl-3 pr-8 text-sm leading-6 shadow-sm ring-1 ring-inset placeholder:text-slate-400 focus:ring-2 focus:ring-inset"
+        class="focus:ring-primary-600 w-full border-0 rounded-md bg-white py-1.5 pl-3 pr-8 text-sm leading-6 shadow-sm ring-1 ring-inset placeholder:text-sm placeholder:text-slate-400 focus:ring-2 focus:ring-inset"
         :class="[
           disabled ? 'cursor-not-allowed opacity-40' : 'cursor-default',
           errorMessage ? 'text-red-500 ring-red-500 focus:ring-red-500' : 'text-gray-700 ring-gray-300 focus:ring-primary-600',

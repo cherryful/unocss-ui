@@ -42,6 +42,9 @@ export default {
         rows: {
           description: 'row data',
         },
+        sub: {
+          description: 'tree children data',
+        },
       },
     },
     UDynamicTags: {
