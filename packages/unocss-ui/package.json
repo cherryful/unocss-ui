@@ -1,7 +1,7 @@
 {
   "name": "unocss-ui",
   "type": "module",
-  "version": "0.0.2-alpha.7",
+  "version": "0.0.2-alpha.8",
   "description": "A Vue3 component library built with Unocss.",
   "author": "cherryful <https://github.com/cherryful>",
   "license": "MIT",
@@ -37,7 +37,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "vue-tsc --declaration --emitDeclarationOnly --skipLibCheck && vite build",
+    "build": "cp ../components/dist/style.css ./src/style.css && vue-tsc --declaration --emitDeclarationOnly --skipLibCheck && vite build",
     "stub": "vue-tsc --declaration --emitDeclarationOnly --skipLibCheck && vite build --watch"
   },
   "dependencies": {

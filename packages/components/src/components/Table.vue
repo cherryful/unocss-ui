@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, ref, watch } from 'vue'
+import cloneDeep from 'lodash-es/cloneDeep'
 
 const props = withDefaults(defineProps<{
   data?: Array<any>
@@ -15,6 +16,7 @@ const props = withDefaults(defineProps<{
   headerColor?: boolean
   rowKey?: string
   defaultExpandAll?: boolean
+  rounded?: 'sm' | 'md' | 'lg'
 }>(), {
   data: () => [],
   actions: () => [],
@@ -26,16 +28,18 @@ const props = withDefaults(defineProps<{
   headerColor: false,
   rowKey: 'id',
   defaultExpandAll: false,
+  rounded: 'sm',
 })
 
-defineEmits(['hoverRow'])
+defineEmits(['hoverRow', 'clickRow'])
 
-const data = ref(props.data)
+const data = ref(cloneDeep(props.data))
 const selectIds = ref<Array<number | string>>([])
 
 watch(() => props.data, (val) => {
-  data.value = val
   selectIds.value = []
+  data.value = cloneDeep(val)
+  handleDefaultExpandAll()
 })
 
 const indeterminate = computed(() => {
@@ -54,11 +58,16 @@ function handleSelect(e: Event) {
   }
 }
 
-onMounted(() => {
-  data.value.forEach(p => p._hideSubItem = true)
+function handleDefaultExpandAll() {
+  if (props.tree) {
+    data.value.forEach(p => p._hideSubItem = true)
+    if (props.defaultExpandAll)
+      data.value.forEach(p => p._hideSubItem = false)
+  }
+}
 
-  if (props.defaultExpandAll)
-    data.value.forEach(p => p._hideSubItem = false)
+onMounted(() => {
+  handleDefaultExpandAll()
 })
 </script>
 
@@ -73,10 +82,12 @@ export default {
     <div class="overflow-x-auto -mx-4 -my-2 lg:-mx-8 sm:-mx-6">
       <div class="inline-block min-w-full py-2 align-middle lg:px-8 md:px-6">
         <div
-          class="relative overflow-hidden md:rounded-lg"
-          :class="{
-            'ring-1 ring-gray-300 border-opacity-50': bordered,
-          }"
+          class="relative overflow-hidden"
+          :class="[
+            `rounded-${rounded}`,
+            {
+              'ring-1 ring-gray-300 border-opacity-50': bordered,
+            }]"
         >
           <!-- Head Bulk Actions  -->
           <div
@@ -142,8 +153,10 @@ export default {
                       'divide-x divide-gray-300': divided,
                       'bg-gray-50': selectIds.includes(item[rowKey]),
                       'opacity-30': loading,
+                      // 'bg-gray-100': item.children?.length,
                     }"
                     @mouseenter="$emit('hoverRow', item)"
+                    @click="$emit('clickRow', item)"
                   >
                     <!-- Selection box for the body -->
                     <td v-if="actions?.length" class="relative w-12 px-6 sm:w-16 sm:px-8">
@@ -154,11 +167,11 @@ export default {
                       <input v-model="selectIds" :value="item[rowKey]" type="checkbox" class="checkbox">
                     </td>
                     <!-- Tree arrow -->
-                    <td v-if="tree" class="w-1">
+                    <td v-if="tree" class="w-1" :class="{ 'pl-4': !actions.length }">
                       <button
                         class="i-heroicons:chevron-right h-4 w-4 flex items-center duration-200"
                         :class="{ 'rotate-90': !item._hideSubItem }"
-                        @click="item._hideSubItem = !item._hideSubItem"
+                        @click.stop="item._hideSubItem = !item._hideSubItem"
                       />
                     </td>
                     <slot name="rows" :row="item" :index="idx" />
@@ -172,6 +185,7 @@ export default {
                         'opacity-30': loading,
                       }"
                       @mouseenter="$emit('hoverRow', sub)"
+                      @click="$emit('clickRow', sub)"
                     >
                       <!-- Selection box for the body -->
                       <td v-if="actions?.length" class="relative w-12 px-6 sm:w-16 sm:px-8">
@@ -181,7 +195,7 @@ export default {
                         />
                         <input v-model="selectIds" :value="item[rowKey]" type="checkbox" class="checkbox">
                       </td>
-                      <td class="w-1">
+                      <td class="w-1" :class="{ 'pl-4': !actions.length }">
                         <div class="i-heroicons:minus h-4 w-4 flex items-center opacity-20" />
                       </td>
                       <slot name="subs" :sub="sub" :index="subIdx" />

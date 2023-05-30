@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, ref, watch } from 'vue'
+import cloneDeep from 'lodash-es/cloneDeep'
 
 export interface TreeOption {
   label: string
@@ -24,10 +25,10 @@ const props = withDefaults(defineProps<{
 })
 
 const emit = defineEmits(['update:modelValue'])
-const theOptions = ref<Array<TreeOption>>(props.options)
+const theOptions = ref<Array<TreeOption>>(cloneDeep(props.options))
 
 watch(() => props.options, (val) => {
-  theOptions.value = deepCopy(val)
+  theOptions.value = cloneDeep(val)
 })
 
 const checkedValues = computed({
@@ -77,19 +78,6 @@ onMounted(() => {
   // default expanded keys
   theOptions.value.forEach(item => handleExpand(item))
 })
-
-function deepCopy(arr: any) {
-  const result: any = Array.isArray(arr) ? [] : {}
-  for (const key in arr) {
-    if (Object.prototype.hasOwnProperty.call(arr, key)) {
-      if (typeof arr[key] === 'object' && arr[key] !== null)
-        result[key] = deepCopy(arr[key])
-      else
-        result[key] = arr[key]
-    }
-  }
-  return result
-}
 </script>
 
 <script lang="ts">

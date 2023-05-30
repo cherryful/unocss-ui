@@ -125,7 +125,58 @@ const snippets = {
   </template>
 </UTable>`,
   ],
-  tree: [],
+  tree: [
+`const treeList = [
+  {
+    id: 1,
+    name: 'Fruit',
+    children: [
+      { name: 'apple', price: 15, status: 'canEat' },
+      { name: 'orange', price: 18, status: 'canEat' },
+      { name: 'pear', price: 12, status: 'canNotEat' },
+      { name: 'cherry', price: 20, status: 'canNotEat' },
+    ],
+  },
+  {
+    id: 2,
+    name: 'Toys',
+    children: [
+      { name: 'Bear', price: 18, status: 'good' },
+      { name: 'Cat', price: 15, status: 'good' },
+      { name: 'Dog', price: 28, status: 'bad' },
+    ],
+  },
+]`,
+`<UTable :data="treeList" tree :actions="bulkActions" default-expand-all>
+  <template #headers>
+    <th scope="col" class="col-span-3 px-3 py-3.5 text-left font-semibold text-gray-900 sm:pl-6">
+      Name
+    </th>
+    <th scope="col" class="col-span-3 px-3 py-3.5 text-left font-semibold text-gray-900 sm:pl-6">
+      Price
+    </th>
+    <th scope="col" class="col-span-3 px-3 py-3.5 text-left font-semibold text-gray-900 sm:pl-6">
+      Status
+    </th>
+  </template>
+  <template #rows="{ row }">
+    <th colspan="5" scope="colgroup" class="whitespace-nowrap px-3.5 py-2 pl-4 text-left text-gray-500 sm:pl-6">
+      {{ row.name }}
+    </th>
+  </template>
+  <template #subs="{ sub }">
+    <td class="whitespace-nowrap px-3.5 py-2 pl-6 text-left text-gray-500 sm:pl-9">
+      {{ sub.name }}
+    </td>
+    <td class="whitespace-nowrap px-3.5 py-2 pl-4 text-left text-gray-500 sm:pl-6">
+      {{ sub.price }}
+    </td>
+    <td class="whitespace-nowrap px-3.5 py-2 pl-4 text-left text-gray-500 sm:pl-6">
+      {{ sub.status }}
+    </td>
+  </template>
+</UTable>`,
+  ],
 }
 
 const state = ref({
@@ -137,30 +188,24 @@ const state = ref({
   bordered: false,
   caption: false,
   headerColor: false,
+  rounded: 'sm',
+})
+
+const treeState = ref({
+  caption: false,
+  loading: false,
+  bordered: false,
+  headerColor: false,
+  empty: false,
+  bulk: false,
+  defaultExpandAll: false,
+  rounded: 'sm',
 })
 
 const list = [
-  {
-    id: 1,
-    name: 'Alice',
-    age: 18,
-    email: 'alice@example.com',
-    status: 'active',
-  },
-  {
-    id: 2,
-    name: 'Bob',
-    age: 20,
-    email: 'bob@example.com',
-    status: 'active',
-  },
-  {
-    id: 3,
-    name: 'Cindy',
-    age: 22,
-    email: 'cindy@example.com',
-    status: 'inactive',
-  },
+  { id: 1, name: 'Alice', age: 18, email: 'alice@example.com', status: 'active' },
+  { id: 2, name: 'Bob', age: 20, email: 'bob@example.com', status: 'active' },
+  { id: 3, name: 'Cindy', age: 22, email: 'cindy@example.com', status: 'inactive' },
 ]
 
 const treeList = [
@@ -183,7 +228,6 @@ const treeList = [
       { name: 'Dog', price: 28, status: 'bad' },
     ],
   },
-
 ]
 
 const bulkActions = [
@@ -193,9 +237,11 @@ const bulkActions = [
   },
 ]
 
-function onMouseenter(row) {
-  console.log('mouse hover: ', row)
+function onClickRow(row) {
+  alert(JSON.stringify(row))
 }
+
+const roundeds = ['sm', 'md', 'lg']
 </script>
 
 <template>
@@ -210,7 +256,8 @@ function onMouseenter(row) {
           :data="!state.empty ? list : []"
           :actions="state.bulk ? bulkActions : []"
           :header-color="state.headerColor"
-          @hover-row="val => onMouseenter(val)"
+          :rounded="state.rounded"
+          @click-row="onClickRow($event)"
         >
           <template v-if="state.caption" #top>
             This is the caption with the class `caption-top`
@@ -274,6 +321,97 @@ function onMouseenter(row) {
           <UCheckbox v-model="state.bulk">
             bulk
           </UCheckbox>
+        </div>
+        <div class="flex flex-wrap items-center gap-2">
+          <div class="w-16">
+            rounded
+          </div>
+          <URadio v-for="item in roundeds" :key="item" v-model="state.rounded" :value="item">
+            {{ item }}
+          </URadio>
+        </div>
+      </template>
+    </Playground>
+
+    <Playground>
+      <template #preview>
+        <UTable
+          tree
+          :loading="treeState.loading"
+          :bordered="treeState.bordered"
+          :rounded="treeState.rounded"
+          :data="!treeState.empty ? treeList : []"
+          :actions="treeState.bulk ? bulkActions : []"
+          :header-color="treeState.headerColor"
+          :default-expand-all="treeState.defaultExpandAll"
+          @click-row="onClickRow($event)"
+        >
+          <template v-if="treeState.caption" #top>
+            This is the caption with the class `caption-top`
+          </template>
+          <template v-if="treeState.caption" #bottom>
+            This is the caption with the class `caption-bottom`
+          </template>
+          <template #headers>
+            <th scope="col" class="table-th">
+              Name
+            </th>
+            <th scope="col" class="table-th">
+              Price
+            </th>
+            <th scope="col" class="table-th">
+              Status
+            </th>
+          </template>
+          <template #rows="{ row }">
+            <th colspan="5" scope="colgroup" class="table-td">
+              {{ row.name }}
+            </th>
+          </template>
+          <template #subs="{ sub }">
+            <td class="table-sub first">
+              {{ sub.name }}
+            </td>
+            <td class="table-sub other">
+              {{ sub.price }}
+            </td>
+            <td class="table-sub other">
+              {{ sub.status }}
+            </td>
+          </template>
+        </UTable>
+      </template>
+      <template #props>
+        <div class="flex flex-wrap gap-2">
+          <UCheckbox v-model="treeState.caption">
+            caption
+          </UCheckbox>
+          <UCheckbox v-model="treeState.loading">
+            loading
+          </UCheckbox>
+          <UCheckbox v-model="treeState.bordered">
+            bordered
+          </UCheckbox>
+          <UCheckbox v-model="treeState.headerColor">
+            headerColor
+          </UCheckbox>
+          <UCheckbox v-model="treeState.empty">
+            empty
+          </UCheckbox>
+          <UCheckbox v-model="treeState.bulk">
+            bulk
+          </UCheckbox>
+          <UCheckbox v-model="treeState.defaultExpandAll" disabled>
+            defaultExpandAll
+          </UCheckbox>
+        </div>
+        <div class="flex flex-wrap items-center gap-2">
+          <div class="w-16">
+            rounded
+          </div>
+          <URadio v-for="item in roundeds" :key="item" v-model="treeState.rounded" :value="item">
+            {{ item }}
+          </URadio>
         </div>
       </template>
     </Playground>
@@ -448,29 +586,29 @@ function onMouseenter(row) {
     <Sample title="tree" :snippets="snippets.tree">
       <UTable :data="treeList" tree :actions="bulkActions" default-expand-all>
         <template #headers>
-          <th scope="col" class="table-th">
+          <th scope="col" class="col-span-3 px-3 py-3.5 text-left font-semibold text-gray-900 sm:pl-6">
             Name
           </th>
-          <th scope="col" class="table-th">
+          <th scope="col" class="col-span-3 px-3 py-3.5 text-left font-semibold text-gray-900 sm:pl-6">
             Price
           </th>
-          <th scope="col" class="table-th">
+          <th scope="col" class="col-span-3 px-3 py-3.5 text-left font-semibold text-gray-900 sm:pl-6">
             Status
           </th>
         </template>
         <template #rows="{ row }">
-          <th colspan="5" scope="colgroup" class="table-td">
+          <th colspan="5" scope="colgroup" class="whitespace-nowrap px-3.5 py-2 pl-4 text-left text-gray-500 sm:pl-6">
             {{ row.name }}
           </th>
         </template>
         <template #subs="{ sub }">
-          <td class="table-sub first">
+          <td class="whitespace-nowrap px-3.5 py-2 pl-6 text-left text-gray-500 sm:pl-9">
             {{ sub.name }}
           </td>
-          <td class="table-sub other">
+          <td class="whitespace-nowrap px-3.5 py-2 pl-4 text-left text-gray-500 sm:pl-6">
             {{ sub.price }}
           </td>
-          <td class="table-sub other">
+          <td class="whitespace-nowrap px-3.5 py-2 pl-4 text-left text-gray-500 sm:pl-6">
             {{ sub.status }}
           </td>
         </template>
