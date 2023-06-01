@@ -15,6 +15,7 @@ const state = ref({
   selectable: true,
   cascade: true,
   custom: false,
+  associateParent: true,
 })
 
 const snippets = {
@@ -164,6 +165,7 @@ const options = [
             :options="options"
             :cascade="state.cascade"
             :selectable="state.selectable"
+            :associate-parent="state.associateParent"
           >
             <template v-if="state.custom" #option="{ item }">
               <div class="flex items-center gap-1">
@@ -175,12 +177,15 @@ const options = [
         </div>
       </template>
       <template #props>
-        <div class="flex gap-2">
+        <div class="flex flex-wrap gap-2">
           <UCheckbox v-model="state.selectable">
             selectable
           </UCheckbox>
           <UCheckbox v-model="state.cascade">
             cascade
+          </UCheckbox>
+          <UCheckbox v-model="state.associateParent">
+            associate-parent
           </UCheckbox>
           <UCheckbox v-model="state.custom">
             custom

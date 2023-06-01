@@ -14,6 +14,7 @@ const props = withDefaults(defineProps<{
   modelValue?: any
   options?: Array<TreeOption>
   cascade?: boolean
+  associateParent?: boolean
   selectable?: boolean
   defaultExpandedKeys?: Array<any>
   level?: number
@@ -21,6 +22,7 @@ const props = withDefaults(defineProps<{
   modelValue: null,
   selectable: false,
   cascade: false,
+  associateParent: false,
   options: () => [],
   defaultExpandedKeys: () => [],
   level: 1,
@@ -71,6 +73,9 @@ function findParentItem(value: string, options: Array<TreeOption>): TreeOption |
 }
 
 function checkParent(value: string) {
+  if (!props.associateParent)
+    return
+
   const parent = findParentItem(value, (attrs as any)['all-options'])
   if (parent) {
     if (!checkedValues.value.includes(parent.value))
@@ -170,9 +175,9 @@ export default {
             type="checkbox"
             :disabled="item.disabled"
             :value="item.value"
-            class="focus:ring-primary-500 text-primary-400 border-gray-300 rounded"
+            class="text-primary-400 focus:ring-primary-500 border-gray-300 rounded"
             :class="item.disabled ? 'cursor-not-allowed opacity-30' : 'cursor-pointer'"
-            :indeterminate="indeterminate(item)"
+            :indeterminate="associateParent ? indeterminate(item) : false"
             @change="handleCheck"
           >
           <label
@@ -201,6 +206,7 @@ export default {
             :default-expanded-keys="defaultExpandedKeys"
             :level="level + 1"
             :all-options="level === 1 ? options : $attrs['all-options']"
+            :associate-parent="associateParent"
           >
             <template #option="slotProps: { item: TreeOption, level: number } ">
               <slot name="option" :item="slotProps.item" :level="slotProps.level">
