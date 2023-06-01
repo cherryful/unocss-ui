@@ -17,6 +17,14 @@ const props = withDefaults(defineProps<{
   rowKey?: string
   defaultExpandAll?: boolean
   rounded?: 'sm' | 'md' | 'lg'
+  /**
+   * auto: when all children are checked, parent will be checked
+   *
+   * check: when child is checked, parent will be checked
+   *
+   * uncheck: checking child will not affect parent
+   **/
+  associateParent?: 'auto' | 'check' | 'uncheck'
 }>(), {
   data: () => [],
   actions: () => [],
@@ -29,6 +37,7 @@ const props = withDefaults(defineProps<{
   rowKey: 'id',
   defaultExpandAll: false,
   rounded: 'sm',
+  associateParent: 'auto',
 })
 
 defineEmits(['hoverRow', 'clickRow'])
@@ -83,6 +92,7 @@ function indeterminate(item: any) {
   }
 }
 
+// TODO: refactor code
 // 1. select parent, and select all children
 // 2. select child, and select its parent
 function handleSelect(e: Event) {
@@ -91,7 +101,7 @@ function handleSelect(e: Event) {
 
   const target = e.target as HTMLInputElement
 
-  // find the select item
+  // find the select's parent item, and record the select is parent or not
   let parentItem: any
   let isParent = false
   for (const item of data.value) {
@@ -117,10 +127,12 @@ function handleSelect(e: Event) {
     return
 
   if (isParent) {
-    // 1
+    // 1. select parent, and select all children
     if (target.checked) {
-      for (const item of parentItem.children)
-        selectIds.value.push(item[props.rowKey])
+      for (const item of parentItem.children) {
+        if (!selectIds.value.includes(item[props.rowKey]))
+          selectIds.value.push(item[props.rowKey])
+      }
     }
     else {
       for (const item of parentItem.children)
@@ -128,12 +140,32 @@ function handleSelect(e: Event) {
     }
   }
   else {
-    // 2
+    // 2. select child
     if (target.checked) {
-      if (!selectIds.value.includes(parentItem[props.rowKey]))
-        selectIds.value.push(parentItem[props.rowKey])
+      if (props.associateParent === 'uncheck')
+        return
+      if (props.associateParent === 'check') {
+        if (!selectIds.value.includes(parentItem[props.rowKey]))
+          selectIds.value.push(parentItem[props.rowKey])
+      }
+      if (props.associateParent === 'auto') {
+        // if children all checked, select parent
+        let allChecked = true
+        for (const item of parentItem.children) {
+          if (!selectIds.value.includes(item[props.rowKey])) {
+            allChecked = false
+            break
+          }
+        }
+        if (allChecked && !selectIds.value.includes(parentItem[props.rowKey]))
+          selectIds.value.push(parentItem[props.rowKey])
+      }
     }
     else {
+      if (props.associateParent === 'auto') {
+        // if child unchecked, uncheck parent
+        selectIds.value = selectIds.value.filter(id => id !== parentItem[props.rowKey])
+      }
       // no children, remove parent
       for (const item of parentItem.children) {
         if (selectIds.value.includes(item[props.rowKey]))
@@ -255,7 +287,7 @@ export default {
                         :value="item[rowKey]"
                         type="checkbox"
                         class="checkbox"
-                        :indeterminate="indeterminate(item)"
+                        :indeterminate="associateParent !== 'uncheck' ? indeterminate(item) : false"
                         @change="handleSelect"
                         @click.stop
                       >

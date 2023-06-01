@@ -15,7 +15,7 @@ const state = ref({
   selectable: true,
   cascade: true,
   custom: false,
-  associateParent: true,
+  associateParent: 'auto',
 })
 
 const snippets = {
@@ -150,6 +150,8 @@ const options = [
     ],
   },
 ]
+
+const associateParents = ['auto', 'check', 'uncheck']
 </script>
 
 <template>
@@ -184,12 +186,17 @@ const options = [
           <UCheckbox v-model="state.cascade">
             cascade
           </UCheckbox>
-          <UCheckbox v-model="state.associateParent">
-            associate-parent
-          </UCheckbox>
           <UCheckbox v-model="state.custom">
             custom
           </UCheckbox>
+        </div>
+        <div class="flex flex-wrap items-center gap-2">
+          <div class="w-40">
+            associate-parent
+          </div>
+          <URadio v-for="item in associateParents" :key="item" v-model="state.associateParent" :value="item">
+            {{ item }}
+          </URadio>
         </div>
       </template>
     </Playground>

@@ -14,7 +14,14 @@ const props = withDefaults(defineProps<{
   modelValue?: any
   options?: Array<TreeOption>
   cascade?: boolean
-  associateParent?: boolean
+  /**
+   * auto: when all children are checked, parent will be checked
+   *
+   * check: when child is checked, parent will be checked
+   *
+   * uncheck: checking child will not affect parent
+   **/
+  associateParent?: 'auto' | 'check' | 'uncheck'
   selectable?: boolean
   defaultExpandedKeys?: Array<any>
   level?: number
@@ -22,7 +29,7 @@ const props = withDefaults(defineProps<{
   modelValue: null,
   selectable: false,
   cascade: false,
-  associateParent: false,
+  associateParent: 'auto',
   options: () => [],
   defaultExpandedKeys: () => [],
   level: 1,
@@ -73,14 +80,27 @@ function findParentItem(value: string, options: Array<TreeOption>): TreeOption |
 }
 
 function checkParent(value: string) {
-  if (!props.associateParent)
+  if (props.associateParent === 'uncheck')
     return
 
-  const parent = findParentItem(value, (attrs as any)['all-options'])
-  if (parent) {
-    if (!checkedValues.value.includes(parent.value))
-      checkedValues.value.push(parent.value)
-    checkParent(parent.value)
+  if (props.associateParent === 'auto') {
+    // if children are all checked, check the parent
+    const parent = findParentItem(value, (attrs as any)['all-options'])
+    if (parent) {
+      const allChecked = parent.children?.every(sub => checkedValues.value.includes(sub.value))
+      if (allChecked && !checkedValues.value.includes(parent.value))
+        checkedValues.value.push(parent.value)
+      checkParent(parent.value)
+    }
+  }
+
+  if (props.associateParent === 'check') {
+    const parent = findParentItem(value, (attrs as any)['all-options'])
+    if (parent) {
+      if (!checkedValues.value.includes(parent.value))
+        checkedValues.value.push(parent.value)
+      checkParent(parent.value)
+    }
   }
 }
 
@@ -175,9 +195,9 @@ export default {
             type="checkbox"
             :disabled="item.disabled"
             :value="item.value"
-            class="text-primary-400 focus:ring-primary-500 border-gray-300 rounded"
+            class="focus:ring-primary-500 text-primary-400 border-gray-300 rounded"
             :class="item.disabled ? 'cursor-not-allowed opacity-30' : 'cursor-pointer'"
-            :indeterminate="associateParent ? indeterminate(item) : false"
+            :indeterminate="associateParent !== 'uncheck' ? indeterminate(item) : false"
             @change="handleCheck"
           >
           <label

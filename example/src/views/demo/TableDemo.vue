@@ -200,6 +200,7 @@ const treeState = ref({
   bulk: false,
   defaultExpandAll: false,
   rounded: 'sm',
+  associateParent: 'auto',
 })
 
 const list = [
@@ -242,6 +243,7 @@ function onClickRow(row) {
 }
 
 const roundeds = ['sm', 'md', 'lg']
+const associateParents = ['auto', 'check', 'uncheck']
 </script>
 
 <template>
@@ -344,6 +346,7 @@ const roundeds = ['sm', 'md', 'lg']
           :actions="treeState.bulk ? bulkActions : []"
           :header-color="treeState.headerColor"
           :default-expand-all="treeState.defaultExpandAll"
+          :associate-parent="treeState.associateParent"
           @click-row="onClickRow($event)"
         >
           <template v-if="treeState.caption" #top>
@@ -412,6 +415,14 @@ const roundeds = ['sm', 'md', 'lg']
             rounded
           </div>
           <URadio v-for="item in roundeds" :key="item" v-model="treeState.rounded" :value="item">
+            {{ item }}
+          </URadio>
+        </div>
+        <div class="flex flex-wrap items-center gap-2">
+          <div class="w-40">
+            associate-parent
+          </div>
+          <URadio v-for="item in associateParents" :key="item" v-model="treeState.associateParent" :value="item">
             {{ item }}
           </URadio>
         </div>
