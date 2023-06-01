@@ -2,7 +2,7 @@
 withDefaults(defineProps<{
   align?: 'left' | 'right' | 'center'
   dashed?: boolean
-  thickness: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+  thickness?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
 }>(), {
   align: 'center',
   dashed: false,

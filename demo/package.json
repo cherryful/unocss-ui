@@ -14,6 +14,7 @@
     "vue": "^3.2.47"
   },
   "devDependencies": {
+    "@iconify-json/mdi": "^1.1.51",
     "@unocss-ui/preset": "workspace:*",
     "@unocss/reset": "^0.51.12",
     "@vitejs/plugin-vue": "^4.1.0",

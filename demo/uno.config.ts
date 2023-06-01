@@ -1,4 +1,4 @@
-import { defineConfig, presetUno } from 'unocss'
+import { defineConfig, presetIcons, presetUno } from 'unocss'
 import { colors } from 'unocss/preset-mini'
 
 // import { presetUnocssUI } from '@unocss-ui/preset'
@@ -15,5 +15,6 @@ export default defineConfig({
   presets: [
     presetUno(),
     presetUnocssUI(),
+    presetIcons(),
   ],
 })

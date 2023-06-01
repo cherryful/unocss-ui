@@ -213,19 +213,19 @@ const treeList = [
     id: 1,
     name: 'Fruit',
     children: [
-      { name: 'apple', price: 15, status: 'canEat' },
-      { name: 'orange', price: 18, status: 'canEat' },
-      { name: 'pear', price: 12, status: 'canNotEat' },
-      { name: 'cherry', price: 20, status: 'canNotEat' },
+      { id: 11, name: 'apple', price: 15, status: 'canEat' },
+      { id: 12, name: 'orange', price: 18, status: 'canEat' },
+      { id: 13, name: 'pear', price: 12, status: 'canNotEat' },
+      { id: 14, name: 'cherry', price: 20, status: 'canNotEat' },
     ],
   },
   {
     id: 2,
     name: 'Toys',
     children: [
-      { name: 'Bear', price: 18, status: 'good' },
-      { name: 'Cat', price: 15, status: 'good' },
-      { name: 'Dog', price: 28, status: 'bad' },
+      { id: 21, name: 'Bear', price: 18, status: 'good' },
+      { id: 22, name: 'Cat', price: 15, status: 'good' },
+      { id: 23, name: 'Dog', price: 28, status: 'bad' },
     ],
   },
 ]
@@ -395,14 +395,16 @@ const roundeds = ['sm', 'md', 'lg']
           <UCheckbox v-model="treeState.headerColor">
             headerColor
           </UCheckbox>
-          <UCheckbox v-model="treeState.empty">
-            empty
-          </UCheckbox>
           <UCheckbox v-model="treeState.bulk">
             bulk
           </UCheckbox>
-          <UCheckbox v-model="treeState.defaultExpandAll" disabled>
-            defaultExpandAll
+        </div>
+        <div class="flex gap2">
+          <UCheckbox v-model="treeState.empty">
+            empty
+          </UCheckbox>
+          <UCheckbox v-model="treeState.defaultExpandAll">
+            defaultExpandAll (toggle `empty` to view effects)
           </UCheckbox>
         </div>
         <div class="flex flex-wrap items-center gap-2">

@@ -2,11 +2,12 @@
 import { reactive } from 'vue'
 import Alert from './Alert.vue'
 
+export type ToastType = 'success' | 'info' | 'warning' | 'error'
 export interface ToastEvent {
   show?: boolean
   id: number
   content: string
-  type: 'success' | 'info' | 'warning' | 'error'
+  type: ToastType
 }
 
 const props = withDefaults(defineProps<{
@@ -16,24 +17,26 @@ const props = withDefaults(defineProps<{
   timeout?: number
   queue?: boolean
   zIndex?: number
+  closeable?: boolean
 }>(), {
   position: 'top',
   align: 'center',
   timeout: 2500,
   queue: true,
   zIndex: 100,
+  closeable: false,
 })
 
 const flux = reactive({
   events: [] as ToastEvent[],
 
-  success: (content: string) => flux.add(content, 'success'),
-  info: (content: string) => flux.add(content, 'info'),
-  warning: (content: string) => flux.add(content, 'warning'),
-  error: (content: string) => flux.add(content, 'error'),
-  show: (type: 'success' | 'info' | 'warning' | 'error', content: string) => flux.add(content, type),
+  success: (content: string) => flux.add('success', content),
+  info: (content: string) => flux.add('info', content),
+  warning: (content: string) => flux.add('warning', content),
+  error: (content: string) => flux.add('error', content),
+  show: (type: ToastType, content: string) => flux.add(type, content),
 
-  add: (content: string, type: 'success' | 'info' | 'warning' | 'error') => {
+  add: (type: ToastType, content: string) => {
     if (!props.queue)
       flux.events = []
 
@@ -98,8 +101,8 @@ export default {
           'pt-2': position === 'top',
         }"
       >
-        <slot :type="event.type">
-          <Alert :type="event.type">
+        <slot :type="event.type" :content="event.content">
+          <Alert :type="event.type" :closeable="closeable" @close="flux.remove(event)">
             {{ event.content }}
           </Alert>
         </slot>

@@ -1,7 +1,7 @@
 {
   "name": "@unocss-ui/components",
   "type": "module",
-  "version": "0.0.2-alpha.1",
+  "version": "0.0.2-alpha.3",
   "private": false,
   "description": "A simple vue3 ui lib built with unocss.",
   "author": "cherryful <https://github.com/cherryful>",

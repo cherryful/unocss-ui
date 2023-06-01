@@ -16,12 +16,14 @@ const props = withDefaults(defineProps<{
   cascade?: boolean
   selectable?: boolean
   defaultExpandedKeys?: Array<any>
+  level?: number
 }>(), {
   modelValue: null,
   selectable: false,
   cascade: false,
   options: () => [],
   defaultExpandedKeys: () => [],
+  level: 1,
 })
 
 const emit = defineEmits(['update:modelValue'])
@@ -40,9 +42,11 @@ function handleCheck(e: Event) {
   if (!props.cascade)
     return
   const { value } = (e.target as HTMLInputElement)
+
+  // sometimes, the value is string, sometimes it's number
   checkOption(
-    theOptions.value.find(item => item.value === value)!,
-    checkedValues.value.includes(value),
+    theOptions.value.find(item => String(item.value) === value)!,
+    checkedValues.value.includes(value) || checkedValues.value.includes(Number(value)),
   )
 }
 
@@ -116,7 +120,7 @@ export default {
             class="ml-2"
             :class="item.disabled ? 'cursor-not-allowed' : 'cursor-pointer'"
           >
-            <slot name="option" :item="item">
+            <slot name="option" :item="item" :level="level">
               {{ item.label }}
             </slot>
           </label>
@@ -136,9 +140,10 @@ export default {
             :selectable="selectable"
             :options="item.children"
             :default-expanded-keys="defaultExpandedKeys"
+            :level="level + 1"
           >
-            <template #option="slotProps: { item: TreeOption } ">
-              <slot name="option" :item="slotProps.item">
+            <template #option="slotProps: { item: TreeOption, level: number } ">
+              <slot name="option" :item="slotProps.item" :level="slotProps.level">
                 {{ slotProps.item.label }}
               </slot>
             </template>

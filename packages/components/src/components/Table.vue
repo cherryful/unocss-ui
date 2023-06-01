@@ -42,19 +42,105 @@ watch(() => props.data, (val) => {
   handleDefaultExpandAll()
 })
 
-const indeterminate = computed(() => {
-  const data = props.data
-  return data && data.length > 0 && selectIds.value.length > 0 && selectIds.value.length < data.length
+const total = computed(() => {
+  let count = 0
+  data.value.forEach((e) => {
+    count++
+    if (props.tree && e.children?.length)
+      e.children.forEach(() => count++)
+  })
+  return count
 })
 
-function handleSelect(e: Event) {
+const indeterminateAll = computed(() => {
+  const data = props.data
+  return data && data.length > 0 && selectIds.value.length > 0 && selectIds.value.length < total.value
+})
+
+function handleSelectAll(e: Event) {
   const target = e.target as HTMLInputElement
+  selectIds.value = []
+
   if (target.checked) {
-    // TODO: handle tree data
-    selectIds.value = data.value.map(p => p[props.rowKey])
+    for (const item of data.value) {
+      selectIds.value.push(item[props.rowKey])
+      if (props.tree && item.children?.length) {
+        for (const subItem of item.children)
+          selectIds.value.push(subItem[props.rowKey])
+      }
+    }
+  }
+}
+
+function indeterminate(item: any) {
+  if (props.tree && item.children?.length) {
+    let count = 0
+    for (const subItem of item.children) {
+      if (selectIds.value.includes(subItem[props.rowKey]))
+        count++
+    }
+    return count > 0 && count < item.children.length
+  }
+}
+
+// 1. select parent, and select all children
+// 2. select child, and select its parent
+function handleSelect(e: Event) {
+  if (!props.tree)
+    return
+
+  const target = e.target as HTMLInputElement
+
+  // find the select item
+  let parentItem: any
+  let isParent = false
+  for (const item of data.value) {
+    if (String(item[props.rowKey]) === target.value) {
+      parentItem = item
+      isParent = true
+      break
+    }
+    if (item.children?.length) {
+      for (const sub of item.children) {
+        if (String(sub[props.rowKey]) === target.value) {
+          parentItem = item
+          isParent = false
+          break
+        }
+      }
+    }
+    if (parentItem)
+      break
+  }
+
+  if (!parentItem?.children.length)
+    return
+
+  if (isParent) {
+    // 1
+    if (target.checked) {
+      for (const item of parentItem.children)
+        selectIds.value.push(item[props.rowKey])
+    }
+    else {
+      for (const item of parentItem.children)
+        selectIds.value = selectIds.value.filter(id => id !== item[props.rowKey])
+    }
   }
   else {
-    selectIds.value = []
+    // 2
+    if (target.checked) {
+      if (!selectIds.value.includes(parentItem[props.rowKey]))
+        selectIds.value.push(parentItem[props.rowKey])
+    }
+    else {
+      // no children, remove parent
+      for (const item of parentItem.children) {
+        if (selectIds.value.includes(item[props.rowKey]))
+          return
+      }
+      selectIds.value = selectIds.value.filter(id => id !== parentItem[props.rowKey])
+    }
   }
 }
 
@@ -115,9 +201,9 @@ export default {
                 <th v-if="actions?.length" scope="col" class="relative w-12 px-6 sm:w-16 sm:px-8">
                   <input
                     type="checkbox" class="checkbox"
-                    :checked="data.length > 0 && selectIds.length === data.length"
-                    :indeterminate="indeterminate"
-                    @change="handleSelect"
+                    :checked="data?.length > 0 && selectIds.length === total"
+                    :indeterminate="indeterminateAll"
+                    @change="handleSelectAll"
                   >
                 </th>
                 <!-- Tree arrow -->
@@ -156,7 +242,7 @@ export default {
                       // 'bg-gray-100': item.children?.length,
                     }"
                     @mouseenter="$emit('hoverRow', item)"
-                    @click="$emit('clickRow', item)"
+                    @click.stop="$emit('clickRow', item)"
                   >
                     <!-- Selection box for the body -->
                     <td v-if="actions?.length" class="relative w-12 px-6 sm:w-16 sm:px-8">
@@ -164,7 +250,15 @@ export default {
                         v-if="selectIds.includes(item[rowKey])"
                         class="bg-primary-600 absolute inset-y-0 left-0 w-0.5"
                       />
-                      <input v-model="selectIds" :value="item[rowKey]" type="checkbox" class="checkbox">
+                      <input
+                        v-model="selectIds"
+                        :value="item[rowKey]"
+                        type="checkbox"
+                        class="checkbox"
+                        :indeterminate="indeterminate(item)"
+                        @change="handleSelect"
+                        @click.stop
+                      >
                     </td>
                     <!-- Tree arrow -->
                     <td v-if="tree" class="w-1" :class="{ 'pl-4': !actions.length }">
@@ -184,16 +278,23 @@ export default {
                         'bg-gray-50': selectIds.includes(item[rowKey]),
                         'opacity-30': loading,
                       }"
+                      @click.stop="$emit('clickRow', sub)"
                       @mouseenter="$emit('hoverRow', sub)"
-                      @click="$emit('clickRow', sub)"
                     >
                       <!-- Selection box for the body -->
                       <td v-if="actions?.length" class="relative w-12 px-6 sm:w-16 sm:px-8">
                         <div
-                          v-if="selectIds.includes(item[rowKey])"
+                          v-if="selectIds.includes(sub[rowKey])"
                           class="bg-primary-600 absolute inset-y-0 left-0 w-0.5"
                         />
-                        <input v-model="selectIds" :value="item[rowKey]" type="checkbox" class="checkbox">
+                        <input
+                          v-model="selectIds"
+                          :value="sub[rowKey]"
+                          type="checkbox"
+                          class="checkbox"
+                          @change="handleSelect"
+                          @click.stop
+                        >
                       </td>
                       <td class="w-1" :class="{ 'pl-4': !actions.length }">
                         <div class="i-heroicons:minus h-4 w-4 flex items-center opacity-20" />
@@ -213,6 +314,6 @@ export default {
 
 <style scoped>
 .checkbox {
-  @apply absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500 sm:left-6;
+  @apply absolute z-50 left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500 sm:left-6;
 }
 </style>

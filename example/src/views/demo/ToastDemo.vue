@@ -35,6 +35,12 @@ const snippets = {
   </UButton>
 </div>`,
   ],
+  closeable: [
+`<UToast ref="toast_closeable" closeable />
+<UButton @click="$refs.toast_closeable?.info('This toast can be closed manually.')">
+  closeable
+</UButton>`,
+  ],
   timeout: [
     `<UToast ref="toast_timeout" :timeout="500" />
 <UButton @click="$refs.toast_timeout?.info('This toast will disappear after 500ms.')">
@@ -48,58 +54,56 @@ const snippets = {
 </UButton>`,
   ],
   custom: [
-`<UToast ref="toast_custom" v-slot="{ type }">
-  <div class="pointer-events-auto max-w-sm w-full overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
-    <div class="p-4">
-      <div class="flex items-start">
-        <div class="shrink-0">
-          <div
-            class="h-6 w-6"
-            :class="{
-              'i-mdi:check-circle text-success-400': type === 'success',
-              'i-mdi:information-outline text-info-400': type === 'info',
-              'i-mdi:alert-outline text-warning-400': type === 'warning',
-              'i-mdi:alert-circle-outline text-error-400': type === 'error',
-            }"
-          />
-        </div>
-        <div class="ml-3 w-0 flex-1 pt-0.5">
-          <p class="text-sm font-medium text-gray-900">
-            This is the custom {{ type }}  toast.
-          </p>
-          <p class="mt-1 text-sm text-gray-500">
-            Anyone with a link can now view this file.
-          </p>
-        </div>
-      </div>
+`<UToast ref="toast_custom" v-slot="{ type, content }">
+<div class="pointer-events-auto w-full overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
+  <div class="flex items-start p-4">
+    <div class="shrink-0">
+      <div
+        class="h-6 w-6"
+        :class="{
+          'i-mdi:check-circle text-success-400': type === 'success',
+          'i-mdi:information-outline text-info-400': type === 'info',
+          'i-mdi:alert-outline text-warning-400': type === 'warning',
+          'i-mdi:alert-circle-outline text-error-400': type === 'error',
+        }"
+      />
+    </div>
+    <div class="ml-3 w-0 flex-1 pt-0.5">
+      <p class="text-sm font-medium text-gray-900">
+        This is the custom {{ type }}  toast.
+      </p>
+      <p class="mt-1 text-sm text-gray-500">
+        {{ content }}
+      </p>
     </div>
   </div>
+</div>
 </UToast>
-<div class="space-x-4 space-y-3">
-  <UButton
-    type="success"
-    @click="$refs.toast_custom.success('This is the success toast.')"
-  >
-    success
-  </UButton>
-  <UButton
-    type="info"
-    @click="$refs.toast_custom.info('This is the info toast.')"
-  >
-    info
-  </UButton>
-  <UButton
-    type="warning"
-    @click="$refs.toast_custom.warning('This is the warning toast.')"
-  >
-    warning
-  </UButton>
-  <UButton
-    type="error"
-    @click="$refs.toast_custom.error('This is the error toast.')"
-  >
-    error
-  </UButton>
+<div class="flex gap-4">
+<UButton
+  type="success"
+  @click="$refs.toast_custom.success('This is the custom success toast content.')"
+>
+  success
+</UButton>
+<UButton
+  type="info"
+  @click="$refs.toast_custom.info('This is the custom info toast content.')"
+>
+  info
+</UButton>
+<UButton
+  type="warning"
+  @click="$refs.toast_custom.warning('This is the custom warning toast content.')"
+>
+  warning
+</UButton>
+<UButton
+  type="error"
+  @click="$refs.toast_custom.error('This is the custom error toast content.')"
+>
+  error
+</UButton>
 </div>`,
   ],
   placement: [
@@ -129,6 +133,7 @@ const state = ref({
   align: 'left',
   content: 'This toast is very simple and easy to use.',
   queue: true,
+  closeable: false,
   custom: false,
 })
 
@@ -149,6 +154,7 @@ const aligns = ['left', 'center', 'right']
           :queue="state.queue"
           :position="state.position"
           :align="state.align"
+          :closeable="state.closeable"
         >
           <template v-if="state.custom">
             <div class="pointer-events-auto max-w-sm w-full overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
@@ -198,6 +204,9 @@ const aligns = ['left', 'center', 'right']
         <div class="flex flex-wrap gap-2">
           <UCheckbox v-model="state.queue">
             queue
+          </UCheckbox>
+          <UCheckbox v-model="state.closeable">
+            closeable
           </UCheckbox>
           <UCheckbox v-model="state.custom">
             custom content
@@ -282,7 +291,7 @@ const aligns = ['left', 'center', 'right']
       </div>
     </Sample>
     <Sample title="Custom" :snippets="snippets.custom">
-      <UToast ref="toast_custom" v-slot="{ type }">
+      <UToast ref="toast_custom" v-slot="{ type, content }">
         <div class="pointer-events-auto w-full overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
           <div class="flex items-start p-4">
             <div class="shrink-0">
@@ -301,7 +310,7 @@ const aligns = ['left', 'center', 'right']
                 This is the custom {{ type }}  toast.
               </p>
               <p class="mt-1 text-sm text-gray-500">
-                Anyone with a link can now view this file.
+                {{ content }}
               </p>
             </div>
           </div>
@@ -310,25 +319,25 @@ const aligns = ['left', 'center', 'right']
       <div class="flex gap-4">
         <UButton
           type="success"
-          @click="$refs.toast_custom.success('This is the success toast.')"
+          @click="$refs.toast_custom.success('This is the custom success toast content.')"
         >
           success
         </UButton>
         <UButton
           type="info"
-          @click="$refs.toast_custom.info('This is the info toast.')"
+          @click="$refs.toast_custom.info('This is the custom info toast content.')"
         >
           info
         </UButton>
         <UButton
           type="warning"
-          @click="$refs.toast_custom.warning('This is the warning toast.')"
+          @click="$refs.toast_custom.warning('This is the custom warning toast content.')"
         >
           warning
         </UButton>
         <UButton
           type="error"
-          @click="$refs.toast_custom.error('This is the error toast.')"
+          @click="$refs.toast_custom.error('This is the custom error toast content.')"
         >
           error
         </UButton>
@@ -341,6 +350,12 @@ const aligns = ['left', 'center', 'right']
           500 ms
         </UButton>
       </div>
+    </Sample>
+    <Sample title="Closeable" :snippets="snippets.closeable">
+      <UToast ref="toast_closeable" closeable />
+      <UButton @click="$refs.toast_closeable?.info('This toast can be closed manually.')">
+        closeable
+      </UButton>
     </Sample>
     <Sample title="No Queue" :snippets="snippets.queue">
       <UToast ref="toast_queue" :queue="false" />

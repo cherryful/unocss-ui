@@ -67,7 +67,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <section>
+  <section class="w-full">
     <div
       class="border-x border-t border-gray-100 bg-white p-3 shadow sm:p-4"
       :class="snippets?.length ? 'rounded-t-lg' : 'rounded-lg border-b'"

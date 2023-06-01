@@ -102,9 +102,9 @@ onMounted(async () => {
               <th scope="col" class="table-th">
                 Type
               </th>
-              <th scope="col" class="table-th">
+              <!-- <th scope="col" class="table-th">
                 Required
-              </th>
+              </th> -->
               <!-- <th scope="col" class="table-th">
                 Value
               </th> -->
@@ -121,9 +121,9 @@ onMounted(async () => {
               <td class="table-td">
                 {{ row.type }}
               </td>
-              <td class="table-td">
+              <!-- <td class="table-td">
                 {{ row.required }}
-              </td>
+              </td> -->
               <!-- <td class="table-td">
                 TODO: get type options, such as "sm | md | lg"
               </td> -->
@@ -143,9 +143,9 @@ onMounted(async () => {
               <th scope="col" class="table-th">
                 Name
               </th>
-              <th scope="col" class="table-th">
+              <!-- <th scope="col" class="table-th">
                 Description
-              </th>
+              </th> -->
             </template>
             <template #rows="{ row }">
               <td class="table-td w-1/2">
@@ -153,9 +153,9 @@ onMounted(async () => {
                   @{{ row }}
                 </span>
               </td>
-              <td class="table-td w-1/2">
+              <!-- <td class="table-td w-1/2">
                 -
-              </td>
+              </td> -->
             </template>
           </UTable>
         </div>
