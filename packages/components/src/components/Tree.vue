@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, ref, watch } from 'vue'
+import { computed, onMounted, ref, useAttrs, watch } from 'vue'
 import cloneDeep from 'lodash-es/cloneDeep'
 
 export interface TreeOption {
@@ -29,6 +29,9 @@ const props = withDefaults(defineProps<{
 const emit = defineEmits(['update:modelValue'])
 const theOptions = ref<Array<TreeOption>>(cloneDeep(props.options))
 
+// for 'all-options'
+const attrs = useAttrs()
+
 watch(() => props.options, (val) => {
   theOptions.value = cloneDeep(val)
 })
@@ -38,10 +41,61 @@ const checkedValues = computed({
   set: val => emit('update:modelValue', val),
 })
 
+function indeterminate(item: TreeOption) {
+  if (props.cascade && item.children?.length) {
+    let count = 0
+    for (const subItem of item.children) {
+      if (checkedValues.value.includes(subItem.value))
+        count++
+    }
+    return count > 0 && count < item.children.length
+  }
+}
+
+function findParentItem(value: string, options: Array<TreeOption>): TreeOption | undefined {
+  if (!options)
+    return
+
+  for (const item of options) {
+    if (item.children) {
+      if (item.children.some(sub => String(sub.value) === value)) {
+        return item
+      }
+      else {
+        const sub = findParentItem(value, item.children)
+        if (sub)
+          return sub
+      }
+    }
+  }
+}
+
+function checkParent(value: string) {
+  const parent = findParentItem(value, (attrs as any)['all-options'])
+  if (parent) {
+    if (!checkedValues.value.includes(parent.value))
+      checkedValues.value.push(parent.value)
+    checkParent(parent.value)
+  }
+}
+
+function uncheckParent(value: string) {
+  const parent = findParentItem(value, (attrs as any)['all-options'])
+  if (parent) {
+    if (checkedValues.value.includes(parent.value))
+      checkedValues.value.splice(checkedValues.value.indexOf(parent.value), 1)
+    uncheckParent(parent.value)
+  }
+}
+
 function handleCheck(e: Event) {
   if (!props.cascade)
     return
-  const { value } = (e.target as HTMLInputElement)
+  const { value, checked } = (e.target as HTMLInputElement)
+
+  // when check the child, check the parent
+  // if no child checked, uncheck the parent
+  checked ? checkParent(value) : uncheckParent(value)
 
   // sometimes, the value is string, sometimes it's number
   checkOption(
@@ -50,6 +104,10 @@ function handleCheck(e: Event) {
   )
 }
 
+/**
+ * @param option the option to check
+ * @param checked whether to check or uncheck
+ **/
 function checkOption(option: TreeOption, checked: boolean) {
   if (!option || option.disabled)
     return
@@ -114,6 +172,7 @@ export default {
             :value="item.value"
             class="focus:ring-primary-500 text-primary-400 border-gray-300 rounded"
             :class="item.disabled ? 'cursor-not-allowed opacity-30' : 'cursor-pointer'"
+            :indeterminate="indeterminate(item)"
             @change="handleCheck"
           >
           <label
@@ -138,9 +197,10 @@ export default {
             v-model="checkedValues"
             :cascade="cascade"
             :selectable="selectable"
-            :options="item.children"
+            :options="item.children || []"
             :default-expanded-keys="defaultExpandedKeys"
             :level="level + 1"
+            :all-options="level === 1 ? options : $attrs['all-options']"
           >
             <template #option="slotProps: { item: TreeOption, level: number } ">
               <slot name="option" :item="slotProps.item" :level="slotProps.level">

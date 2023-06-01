@@ -26,7 +26,7 @@ const snippets = {
     children: [
       { label: '11', value: 11 },
       { label: '12', value: 12 },
-      { label: '13', value: 13, disabled: true },
+      { label: '13', value: 13 },
     ],
   },
   {
@@ -103,7 +103,7 @@ const options = [
     children: [
       { label: '11', value: 11 },
       { label: '12', value: 12 },
-      { label: '13', value: 13, disabled: true },
+      { label: '13', value: 13 },
     ],
   },
   {

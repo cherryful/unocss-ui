@@ -178,7 +178,7 @@ export default {
           <!-- Head Bulk Actions  -->
           <div
             v-if="selectIds.length > 0"
-            class="absolute left-12 top-0 z-10 h-12 flex items-center sm:left-16 space-x-3"
+            class="absolute left-12 top-0 h-12 flex items-center sm:left-16 space-x-3"
           >
             <button
               v-for="action in actions" :key="action.name" :disabled="!selectIds.length"
@@ -314,6 +314,6 @@ export default {
 
 <style scoped>
 .checkbox {
-  @apply absolute z-50 left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500 sm:left-6;
+  @apply absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500 sm:left-6;
 }
 </style>
