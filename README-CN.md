@@ -2,6 +2,10 @@
 
 [English](./README.md) | 简体中文
 
+
+[使用](#使用)  | [开发](#开发) | [示例](#示例)
+
+
 > 作者关于组件库的博文介绍：[基于原子化思想的 Vue3 组件库 UnoCSS UI](https://luzhenyu.blog.csdn.net/article/details/130799232)
 
 这是一个基于 UnoCss 的 Vue3 组件库。其最大的特点是简单易用，几乎所有组件都只依赖于一个 `.vue` 文件，不需要太多其他代码的支持。
@@ -111,3 +115,8 @@ unocss-ui-monorepo
 - `@unocss-ui/preset`：根据组件库自身需求抽取出来的 UnoCSS 的预设
 - `unocss-ui`：项目的入口文件，在这里引用  `@unocss-ui/components` 和  `@unocss-ui/preset`
 
+
+## 示例
+
+- 项目中自带的 example 动态可调试文档：[example](https://github.com/cherryful/unocss-ui/tree/main/example)
+- 基于该组件库的全栈管理系统： [https://github.com/szluyu99/rabbit-admin](https://github.com/szluyu99/rabbit-admin)

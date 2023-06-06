@@ -1,8 +1,13 @@
 # unocss-ui
 
+> 作者关于组件库的博文介绍：[基于原子化思想的 Vue3 组件库 UnoCSS UI](https://luzhenyu.blog.csdn.net/article/details/130799232)
+
+
 English | [简体中文](./README-CN.md)
 
-> 作者关于组件库的博文介绍：[基于原子化思想的 Vue3 组件库 UnoCSS UI](https://luzhenyu.blog.csdn.net/article/details/130799232)
+
+[Usage](#Usage)  | [Development](#Development) | [Example](#Example)
+
 
 This is a Vue3 component library based on UnoCss. Its simplicity is its biggest feature, as almost all components rely only on a single `.vue` file, without depending on too much other code. 
 
@@ -109,3 +114,8 @@ The outermost root module is unocss-ui-monorepo, which contains the following su
 - `@unocss-ui/components`: Source code of the components
 - `@unocss-ui/preset`: The UnoCSS preset extracted for the component library's own needs
 - `unocss-ui`: The project's entry file, referencing both @unocss-ui/components and @unocss-ui/preset
+
+## Example
+
+- Dynamically debuggable documentation included in the project: [example](https://github.com/cherryful/unocss-ui/tree/main/example)
+- Full-stack management system based on this component library: [https://github.com/szluyu99/rabbit-admin](https://github.com/szluyu99/rabbit-admin)
