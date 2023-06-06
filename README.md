@@ -1,6 +1,6 @@
 # unocss-ui
 
-English | [简体中文](./README.zh-CN.md)
+English | [简体中文](./README-CN.md)
 
 > 作者关于组件库的博文介绍：[基于原子化思想的 Vue3 组件库 UnoCSS UI](https://luzhenyu.blog.csdn.net/article/details/130799232)
 
