@@ -1,7 +1,8 @@
 # unocss-ui
 
-> 作者关于组件库的博文介绍：<a href="https://luzhenyu.blog.csdn.net/article/details/130799232" target="_blank"> 基于原子化思想的 Vue3 组件库 UnoCSS UI
-</a>
+> 作者关于组件库的博文介绍：[基于原子化思想的 Vue3 组件库 UnoCSS UI](https://luzhenyu.blog.csdn.net/article/details/130799232)
+>
+> (😔, Currently, only Chinese blog available)
 
 
 English | [简体中文](./README-CN.md)
