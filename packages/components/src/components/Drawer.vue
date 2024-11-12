@@ -6,12 +6,16 @@ const props = withDefaults(defineProps<{
   placement?: 'top' | 'right' | 'bottom' | 'left'
   width?: 'sm' | 'md' | 'lg' | '1/2' | '1/3' | '1/4' | 'full'
   duration?: '100' | '200' | '300' | '400' | '500' | '600'
+  title: string
+  header: boolean
 }>(), {
   modelValue: false,
   placement: 'left',
   duration: '200',
   width: 'md',
   height: 'md',
+  title: 'Drawar Header',
+  header: true,
 })
 
 const emit = defineEmits(['update:modelValue', 'close'])
@@ -47,9 +51,7 @@ export default {
       <div class="absolute inset-0 bg-gray-500 opacity-75" />
     </div>
     <div
-      v-bind="$attrs"
-      class="fixed z-50 overflow-y-auto bg-white transition-all duration-200"
-      :class="[`duration-${duration}`, {
+      v-bind="$attrs" class="fixed z-50 overflow-y-auto bg-white p-4 transition-all duration-200" :class="[`duration-${duration}`, {
         [`h-screen w-${width}`]: placement === 'right' || placement === 'left',
         [`w-full h-${width}`]: placement === 'top' || placement === 'bottom',
 
@@ -66,6 +68,16 @@ export default {
         'bottom-0 left-0': placement === 'bottom' && modelValue,
       }]"
     >
+      <div v-if="header">
+        <div class="h-14 w-full flex items-center justify-between">
+          <p class="text-xl font-semibold">
+            {{ title }}
+          </p>
+          <div class="h-7 w-7 flex cursor-pointer items-center justify-center rounded-full rounded-full bg-gray-50 p-1 text-gray-600 hover:bg-gray-100 hover:text-gray-800">
+            <p class="i-mdi:close h-6 w-6 font-light" @click="close" />
+          </div>
+        </div>
+      </div>
       <slot />
     </div>
   </Teleport>

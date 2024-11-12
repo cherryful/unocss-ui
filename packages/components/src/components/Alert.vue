@@ -71,7 +71,7 @@ export default {
     </div>
     <div v-if="closeable" class="ml-2 h-6 w-6 flex items-center justify-center">
       <button
-        class="i-mdi:close-thick h-4 w-4 cursor-pointer transition hover:scale-125"
+        class="i-mdi:close h-4 w-4 cursor-pointer transition hover:scale-125"
         @click="$emit('close')"
       />
     </div>
