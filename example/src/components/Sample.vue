@@ -72,10 +72,10 @@ onMounted(() => {
       class="border-x border-t border-gray-100 bg-white p-3 shadow sm:p-4"
       :class="snippets?.length ? 'rounded-t-lg' : 'rounded-lg border-b'"
     >
-      <div class="text-info-500 mb-2 text-lg">
+      <div class="mb-2 text-lg text-info-500">
         {{ title }}
       </div>
-      <div class="flex justify-center border-2 rounded-md border-dashed p-4 shadow-sm">
+      <div class="flex items-center justify-center border-2 rounded-md border-dashed p-4 shadow-sm">
         <slot />
       </div>
     </div>

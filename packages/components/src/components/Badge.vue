@@ -18,31 +18,35 @@ export default {
 </script>
 
 <template>
-  <div class="relative cursor-default">
-    <slot />
-    <p
-      v-if="content"
-      class="absolute flex translate-x-1/2 items-center justify-center rounded-full object-cover text-white" :class="[
-        [type],
-        {
-          'text-[8px] p-[2px] -top-1 right-0  aspect-square': size === 'sm',
-          'px-1 py-0.5 text-xs -top-1/2 -right-1  aspect-square': size === 'md',
-          'px-1.5 py-[3px] text-sm -top-1/3 -right-1/4': size === 'lg',
-        },
-      ]" :style="{ lineHeight: '1' }"
-    >
-      {{ content }}
-    </p>
-    <span
-      v-else class="absolute translate-x-1/2 rounded-full text-white" :class="[
-        [type],
-        {
-          'h-2 w-2 top-0.5 right-0': size === 'sm',
-          'h-3 w-3 top-0 -right-0.5': size === 'md',
-          'h-4 w-4 -top-1 -right-1': size === 'lg',
-        },
-      ]"
-    />
+  <div>
+    <span>
+      <span class="relative cursor-default">
+        <slot />
+        <span
+          v-if="content"
+          class="absolute translate-x-1/2 rounded-full text-white" :class="[
+            [type],
+            {
+              'text-[8px] p-[2px] -top-1 right-0 ': size === 'sm',
+              'px-1 py-0.5 text-xs -top-1/2 -right-1': size === 'md',
+              'px-1.5 py-[3px] text-sm -top-1/3 -right-1/4': size === 'lg',
+            },
+          ]" :style="{ lineHeight: '1' }"
+        >
+          {{ content }}
+        </span>
+        <span
+          v-else class="absolute translate-x-1/2 rounded-full text-white" :class="[
+            [type],
+            {
+              'h-2 w-2 top-0.5 right-0': size === 'sm',
+              'h-3 w-3 -top-[1px] -right-[3px]': size === 'md',
+              'h-4 w-4 -top-1 -right-1': size === 'lg',
+            },
+          ]"
+        />
+      </span>
+    </span>
   </div>
 </template>
 
